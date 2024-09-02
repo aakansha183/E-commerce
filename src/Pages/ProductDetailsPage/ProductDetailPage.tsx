@@ -29,12 +29,12 @@ const ProductDetail: React.FC = () => {
       <TopHeader />
       <Header />
       <Divider sx = {{mt:2}}/>
-      <Container maxWidth='xl' sx={{ padding: '40px 0' }}>
+      <Container maxWidth='xl' sx={{ marginTop:'50px'}}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                <Box sx={{ width: '150px', height: '150px', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+            <Box sx={{ display: 'flex', gap: 3 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <Box sx={{ width: '150px', height: '150px', backgroundColor: '#f5f5f5', borderRadius: 2, }}>
                   <img src={thumbnailImage1} alt="Thumbnail 1" style={{  borderRadius: '8px' }} />
                 </Box>
                 <Box sx={{ width: '150px', height: '150px', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
@@ -157,7 +157,6 @@ const ProductDetail: React.FC = () => {
           </Grid>
         </Grid>
 
-        <Divider sx={{ mt: 5 }} />
         
         <Box sx={{ mt: 5 }}>
         <ProductTabs/>

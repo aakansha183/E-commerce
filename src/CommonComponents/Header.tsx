@@ -52,6 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header: React.FC = () => {
   return (
+    <Box>
     <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2,marginLeft :'100px' }}>
       <Toolbar>
         <Typography
@@ -87,6 +88,7 @@ const Header: React.FC = () => {
         </Box>
       </Toolbar>
     </AppBar>
+    </Box>
   );
 };
 

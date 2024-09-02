@@ -15,8 +15,8 @@ const IncrementDecrementBox: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px', mt: 4 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, borderRadius: '62px', backgroundColor: '#F0F0F0',width:'170px',height:'52px' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: '35px', mt: 4 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, borderRadius: '62px', backgroundColor: '#F0F0F0',height :'52px',padding:'0px 20px 0px 20px' }}>
         <IconButton onClick={handleDecrement}>
           <RemoveIcon />
         </IconButton>
@@ -28,9 +28,8 @@ const IncrementDecrementBox: React.FC = () => {
       <Button
         variant="contained"
         sx={{
-          flexGrow: 1,
           height: '52px',
-          width: '400px',
+          width:'400px',
           borderRadius: '62px',
           backgroundColor: '#000000'
         }}

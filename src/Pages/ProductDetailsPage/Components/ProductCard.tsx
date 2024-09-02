@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Typography, Grid, Rating } from '@mui/material';
 
-import image1 from '../../../Assests/Images/Frame 32.png';
-import image2 from '../../../Assests/Images/Frame 33.png';
-import image3 from '../../../Assests/Images/Frame 34.png';
-import image4 from '../../../Assests/Images/Frame 38.png';
+import BlueTshirt from '../../../Assests/Images/BlueShirt.png';
+import PrintedTshirt from '../../../Assests/Images/PrintedShirt.png';
+import PinkTshirt from '../../../Assests/Images/PinkT-Shirt.png';
+import CheckTshirt from '../../../Assests/Images/CheckT-shirt.png';
 
 interface Product {
   id: number;
@@ -20,7 +20,7 @@ const products: Product[] = [
   {
     id: 1,
     name: 'Polo with Contrast Trims',
-    image: image1,
+    image: BlueTshirt,
     price: 212,
     oldPrice: 242,
     discount: '-20%',
@@ -29,21 +29,21 @@ const products: Product[] = [
   {
     id: 2,
     name: 'Gradient Graphic T-shirt',
-    image: image2,
+    image: PrintedTshirt,
     price: 145,
     rating: 3.5,
   },
   {
     id: 3,
     name: 'Polo with Tipping Details',
-    image: image3,
+    image: PinkTshirt,
     price: 180,
     rating: 4.5,
   },
   {
     id: 4,
     name: 'Black Striped T-shirt',
-    image: image4,
+    image: CheckTshirt,
     price: 120,
     oldPrice: 150,
     discount: '-30%',
@@ -53,26 +53,25 @@ const products: Product[] = [
 
 const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount, rating }) => {
   return (
-    <Box textAlign="center">
+    <Box>
       <img src={image} alt={name} style={{ maxWidth: '100%', borderRadius: '20px' }} />
-      <Typography variant="h6" fontWeight="bold" sx={{ marginTop: 1 }}>
+      <Typography variant="h6" fontWeight="700px" sx={{ marginTop: 1,width:'228px',height:'27px',fontSize:'20px',lineHeight:'27px' }}>
         {name}
       </Typography>
-      <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginTop: 0.5 }}>
+      <Box display="flex" sx={{ marginTop: 1 }}>
         <Rating value={rating} precision={0.5} readOnly sx={{ color: '#FFC633' }} />
-        <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 0.5 }}>
+        <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 0.5,fontWeight:'400',fontSize:'14px',lineHeight:'18.9px',width:'35px',height:'19px',marginTop:0.4 }}>
           {rating}/5
         </Typography>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 0.5 }}>
-        <Typography variant="h6" fontWeight="bold">
+      <Box sx={{ display: 'flex', marginTop: 1,gap :1}}>
+        <Typography variant="h6" fontWeight="700" lineHeight={'32.4px'} width = {'53px'} height={'32px'} fontSize = {'24px'}>
           ${price}
         </Typography>
         {oldPrice && (
           <Typography
             variant="body2"
-            color="textSecondary"
-            sx={{ textDecoration: 'line-through', marginLeft: 0.5 }}
+            sx={{ textDecoration: 'line-through', marginLeft: 0.5 ,fontWeight:'700',fontSize:'24px',lineHeight:'32.4px',width:'58px',height:'32px',color:'grey'}}
           >
             ${oldPrice}
           </Typography>
@@ -81,10 +80,10 @@ const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount
           <Typography
             variant="body2"
             sx={{
-              backgroundColor: '#FFC633',
-              color: '#fff',
-              borderRadius: '5px',
-              padding: '2px 5px',
+              backgroundColor: '#FFE9F0', 
+              color: '#FF3333',
+              borderRadius: '62px',
+              padding: '6px 14px 6px 14px',
               marginLeft: 0.5,
             }}
           >
@@ -98,8 +97,8 @@ const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount
 
 const SuggestedProducts: React.FC = () => {
   return (
-    <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" fontWeight="bold" textAlign="center" marginBottom={4}>
+    <Box sx={{ padding: 30 }}>
+      <Typography variant="h4" fontWeight='700' marginLeft= {'350px'} marginBottom={4} width ={'579px'} height={'58px'}  lineHeight={'57.6px'} fontSize={'48px'} >
         YOU MIGHT ALSO LIKE
       </Typography>
       <Grid container spacing={0} justifyContent="center">
