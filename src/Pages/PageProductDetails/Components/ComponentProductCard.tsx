@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Typography, Grid, Rating } from '@mui/material';
-
 import BlueTshirt from '../../../Assests/Images/BlueShirt.png';
 import PrintedTshirt from '../../../Assests/Images/PrintedShirt.png';
 import PinkTshirt from '../../../Assests/Images/PinkT-Shirt.png';
@@ -98,7 +97,7 @@ const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount
 const SuggestedProducts: React.FC = () => {
   return (
     <Box sx={{ padding: 30 }}>
-      <Typography variant="h4" fontWeight='700' marginLeft= {'350px'} marginBottom={4} width ={'579px'} height={'58px'}  lineHeight={'57.6px'} fontSize={'48px'} >
+      <Typography variant="h4" fontWeight='700' marginLeft= {'350px'} marginTop={-30} marginBottom={5} width ={'579px'} height={'58px'}  lineHeight={'57.6px'} fontSize={'48px'} >
         YOU MIGHT ALSO LIKE
       </Typography>
       <Grid container spacing={0} justifyContent="center">

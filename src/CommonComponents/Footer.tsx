@@ -22,23 +22,39 @@ const Footer: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={6} textAlign="center">
-            <Box display="flex" >
-              <TextField
-                variant="outlined"
-                placeholder="Enter your email address"
-                sx={{ bgcolor: '#fff', borderRadius: '30px', marginRight: 2, maxWidth: 350 }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Email />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Button variant="contained" color="primary" sx={{ borderRadius: '30px', bgcolor: '#fff', color: '#000', padding: '10px 30px', fontWeight: 'bold' }}>
-                Subscribe to Newsletter
-              </Button>
-            </Box>
+          <Box display="flex" flexDirection="column" alignItems="center">
+  <TextField
+    variant="outlined"
+    placeholder="Enter your email address"
+    sx={{
+      bgcolor: '#fff',
+      borderRadius: '30px',
+      marginBottom: 2,  // Adjust spacing between the TextField and Button
+      maxWidth: 350,
+    }}
+    InputProps={{
+      startAdornment: (
+        <InputAdornment position="start">
+          <Email />
+        </InputAdornment>
+      ),
+    }}
+  />
+  <Button
+    variant="contained"
+    color="primary"
+    sx={{
+      borderRadius: '30px',
+      bgcolor: '#fff',
+      color: '#000',
+      padding: '10px 30px',
+      fontWeight: 'bold',
+    }}
+  >
+    Subscribe to Newsletter
+  </Button>
+</Box>
+
           </Grid>
         </Grid>
       </Box>

@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Grid, Rating, Box, Button } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
+import { Review } from '../Utils/Interfaces';
 
-interface Review {
-  id: number;
-  name: string;
-  rating: number;
-  date: string;
-  review: string;
-}
 
 interface ReviewsListProps {
   reviews: Review[];
@@ -48,12 +42,10 @@ const ReviewCard: React.FC<Review> = ({ name, rating, date, review }) => {
 const ReviewsList: React.FC<ReviewsListProps> = ({ reviews }) => {
   const [visibleCount, setVisibleCount] = useState(6);
 
-  // Sort reviews by date in descending order (latest first)
   const sortedReviews = reviews.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
-  // Function to handle "Load More Reviews" button click
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6);
   };

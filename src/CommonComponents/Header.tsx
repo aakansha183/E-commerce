@@ -19,9 +19,9 @@ const Search = styled('div')(({ theme }) => ({
   },
   marginLeft: 0,
   width: '100%',
+  maxWidth: '610px',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
   },
 }));
 
@@ -42,52 +42,51 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '300%',
+    width: '100%', 
     [theme.breakpoints.up('md')]: {
-      width: '610px',
-      
+      width: '100%',
     },
   },
 }));
 
 const Header: React.FC = () => {
   return (
-    <Box>
-    <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2,marginLeft :'100px' }}>
-      <Toolbar>
-        <Typography
-          variant="h6"
-          noWrap
-          sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold' ,fontFamily: "Oswald"}}
-        >
-          SHOP.CO
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px',fontSize:'16px',fontFamily: "Oswald",color:'#000000' }}>
-          <Typography variant="body1">Shop</Typography>
-          <Typography variant="body1">On Sale</Typography>
-          <Typography variant="body1">New Arrivals</Typography>
-          <Typography variant="body1">Brands</Typography>
-        </Box>
-        <Box sx={{ flexGrow: 1 ,marginLeft:'100px'}} />
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon /> 
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search for products..."
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </Search>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px',marginLeft:'90px' }}>
-          <IconButton color="inherit">
-            <CartIcon />
-          </IconButton>
-          <IconButton color="inherit" sx={{ marginRight: 25 }}>
-            <AccountIcon />
-          </IconButton>
-        </Box>
-      </Toolbar>
-    </AppBar>
+    <Box sx={{ overflow: 'hidden' }}> 
+      <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2, paddingLeft:'120px' }}>
+        <Toolbar>
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: "Oswald" }}
+          >
+            SHOP.CO
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', fontFamily: "Oswald", color: '#000000' }}>
+            <Typography variant="body1">Shop</Typography>
+            <Typography variant="body1">On Sale</Typography>
+            <Typography variant="body1">New Arrivals</Typography>
+            <Typography variant="body1">Brands</Typography>
+          </Box>
+          <Box sx={{ flexGrow: 1 }} />
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search for products..."
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: '20px' }}>
+            <IconButton color="inherit">
+              <CartIcon />
+            </IconButton>
+            <IconButton color="inherit" sx={{ marginRight: 25 }}>
+              <AccountIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
     </Box>
   );
 };
