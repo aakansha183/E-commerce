@@ -54,23 +54,23 @@ const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount
   return (
     <Box>
       <img src={image} alt={name} style={{ maxWidth: '100%', borderRadius: '20px' }} />
-      <Typography variant="h6" fontWeight="700px" sx={{ marginTop: 1,width:'228px',height:'27px',fontSize:'20px',lineHeight:'27px' }}>
+      <Typography variant="h6" fontWeight="700px" sx={{ marginTop: 1,width:'250px',height:'27px',fontSize:'20px',lineHeight:'27px',fontFamily:'Poppins' }}>
         {name}
       </Typography>
       <Box display="flex" sx={{ marginTop: 1 }}>
         <Rating value={rating} precision={0.5} readOnly sx={{ color: '#FFC633' }} />
-        <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 0.5,fontWeight:'400',fontSize:'14px',lineHeight:'18.9px',width:'35px',height:'19px',marginTop:0.4 }}>
+        <Typography variant="body2" color="textSecondary" sx={{ marginLeft: 0.5,fontWeight:'400',fontSize:'14px',lineHeight:'18.9px',width:'35px',height:'19px',marginTop:0.4,fontFamily:'Poppins' }}>
           {rating}/5
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', marginTop: 1,gap :1}}>
-        <Typography variant="h6" fontWeight="700" lineHeight={'32.4px'} width = {'53px'} height={'32px'} fontSize = {'24px'}>
+        <Typography variant="h6" fontWeight="700" lineHeight={'32.4px'} width = {'53px'} height={'32px'} fontSize = {'24px'}fontFamily = {'Poppins'}>
           ${price}
         </Typography>
         {oldPrice && (
           <Typography
             variant="body2"
-            sx={{ textDecoration: 'line-through', marginLeft: 0.5 ,fontWeight:'700',fontSize:'24px',lineHeight:'32.4px',width:'58px',height:'32px',color:'grey'}}
+            sx={{ textDecoration: 'line-through', marginLeft: 0.5 ,fontWeight:'700',fontSize:'24px',lineHeight:'32.4px',width:'58px',height:'32px',color:'#D3D3D3'}}
           >
             ${oldPrice}
           </Typography>
@@ -84,6 +84,7 @@ const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount
               borderRadius: '62px',
               padding: '6px 14px 6px 14px',
               marginLeft: 0.5,
+              fontFamily:'Poppins'
             }}
           >
             {discount}
@@ -97,7 +98,7 @@ const ProductCard: React.FC<Product> = ({ name, image, price, oldPrice, discount
 const SuggestedProducts: React.FC = () => {
   return (
     <Box sx={{ padding: 30 }}>
-      <Typography variant="h4" fontWeight='700' marginLeft= {'350px'} marginTop={-30} marginBottom={5} width ={'579px'} height={'58px'}  lineHeight={'57.6px'} fontSize={'48px'} >
+      <Typography variant="h4" fontWeight='700' marginLeft= {'350px'} marginTop={-30} marginBottom={5} width ={'579px'} height={'58px'}  lineHeight={'57.6px'} fontSize={'48px'} fontFamily={'Poppins'} >
         YOU MIGHT ALSO LIKE
       </Typography>
       <Grid container spacing={0} justifyContent="center">

@@ -57,14 +57,14 @@ const Header: React.FC = () => {
           <Typography
             variant="h6"
             noWrap
-            sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: "Oswald" }}
+            sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily:'Poppins' }}
           >
             SHOP.CO
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', fontFamily: "Oswald", color: '#000000' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', color: '#000000' }}>
             <Typography variant="body1">Shop</Typography>
-            <Typography variant="body1">On Sale</Typography>
-            <Typography variant="body1">New Arrivals</Typography>
+            <Typography variant="body1" >On Sale</Typography>
+            <Typography variant="body1" >New Arrivals</Typography>
             <Typography variant="body1">Brands</Typography>
           </Box>
           <Box sx={{ flexGrow: 1 }} />

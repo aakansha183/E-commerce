@@ -62,7 +62,7 @@ const ProductDetail: React.FC = () => {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" fontWeight='700' lineHeight='48px' fontSize='40px'>ONE LIFE GRAPHIC T-SHIRT</Typography>
+            <Typography variant="h4" fontWeight='700' lineHeight='48px' fontSize='40px'   fontFamily ='Poppins'>ONE LIFE GRAPHIC T-SHIRT</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
               <StarIcon sx={{ color: '#FFC633' }} />
               <StarIcon sx={{ color: '#FFC633' }} />
@@ -71,7 +71,7 @@ const ProductDetail: React.FC = () => {
               <StarHalfIcon sx={{ color: '#FFC633' }} />
               <Typography variant="body2" sx={{ ml: 1, color: '#000000', fontSize: '16px', lineHeight: '21.6px', fontWeight: '400' }}>4.5/5</Typography>
             </Box>
-            <Typography variant="h5" sx={{ mt: 2, fontWeight: '700', fontSize: '32px', lineHeight: '43.2px', color: '#000000' }}>
+            <Typography variant="h5" sx={{ mt: 2, fontWeight: '700', fontSize: '32px', lineHeight: '43.2px', color: '#000000',fontFamily:'Poppins' }}>
               $260 
               <Typography component="span" variant="body2" sx={{ textDecoration: 'line-through', marginLeft: '10px', color: '#D3D3D3', fontWeight: '700', fontSize: '32px', lineHeight: '43.2px' }}>
                 $300

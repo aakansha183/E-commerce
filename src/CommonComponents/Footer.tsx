@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
       <Box sx={{ backgroundColor: '#000000', color: '#fff', padding: '36px 64px 36px 64px', borderRadius: '20px',width:'1380px',height:'100px',marginLeft: '190px',marginTop:'-130px' }}>
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" fontWeight="700" fontSize={'40px'} lineHeight={'45px'} width={'551px'} height={'94px'}>
+            <Typography variant="h4" fontWeight="700" fontSize={'40px'} lineHeight={'45px'} width={'551px'} height={'94px'} fontFamily={'Poppins'}>
               STAY UPTO DATE ABOUT OUR LATEST OFFERS
             </Typography>
           </Grid>
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
     sx={{
       bgcolor: '#fff',
       borderRadius: '30px',
-      marginBottom: 2,  // Adjust spacing between the TextField and Button
+      marginBottom: 2,  
       maxWidth: 350,
     }}
     InputProps={{
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
 
       <Grid container spacing={4} justifyContent="center" sx={{ padding: '40px 200px' }}>
         <Grid item xs={12} sm={3}>
-          <Typography variant="h6" fontWeight="700" fontSize={'33.45px'} width={'167px'} height={'23px'} lineHeight = {'40.15px'}>
+          <Typography variant="h6" fontWeight="700" fontSize={'33.45px'} width={'167px'} height={'23px'} lineHeight = {'40.15px'} fontFamily={'Poppins'}>
             SHOP.CO
           </Typography>
           <Typography variant="body2" color="textSecondary" sx={{ marginTop: 3,fontWeight:'400',fontSize:'14px',lineHeight:'22px',width:'248px',height:'66px' }}>
@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
         </Grid>
       </Grid>
       <Box sx={{  padding: '15px 0', borderTop: '1px solid #e0e0e0'}}>
-        <Typography variant="body2" color="textSecondary" marginLeft={'200px'} marginTop = {'20px'} >
+        <Typography variant="body2" color="textSecondary" marginLeft={'200px'} marginTop = {'20px'} fontFamily={'Poppins'} >
           Shop.co © 2000-2023, All Rights Reserved
         </Typography>
         

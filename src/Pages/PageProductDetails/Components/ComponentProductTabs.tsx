@@ -138,10 +138,11 @@ const ProductTabs: React.FC = () => {
         sx={{
           borderBottom: '1px solid #E0E0E0',
           '& .MuiTab-root': {
-            textTransform: 'none',
+            textTransform: 'inherit',
             fontSize: '16px',
             fontWeight: '400',
             color: '#757575',
+          
           },
           '& .Mui-selected': {
             color: '#000000',
@@ -172,6 +173,7 @@ const ProductTabs: React.FC = () => {
               fontWeight: 'bold',
               fontSize: '18px',
               color: '#000000',
+              
             }}
           >
             All Reviews ({reviews.length})
