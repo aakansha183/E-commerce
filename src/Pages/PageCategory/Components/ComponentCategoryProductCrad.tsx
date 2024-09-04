@@ -61,7 +61,7 @@ const ProductGrid: React.FC = () => {
                   <>
                     <Typography
                       variant="body2"
-                      sx={{ textDecoration: 'line-through', marginLeft: 1, color: 'grey',fontWeight:'700',fontSize:'24px',lineHeight:'32.4px' }}
+                      sx={{ textDecoration: 'line-through', marginLeft: 1, color: '#D3D3D3',fontWeight:'700',fontSize:'24px',lineHeight:'32.4px' }}
                     >
                       ${product.originalPrice}
                     </Typography>

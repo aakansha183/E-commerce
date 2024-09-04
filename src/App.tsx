@@ -1,16 +1,13 @@
 import React from 'react';
-import HomePage from './Pages/HomePage';
-import ProductDetail from './Pages/PageProductDetails/ProductDetailPage';
-import CategoryDetails from './Pages/PageCategory/CategoryDetails';
-import { ProductsDetails } from './Pages/PageProductDetails/Utils/Contants';
+import { Provider } from 'react-redux';
+import store from './Redux/Store';
+import AppRoutes from './Routes/AppRoutes';
 
 const App: React.FC = () => {
   return (
-    <>
-      {/* <CategoryDetails /> */}
-      <ProductDetail/>
-      
-    </>
+    <Provider store={store}>
+     < AppRoutes/>
+    </Provider>
   );
 };
 

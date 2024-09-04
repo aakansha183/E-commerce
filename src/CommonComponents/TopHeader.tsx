@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const TopHeader: React.FC = () => {
   return (
@@ -17,11 +18,21 @@ const TopHeader: React.FC = () => {
         <Typography
           variant="body2"
           sx={{
-            fontsize: "14px",
+            fontSize: "14px",
             fontFamily: "sans-serif",
           }}
         >
-          Sign up and get 20% off to your first order.Sign Up Now{" "}
+          Sign up and get 20% off your first order.{" "}
+          <Link
+            to="/register"
+            style={{
+              color: "#ffffff",
+              textDecoration: "underline",
+              
+            }}
+          >
+            Sign Up Now
+          </Link>
         </Typography>
       </Container>
     </Box>
