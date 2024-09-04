@@ -7,14 +7,17 @@ import localforage from "localforage";
 
 interface AuthState {
   currentUser: User | null;
+  isLoggedIn: boolean;
   login: (username: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  logout: () => Promise<void>;
   register: (newUser: User) => Promise<void>;
 }
 
 const useAuth = (): AuthState => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state: RootState) => state.users.currentUser);
+
+  const isLoggedIn = !!currentUser;
 
   const login = async (username: string, password: string): Promise<boolean> => {
     try {
@@ -46,7 +49,8 @@ const useAuth = (): AuthState => {
   };
 
   const logout = async () => {
-    await localforage.removeItem("currentUser");
+    await sessionStorage.removeItem("currentUser");
+    await localforage.removeItem("currentUser"); // Optional, if you store it in localForage as well
     dispatch(setUser(null));
   };
 
@@ -70,10 +74,10 @@ const useAuth = (): AuthState => {
 
     console.log("Registered new user:", newUser);
 
-    dispatch({ type: "ADD_USER", payload: newUser });
+    dispatch(setUser(newUser));
   };
 
-  return { currentUser, login, logout, register };
+  return { currentUser, isLoggedIn, login, logout, register };
 };
 
 export default useAuth;

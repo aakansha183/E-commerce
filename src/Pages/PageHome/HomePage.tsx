@@ -8,6 +8,8 @@ import NewArrivals from './Components/NewArrival';
 import TopSelling from './Components/TopSelling';
 import BrowseDressStyle from './Components/BrowseDressStyle';
 import Footer from '../../CommonComponents/Footer';
+import BrowseByDressStyle from './Components/BrowseDressStyle';
+import HappyCustomers from './Components/Testimonials';
 
 const HomePage: React.FC = () => {
   return (
@@ -18,8 +20,8 @@ const HomePage: React.FC = () => {
      <BrandBar/>
      <NewArrivals/>
      <TopSelling/>
-     <BrowseDressStyle/>
-     {/* <Footer/> */}
+     <BrowseByDressStyle/>
+    <HappyCustomers/>
       </Box>
     
   );

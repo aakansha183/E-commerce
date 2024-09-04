@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SearchIcon from '../Assests/ImagesData/SearchIcon';
 import CartIcon from '../Assests/ImagesData/CartIcon';
 import AccountIcon from '../Assests/ImagesData/AccountIcon';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import useAuth from '../Hooks/UseAuth';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -50,21 +57,48 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header: React.FC = () => {
+  const { logout, isLoggedIn } = useAuth(); 
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
+    if (isLoggedIn) {
+      await logout();
+      toast.success("Successfully logged out", { theme: 'dark' });
+      handleMenuClose();
+    } else {
+      toast.error("Please log in or sign up", { theme: 'dark' });
+    }
+  };
+
   return (
     <Box sx={{ overflow: 'hidden' }}> 
-      <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2, paddingLeft:'120px' }}>
+      <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2, paddingLeft: '120px' }}>
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily:'Poppins' }}
-          >
-            SHOP.CO
-          </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', color: '#000000' }}>
-            <Typography variant="body1">Shop</Typography>
-            <Typography variant="body1" >On Sale</Typography>
-            <Typography variant="body1" >New Arrivals</Typography>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: 'Poppins', marginRight: '20px' }}
+            >
+              SHOP.CO
+            </Typography>
+          </Link>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', color: '#000000', marginLeft: '80px' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Typography variant="body1">Shop</Typography>
+            </Link>
+            <Typography variant="body1">On Sale</Typography>
+            <HashLink smooth to="/#newarrivals" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Typography variant="body1">New Arrivals</Typography>
+            </HashLink>
             <Typography variant="body1">Brands</Typography>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
@@ -81,9 +115,28 @@ const Header: React.FC = () => {
             <IconButton color="inherit">
               <CartIcon />
             </IconButton>
-            <IconButton color="inherit" sx={{ marginRight: 25 }}>
+            <IconButton 
+              color="inherit" 
+              sx={{ marginRight: 25 }} 
+              onClick={handleMenuOpen} 
+            >
               <AccountIcon />
             </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              {isLoggedIn ? (
+                <MenuItem onClick={handleLogout}>
+                  Logout
+                </MenuItem>
+              ) : (
+                <MenuItem onClick={() => toast.error("Please log in or sign up", { theme: 'dark' })}>
+                  No User Found
+                </MenuItem>
+              )}
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>

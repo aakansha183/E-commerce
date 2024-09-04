@@ -31,7 +31,7 @@ const Login: React.FC = () => {
         const success = await login(values.username, values.password);
         if (success) {
           navigate("/Home");
-          toast.success("Successfully Logged In");
+          toast.success("Successfully Logged In",{ theme: 'dark' });
         } else {
           setError("Invalid username or password");
         }

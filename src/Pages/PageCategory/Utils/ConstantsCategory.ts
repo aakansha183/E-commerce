@@ -33,7 +33,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       rating: 4.0,
       image: CheckedShirt,
       originalPrice: 160,
-      discount: 30,
+      discount: '30%',
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       rating: 3.5,
       image: Jeans,
       originalPrice: 260,
-      discount: 20,
+      discount: '20%',
     },
     {
       id: 5,
@@ -60,7 +60,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       rating: 4.5,
       image: OrangeBlackShirt,
       originalPrice: 160,
-      discount: 30,
+      discount: '30%',
     },
     {
       id: 7,
@@ -69,7 +69,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       rating: 5.0,
       image: GreenShirt,
       originalPrice: 320,
-      discount: 30,
+      discount: '30%',
     },
     {
       id: 8,

@@ -3,10 +3,12 @@ import { Box, Grid, Typography, Button, Rating, Pagination, Divider } from '@mui
 import { useFilter } from './FilterContext';
 import products from '../Utils/ConstantsCategory';
 import ArrowIcon from '../../../Assests/ImagesData/ArrowIcon';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ProductGrid: React.FC = () => {
+  const navigate = useNavigate();
   const { priceRange } = useFilter();
 
   const filteredProducts = products.filter(product =>
@@ -36,9 +38,13 @@ const ProductGrid: React.FC = () => {
       <Grid container spacing={2}>
         {filteredProducts.map((product) => (
           <Grid item xs={2} md={3.6} key={product.id}>
-            <Box sx={{ marginTop: '30px' }}>
+            <Box sx={{ marginTop: '30px', transition: 'transform 0.3s',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                }, }}>
               <Box
                 component="img"
+                onClick={() => {navigate('/ProductDetails', { state: { product } } ); window.scrollTo(0,0);}}
                 src={product.image}
                 alt={product.name}
                 sx={{ width: '350px', borderRadius: '20px', marginBottom: 2,height:'auto' }}
@@ -70,7 +76,7 @@ const ProductGrid: React.FC = () => {
               borderRadius: '62px',
               padding: '6px 14px 6px 14px',
               marginLeft: 0.5,}}>
-                      {product.discount}% off
+                      {product.discount}
                     </Typography>
                   </>
                 )}

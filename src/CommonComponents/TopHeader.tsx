@@ -1,7 +1,19 @@
-import { Box, Container, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Container, Typography, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close"; 
+import useAuth from "../Hooks/UseAuth"; // Adjust the path as needed
 
 const TopHeader: React.FC = () => {
+  const { currentUser } = useAuth(); // Get currentUser from auth hook
+  const [isVisible, setIsVisible] = useState(true); 
+
+  const handleClose = () => {
+    setIsVisible(false); 
+  };
+
+  if (currentUser || !isVisible) return null;
+
   return (
     <Box sx={{ backgroundColor: "#000000", height: "38px", width: "100%" }}>
       <Container
@@ -13,6 +25,7 @@ const TopHeader: React.FC = () => {
           justifyContent: "center",
           alignItems: "center",
           color: "#ffffff",
+          position: "relative", 
         }}
       >
         <Typography
@@ -28,12 +41,21 @@ const TopHeader: React.FC = () => {
             style={{
               color: "#ffffff",
               textDecoration: "underline",
-              
             }}
           >
             Sign Up Now
           </Link>
         </Typography>
+        <IconButton
+          sx={{
+            position: "absolute",
+            right: "16px", 
+            color: "#ffffff",
+          }}
+          onClick={handleClose} 
+        >
+          <CloseIcon />
+        </IconButton>
       </Container>
     </Box>
   );

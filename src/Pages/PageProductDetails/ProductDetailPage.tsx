@@ -14,8 +14,21 @@ import IncrementDecrementBox from './Components/ComponentIncrementDecrementBox';
 import Footer from '../../CommonComponents/Footer';
 import SuggestedProducts from './Components/ComponentProductCard';
 import ProductTabs from './Components/ComponentProductTabs';
-
+import { useLocation } from 'react-router-dom';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 const ProductDetail: React.FC = () => {
+  const renderStars = (rating: number) => {
+    return (
+      <>
+        {[...Array(5)].map((_, index) => {
+          const ratingValue = index + 1;
+          if (rating >= ratingValue) return <StarIcon key={index} style={{ color: '#ffcc00' }} />;
+          if (rating >= ratingValue - 0.5) return <StarHalfIcon key={index} style={{ color: '#ffcc00' }} />;
+          return <StarOutlineIcon key={index} style={{ color: '#ffcc00' }} />;
+        })}
+      </>
+    );
+  };
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState<number | null>(null);
 
@@ -26,7 +39,8 @@ const ProductDetail: React.FC = () => {
   const handleThumbnailClick = (index: number) => {
     setSelectedThumbnail(index);
   };
-
+  const location = useLocation();
+  const { product } = location.state as { product: {  image: string, name : string,rating:number,   originalPrice?: number    ,price:number,discount:string } };
   return (
     <Box>
       <TopHeader />
@@ -37,7 +51,7 @@ const ProductDetail: React.FC = () => {
           <Grid item xs={12} md={6}>
             <Box sx={{ display: 'flex', gap: 3 }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, }}>
-                {[productImage, thumbnailImage2, thumbnailImage3].map((thumbnail, index) => (
+                {[product.image, product.image, product.image].map((thumbnail, index) => (
                   <Box
                     key={index}
                     sx={{
@@ -56,42 +70,42 @@ const ProductDetail: React.FC = () => {
               </Box>
 
               <Box sx={{ flex: 1, borderRadius: 2 }}>
-                <img src={productImage} alt="Product" style={{ width: '77%', height: 'auto', borderRadius: '8px' }} />
+                <img src={product.image} alt="Product" style={{ width: '92%', height: 'auto', borderRadius: '8px' }} />
               </Box>
             </Box>
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" fontWeight='700' lineHeight='48px' fontSize='40px'   fontFamily ='Poppins'>ONE LIFE GRAPHIC T-SHIRT</Typography>
+            <Typography variant="h4" fontWeight='700' lineHeight='48px' fontSize='40px'   fontFamily ='Poppins'>{product.name}</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
-              <StarIcon sx={{ color: '#FFC633' }} />
-              <StarIcon sx={{ color: '#FFC633' }} />
-              <StarIcon sx={{ color: '#FFC633' }} />
-              <StarIcon sx={{ color: '#FFC633' }} />
-              <StarHalfIcon sx={{ color: '#FFC633' }} />
-              <Typography variant="body2" sx={{ ml: 1, color: '#000000', fontSize: '16px', lineHeight: '21.6px', fontWeight: '400' }}>4.5/5</Typography>
+              {renderStars(product.rating)}
+              <Typography variant="body2" sx={{ ml: 1, color: '#000000', fontSize: '16px', lineHeight: '21.6px', fontWeight: '400' }}>{product.rating}/5</Typography>
             </Box>
-            <Typography variant="h5" sx={{ mt: 2, fontWeight: '700', fontSize: '32px', lineHeight: '43.2px', color: '#000000',fontFamily:'Poppins' }}>
-              $260 
-              <Typography component="span" variant="body2" sx={{ textDecoration: 'line-through', marginLeft: '10px', color: '#D3D3D3', fontWeight: '700', fontSize: '32px', lineHeight: '43.2px' }}>
-                $300
-              </Typography> 
-              <Box component="span" sx={{ 
-                display: 'inline-block',
-                marginLeft: '10px', 
-                padding: '5px 15px', 
-                backgroundColor: '#FFE9F0', 
-                borderRadius: '60px', 
-                fontSize: '16px', 
-                lineHeight: '21.6px', 
-                fontWeight: '500',
-                textAlign: 'center',
-                verticalAlign: 'middle',
-                color: '#FF3333'
-              }}>
-                -40%
-              </Box>
-            </Typography>
+            <Typography variant="h5" sx={{ mt: 2, fontWeight: '700', fontSize: '32px', lineHeight: '43.2px', color: '#000000', fontFamily: 'Poppins' }}>
+  ${product.price}
+  {product.originalPrice && (
+    <Typography component="span" variant="body2" sx={{ textDecoration: 'line-through', marginLeft: '10px', color: '#D3D3D3', fontWeight: '700', fontSize: '32px', lineHeight: '43.2px' }}>
+      ${product.originalPrice}
+    </Typography>
+  )}
+  {product.discount && (
+    <Box component="span" sx={{
+      display: 'inline-block',
+      marginLeft: '10px',
+      padding: '5px 15px',
+      backgroundColor: '#FFE9F0',
+      borderRadius: '60px',
+      fontSize: '16px',
+      lineHeight: '21.6px',
+      fontWeight: '500',
+      textAlign: 'center',
+      verticalAlign: 'middle',
+      color: '#FF3333'
+    }}>
+      {product.discount}
+    </Box>
+  )}
+</Typography>
             <Typography variant="body1" sx={{ mt: 2, fontSize: '16px', lineHeight: '22px', fontWeight: '400', color: 'grey' }}>
               This graphic t-shirt is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
             </Typography>

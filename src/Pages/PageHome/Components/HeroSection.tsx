@@ -1,9 +1,13 @@
 import React from 'react';
 import { Box, Button, Typography, Grid, Container } from '@mui/material';
 import HeroImage from '../../../Assests/Images/HeroImage.png'; 
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
+    
     <Box
       sx={{
         marginTop:'30px',
@@ -25,7 +29,10 @@ const HeroSection: React.FC = () => {
             <Typography variant="subtitle1" sx={{ marginTop: 2, marginBottom: 4 ,fontWeight:'400',fontSize:'16px',lineHeight:'22px',color:'grey'}}>
               Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
             </Typography>
-            <Button variant="contained" color="primary" sx={{ backgroundColor: 'black', color: 'white', padding: '16px 54px 16px 54px',width:'210px',height:'52px',borderRadius:'62px' }}>
+            <Button variant="contained" color="primary" sx={{ backgroundColor: 'black', color: 'white', padding: '16px 54px 16px 54px',width:'210px',height:'52px',borderRadius:'62px' }} onClick={() => { 
+              window.scrollTo(0,0);
+          navigate("/Category");
+        }}>
               Shop Now
             </Button>
           </Grid>
