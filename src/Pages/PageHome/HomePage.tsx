@@ -6,10 +6,9 @@ import HeroSection from './Components/HeroSection';
 import BrandBar from './Components/BrandHeader';
 import NewArrivals from './Components/NewArrival';
 import TopSelling from './Components/TopSelling';
-import BrowseDressStyle from './Components/BrowseDressStyle';
-import Footer from '../../CommonComponents/Footer';
-import BrowseByDressStyle from './Components/BrowseDressStyle';
 import HappyCustomers from './Components/Testimonials';
+import Footer from '../../CommonComponents/Footer';
+import DressStyleComponent from './Components/BrowseDressStyle';
 
 const HomePage: React.FC = () => {
   return (
@@ -20,8 +19,9 @@ const HomePage: React.FC = () => {
      <BrandBar/>
      <NewArrivals/>
      <TopSelling/>
-     <BrowseByDressStyle/>
+     <DressStyleComponent/>
     <HappyCustomers/>
+    <Footer/>
       </Box>
     
   );

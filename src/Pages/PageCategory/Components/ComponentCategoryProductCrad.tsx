@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Grid, Typography, Button, Rating, Pagination, Divider } from '@mui/material';
 import { useFilter } from './FilterContext';
 import products from '../Utils/ConstantsCategory';
-import ArrowIcon from '../../../Assests/ImagesData/ArrowIcon';
 import { useNavigate } from 'react-router-dom';
 
 

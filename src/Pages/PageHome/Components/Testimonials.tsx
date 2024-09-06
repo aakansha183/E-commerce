@@ -4,36 +4,14 @@ import StarIcon from '@mui/icons-material/Star';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { testimonials } from '../Utils/Constants/TestimonialsConstants';
 
-const testimonials = [
-  {
-    name: 'Sarah M.',
-    text: 'I\'m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I\'ve bought has exceeded my expectations.',
-  },
-  {
-    name: 'Alex K.',
-    text: 'Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.',
-  },
-  {
-    name: 'James L.',
-    text: 'As someone who\'s always on the lookout for unique fashion pieces, I\'m thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.',
-  },
-  {
-    name: 'Mona R.',
-    text: "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions."
-  },
-  {
-    name: 'Liam N.',
-    text: 'I was skeptical about shopping online for clothes, but Shop.co has completely changed my mind. Their products are top-notch, and their service is exceptional.',
-  }
-];
 
 const Testimonials: React.FC = () => {
   const testimonialsRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
     if (testimonialsRef.current) {
-      // Scroll to the start to show the first card fully
       testimonialsRef.current.scrollBy({ left: -400, behavior: 'smooth' });
     }
   };
@@ -45,12 +23,12 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: '100%', margin: '0 auto', overflow: 'hidden' }}>
+    <Box sx={{ maxWidth: '100%', margin: '0 auto', overflow: 'hidden',marginBottom:'120px' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
-        <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h4" component="h2" sx={{ fontWeight: '700',fontSize:'48px',lineHeight:'57.6px',marginLeft:'140px',fontFamily:'Poppins',marginBottom:'40px' }}>
           OUR HAPPY CUSTOMERS
         </Typography>
-        <Box>
+        <Box sx = {{marginRight:'30px',height:'30px'}}>
           <IconButton onClick={scrollLeft}>
             <ArrowBackIosNewIcon />
           </IconButton>
@@ -69,19 +47,17 @@ const Testimonials: React.FC = () => {
           gap: 3,
         }}
       >
-        {/* First Card (blurred and half-shown) */}
-        <Card 
+        <Card                                                               
           sx={{ 
-            width: '400px',
+            width: '500px',
             height:'240px',
             flexShrink: 0,
             borderRadius: '16px', 
             boxShadow: 3, 
             transition: 'all 0.3s ease',
             transform: 'scale(0.9)',
-            opacity: 0.5,
             filter: 'blur(3px)',
-            marginLeft: '-130px' 
+            marginLeft: '-380px' 
           }}
         >
           <CardContent>
@@ -104,12 +80,12 @@ const Testimonials: React.FC = () => {
           <Card 
             key={index} 
             sx={{ 
-              width:'400px',
+              width:'500px',
               height:'240px', 
               flexShrink: 0,
-              borderRadius: '16px', 
-              boxShadow: 3, 
+              borderRadius: '25px', 
               transition: 'all 0.3s ease',
+              borderColor:'black',
             }}
           >
             <CardContent>
@@ -131,14 +107,12 @@ const Testimonials: React.FC = () => {
 
         <Card 
           sx={{ 
-            width:'400px',
+            width:'500px',
             height:'240px',
             flexShrink: 0,
             borderRadius: '16px', 
-            boxShadow: 3, 
             transition: 'all 0.3s ease',
             transform: 'scale(0.9)',
-            opacity: 0.5,
             filter: 'blur(3px)',
           }}
         >
@@ -148,11 +122,11 @@ const Testimonials: React.FC = () => {
                 <StarIcon key={i} sx={{ color: '#FFCC00' }} />
               ))}
             </Box>
-            <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
+            <Typography variant="h6" component="div" sx={{ fontWeight: '700', marginBottom: 1,fontSize:'20px',lineHeight:'22px' }}>
               {testimonials[4].name}
               <CheckCircleIcon sx={{ color: '#00C853', marginLeft: 1 }} />
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" sx= {{fontWeight:'400',fontSize:'16px',lineHeight:'22px'}}>
               "{testimonials[4].text}"
             </Typography>
           </CardContent>

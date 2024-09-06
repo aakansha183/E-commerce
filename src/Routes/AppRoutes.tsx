@@ -14,12 +14,14 @@ const AppRoutes: React.FC = () => {
     <Router>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<CartPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Home" element={<HomePage />} />
         <Route path="/Category" element={<CategoryDetails />} />
         <Route path="/ProductDetails" element={<ProductDetail />} />
+        <Route path="/Cart" element={<CartPage />} />
+
 
       </Routes>
     </Router>

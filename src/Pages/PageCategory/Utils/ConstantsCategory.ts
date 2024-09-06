@@ -9,7 +9,7 @@ import OrangeTshirt from "../../../Assests/Images/OrangeTshirt.png"
 import GreenShirt from "../../../Assests/Images/GreenShirt.png"
  const products = [
     {
-      id: 1,
+      id: 11,
       name: 'Gradient Graphic T-shirt',
       price: 145,
       rating: 3.5,
@@ -18,7 +18,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: null,
     },
     {
-      id: 2,
+      id: 3,
       name: 'Polo with Tipping Details',
       price: 180,
       rating: 4.5,
@@ -36,7 +36,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: '30%',
     },
     {
-      id: 4,
+      id: 2,
       name: 'Skinny Fit Jeans',
       price: 140,
       rating: 3.5,
@@ -45,7 +45,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: '20%',
     },
     {
-      id: 5,
+      id: 3,
       name: 'Checkered Shirt',
       price: 180,
       rating: 4.5,
@@ -54,7 +54,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: null,
     },
     {
-      id: 6,
+      id: 4,
       name: 'Sleeve Striped T-shirt',
       price: 130,
       rating: 4.5,
@@ -63,7 +63,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: '30%',
     },
     {
-      id: 7,
+      id: 5,
       name: 'Vertical Striped Shirt',
       price: 100,
       rating: 5.0,
@@ -72,7 +72,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: '30%',
     },
     {
-      id: 8,
+      id: 6,
       name: 'Courage Graphic T-shirt',
       price: 145,
       rating: 4.0,
@@ -81,7 +81,7 @@ import GreenShirt from "../../../Assests/Images/GreenShirt.png"
       discount: null,
     },
     {
-      id: 9,
+      id: 7,
       name: 'Loose Fit Bermuda Shorts',
       price: 80,
       rating: 3.0,

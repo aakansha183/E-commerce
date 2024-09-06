@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchIcon from '../Assests/ImagesData/SearchIcon';
 import CartIcon from '../Assests/ImagesData/CartIcon';
 import AccountIcon from '../Assests/ImagesData/AccountIcon';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import useAuth from '../Hooks/UseAuth';
 
@@ -57,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   const { logout, isLoggedIn } = useAuth(); 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -112,7 +113,7 @@ const Header: React.FC = () => {
             />
           </Search>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: '20px' }}>
-            <IconButton color="inherit">
+            <IconButton color="inherit"  onClick={() => {navigate('/Cart' )}}>
               <CartIcon />
             </IconButton>
             <IconButton 

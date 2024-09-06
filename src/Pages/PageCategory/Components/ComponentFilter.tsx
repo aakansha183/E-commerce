@@ -3,7 +3,7 @@ import {
   Box,
   Slider,
   Typography,
-  Checkbox,
+  
   List,
   ListItem,
   Accordion,

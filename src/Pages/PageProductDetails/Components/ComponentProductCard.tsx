@@ -19,7 +19,7 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 1,
+    id: 10,
     name: 'Polo with Contrast Trims',
     image: BlueTshirt,
     price: 212,
@@ -28,21 +28,21 @@ const products: Product[] = [
     rating: 4.0,
   },
   {
-    id: 2,
+    id: 11,
     name: 'Gradient Graphic T-shirt',
     image: PrintedTshirt,
     price: 145,
     rating: 3.5,
   },
   {
-    id: 3,
+    id: 1,
     name: 'Polo with Tipping Details',
     image: PinkTshirt,
     price: 180,
     rating: 4.5,
   },
   {
-    id: 4,
+    id: 13,
     name: 'Black Striped T-shirt',
     image: CheckTshirt,
     price: 120,
