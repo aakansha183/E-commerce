@@ -83,9 +83,10 @@ const Testimonials: React.FC = () => {
               width:'500px',
               height:'240px', 
               flexShrink: 0,
-              borderRadius: '25px', 
+              borderRadius: '20px', 
               transition: 'all 0.3s ease',
-              borderColor:'black',
+             border:'solid 1px #C8C8C8',
+              
             }}
           >
             <CardContent>

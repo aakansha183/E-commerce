@@ -179,17 +179,22 @@ const ProductTabs: React.FC = () => {
             All Reviews ({reviews.length})
           </Typography>
           <Box display="flex" alignItems="center">
+            <Box sx ={{marginRight:'10px'}} >
+            <FilterIcon/>
+            </Box>
             <Button
               aria-controls="simple-menu"
               aria-haspopup="true"
               onClick={handleMenuClick}
-              startIcon={<FilterIcon />}
+             
               sx={{
                 textTransform: 'none',
                 backgroundColor: '#F5F5F5',
                 color: '#757575',
-                borderRadius: '20px',
-                padding: '6px 16px',
+                borderRadius: '62px',
+                width:'120px',
+                height:'48px',
+                padding: '16px 20px 16px 20px',
                 marginRight: '8px',
               }}
             >
@@ -203,7 +208,7 @@ const ProductTabs: React.FC = () => {
               onClose={handleMenuClose}
             >
               <MenuItem onClick={handleMenuClose}>Latest</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Oldest</MenuItem>
+             
             </Menu>
             <Button
               variant="contained"
@@ -212,8 +217,11 @@ const ProductTabs: React.FC = () => {
                 textTransform: 'none',
                 backgroundColor: '#000000',
                 color: '#FFFFFF',
-                borderRadius: '20px',
-                padding: '6px 16px',
+                borderRadius: '62px',
+                padding: '16px 20px 16px 20px',
+                width:'166px',
+                height:'48px'
+
               }}
             >
               Write a Review

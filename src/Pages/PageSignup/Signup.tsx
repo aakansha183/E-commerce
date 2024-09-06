@@ -15,6 +15,7 @@ import useAuth from "../../Hooks/UseAuth";
 import { User } from "../PageLogin/Utils/Interfaces/LoginInterfaces";
 import {FormData} from '../PageSignup/Interfaces/SignupInterfaces'
 import { validationSchemaRegister } from "./ValidationSchemaSignup/SignupValidation";
+import StarIcon from "../../Assests/ImagesData/StarIcon";
 const Register: React.FC = () => {
   const { register: registerUser } = useAuth();
   const navigate = useNavigate();
@@ -51,25 +52,43 @@ const Register: React.FC = () => {
   };
 
   return (
+  
     <Container maxWidth="xs">
+      <Box sx = {{
+        marginTop:'80px',
+        marginBottom:'-250px'
+      }}>
+       <StarIcon/>
+       </Box>
       <Paper
-        elevation={3}
-        style={{
-          padding: "16px",
-          marginTop: "22px",
+     
+        sx={{
+          boxShadow: 0,
+          border: 'solid 2px #f0f0f0',
+          padding: "128px",
+          marginTop: "130px",
           height: "auto",
           maxHeight: "90vh",
+          width:'200%',
+          borderRadius:'22px',
+          marginLeft:'-280px',
+          backgroundColor:'#ffffff'
+
         }}
       >
-       
+         
           <Typography
+         
             variant="h4"
             gutterBottom
-            align="center"
-            sx={{ marginTop: "8px" }}
+            sx={{ marginBottom:'40px',flexGrow: 1, color: '#000000', fontSize: '40px', fontWeight: 'bold', fontFamily: 'Poppins',marginTop:'-60px',marginLeft:'230px' }}
+            
           >
-            Register
+            SHOP.CO
           </Typography>
+          
+         
+          
           <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -81,6 +100,11 @@ const Register: React.FC = () => {
                   {...register("username")}
                   error={!!errors.username}
                   helperText={errors.username?.message}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                  }
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -93,6 +117,11 @@ const Register: React.FC = () => {
                   {...register("password")}
                   error={!!errors.password}
                   helperText={errors.password?.message}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                  }
+                }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -104,6 +133,11 @@ const Register: React.FC = () => {
                   {...register("email")}
                   error={!!errors.email}
                   helperText={errors.email?.message}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                  }
+                }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -115,6 +149,11 @@ const Register: React.FC = () => {
                   {...register("firstName")}
                   error={!!errors.firstName}
                   helperText={errors.firstName?.message}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                  }
+                }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -126,6 +165,12 @@ const Register: React.FC = () => {
                   {...register("lastName")}
                   error={!!errors.lastName}
                   helperText={errors.lastName?.message}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                    borderColor:'black',
+                  }
+                }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -136,7 +181,13 @@ const Register: React.FC = () => {
                   size="large"
                   style={{ marginTop: "1rem" }}
                   disabled={isSubmitting}
-                  
+                  sx= {{
+                    backgroundColor:'#000000',
+                    borderRadius:'40px',
+                    width:'350px',
+                    marginLeft:'230px',
+                    height:'50px'
+                  }}
                 >
                   Register
                 </Button>
@@ -159,7 +210,12 @@ const Register: React.FC = () => {
                 Already registered?{" "}
                 <Link
                   component="button"
-                  variant="body2"
+                 
+                  sx= {{
+                    
+                    textDecoration: "underline",
+                    marginBottom:'5px'
+                  }}
                   onClick={() => navigate("/login")}
                 >
                   Login

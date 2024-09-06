@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Grid, Button } from '@mui/material';
+import { Box, Typography, Button,Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Rating } from '@mui/material';
 import BlueTshirt from '../../../Assests/Images/BlueShirt.png';
@@ -62,7 +62,7 @@ const SuggestedProducts: React.FC = () => {
   };
 
   return (
-    <Box id="newarrivals" sx={{ textAlign: 'center', mt: 4, padding: '40px 150px', marginRight: 8 }}>
+    <Box  sx={{ textAlign: 'center', mt: 4, padding: '40px 50px', marginRight: 8 }}>
       <Typography
         variant="h4"
         sx={{ fontWeight: '700', fontSize: '48px', lineHeight: '57.6px', fontFamily: 'Poppins', marginBottom: '20px' }}

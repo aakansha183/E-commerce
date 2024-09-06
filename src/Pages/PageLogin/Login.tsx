@@ -14,6 +14,7 @@ import { useFormik, FormikErrors } from "formik";
 import { LoginFormValues } from "./Utils/Interfaces/LoginInterfaces";
 import { validationSchemaLogin } from "./Utils/Validation/LoginValidation";
 import useAuth from "../../Hooks/UseAuth";
+import StarIcon from "../../Assests/ImagesData/StarIcon";
 
 const Login: React.FC = () => {
   const { login } = useAuth();
@@ -61,14 +62,38 @@ const Login: React.FC = () => {
 
   return (
     <Container maxWidth="xs">
-      <Paper elevation={3} style={{ padding: "16px", marginTop: "50px" }}>
-        
-         
-         
+      <Box
+      sx = {{
+        marginTop:'80px',
+        marginBottom:'-250px'
+      }}
+      
+      >
+        <StarIcon/>
+        </Box>
+      <Paper 
+       sx={{
+        boxShadow: 0,
+        border: 'solid 2px #f0f0f0',
+        padding: "128px",
+        marginTop: "130px",
+        height: "auto",
+        maxHeight: "90vh",
+        width:'200%',
+        borderRadius:'22px',
+        marginLeft:'-280px',
+        backgroundColor:'#ffffff'
 
-          <Typography variant="h4" gutterBottom align="center" sx={{ marginTop: "8px" }}>
-            Login
-          </Typography>
+      }}>
+           <Typography
+         
+         variant="h4"
+         gutterBottom
+         sx={{ marginBottom:'40px',flexGrow: 1, color: '#000000', fontSize: '40px', fontWeight: 'bold', fontFamily: 'Poppins',marginTop:'-60px',marginLeft:'230px' }}
+         
+       >
+         SHOP.CO
+       </Typography>
           <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12}>
@@ -83,6 +108,11 @@ const Login: React.FC = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.username && Boolean(formik.errors.username)}
                   helperText={formik.touched.username && formik.errors.username}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                  }
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +128,11 @@ const Login: React.FC = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.password && Boolean(formik.errors.password)}
                   helperText={formik.touched.password && formik.errors.password}
+                  InputProps={{
+                    style:{
+                    borderRadius: "28px",
+                  }
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,6 +144,13 @@ const Login: React.FC = () => {
                   size="large"
                   style={{ marginTop: "1rem" }}
                   disabled={formik.isSubmitting}
+                  sx= {{
+                    backgroundColor:'#000000',
+                    borderRadius:'40px',
+                    width:'350px',
+                    marginLeft:'230px',
+                    height:'50px'
+                  }}
                 >
                   Login
                 </Button>
@@ -129,6 +171,7 @@ const Login: React.FC = () => {
             </Grid>
           </Grid>
       </Paper>
+      
     </Container>
   );
 };

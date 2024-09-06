@@ -16,7 +16,7 @@ const BrandBar: React.FC = () => {
       alignItems: 'center',
       backgroundColor: 'black',
       padding: '10px 0',
-      height:'80px',
+      height:'100px',
       marginTop:-10,
     }}
   >

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Box, Container, Typography, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close"; 
-import useAuth from "../Hooks/UseAuth"; // Adjust the path as needed
+import useAuth from "../Hooks/UseAuth"; 
 
 const TopHeader: React.FC = () => {
-  const { currentUser } = useAuth(); // Get currentUser from auth hook
+  const { currentUser } = useAuth(); 
   const [isVisible, setIsVisible] = useState(true); 
 
   const handleClose = () => {

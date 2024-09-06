@@ -61,8 +61,8 @@ const ReviewsList: React.FC<ReviewsListProps> = ({ reviews }) => {
       </Grid>
       {visibleCount < sortedReviews.length && (
         <Box display="flex" justifyContent="center" marginTop={2}>
-          <Button variant="outlined" onClick={handleLoadMore}>
-            Load More Reviews
+          <Button variant="outlined" sx = {{width:'250px',height:'52px',borderRadius:'62px',borderColor: '#D3D3D3'}}onClick={handleLoadMore}>
+            <Typography sx = {{fontWeight:'500',fontSize:'16px',lineHeight:'21.6px',color:'#000000',fontFamily:'Poppins'}}>Load More Reviews</Typography>
           </Button>
         </Box>
       )}
