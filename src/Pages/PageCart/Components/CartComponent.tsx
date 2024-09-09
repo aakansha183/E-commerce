@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Typography, Button, Divider } from '@mui/material';
+import { Box, Grid, Typography, Button, Divider, IconButton } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../Redux/Store';
 import IncrementDecrementBox from '../../PageProductDetails/Components/ComponentIncrementDecrementBox';
@@ -85,7 +85,9 @@ const CartComponent: React.FC = () => {
                 </Box>
                 <Box display="flex" flexDirection="column" alignItems="flex-end">
                   <Box onClick={() => handleDelete(item.id)}>
+                    <IconButton>
                     <DeleteIcon />
+                    </IconButton>
                   </Box>
                   <IncrementDecrementBox
                     count={itemQuantities[item.id] || 1}

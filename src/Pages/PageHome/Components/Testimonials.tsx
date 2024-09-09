@@ -85,7 +85,8 @@ const Testimonials: React.FC = () => {
               flexShrink: 0,
               borderRadius: '20px', 
               transition: 'all 0.3s ease',
-             border:'solid 1px #C8C8C8',
+             border:'solid 0.8px #C8C8C8',
+             boxShadow: 0
               
             }}
           >

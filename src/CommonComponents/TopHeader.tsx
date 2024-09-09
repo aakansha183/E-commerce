@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
-import CloseIcon from "@mui/icons-material/Close"; 
-import useAuth from "../Hooks/UseAuth"; 
+import CloseIcon from "@mui/icons-material/Close";
+import useAuth from "../Hooks/UseAuth";
 
 const TopHeader: React.FC = () => {
-  const { currentUser } = useAuth(); 
-  const [isVisible, setIsVisible] = useState(true); 
+  const { currentUser } = useAuth();
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleClose = () => {
-    setIsVisible(false); 
+    setIsVisible(false);
   };
 
   if (currentUser || !isVisible) return null;
@@ -25,14 +25,16 @@ const TopHeader: React.FC = () => {
           justifyContent: "center",
           alignItems: "center",
           color: "#ffffff",
-          position: "relative", 
+          position: "relative",
+          px: { xs: 2, sm: 3, md: 4 }, 
         }}
       >
         <Typography
           variant="body2"
           sx={{
-            fontSize: "14px",
+            fontSize: { xs: "12px", sm: "14px" }, 
             fontFamily: "sans-serif",
+            textAlign: "center",
           }}
         >
           Sign up and get 20% off your first order.{" "}
@@ -49,10 +51,10 @@ const TopHeader: React.FC = () => {
         <IconButton
           sx={{
             position: "absolute",
-            right: "16px", 
+            right: { xs: "8px", sm: "16px" },
             color: "#ffffff",
           }}
-          onClick={handleClose} 
+          onClick={handleClose}
         >
           <CloseIcon />
         </IconButton>

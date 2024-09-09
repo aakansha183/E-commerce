@@ -40,8 +40,10 @@ const Register: React.FC = () => {
         lastName: values.lastName,
       };
       await registerUser(newUser);
-      toast.success("Successfully Registered");
-      navigate("/login");
+      toast.success("Successfully Registered",{
+        theme:'dark'
+      });
+      navigate("/Home");
     } catch (err) {
       if (err instanceof Error) {
         setRegistrationError(err.message);

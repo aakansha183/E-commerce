@@ -13,7 +13,7 @@ const CategoryDetails: React.FC = () => {
       <TopHeader />
       <Header />
 
-      <Divider sx={{ mt: 2,width: '82%',marginLeft:'140px' }} />
+      <Divider sx={{ mt: 2,width: '87%',marginLeft:'120px' }} />
 
       <FilterProvider>
         <Box sx={{ display: 'flex', paddingRight: 1, mt: 4, mb: 18 }}>

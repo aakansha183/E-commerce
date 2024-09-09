@@ -6,7 +6,6 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../Redux/cartSlice';
 import TopHeader from '../../CommonComponents/TopHeader';
 import Header from '../../CommonComponents/Header';
 import MyButtons from './Components/ComponentButton';
@@ -15,6 +14,7 @@ import Footer from '../../CommonComponents/Footer';
 import SuggestedProducts from './Components/ComponentProductCard';
 import ProductTabs from './Components/ComponentProductTabs';
 import { toast } from 'react-toastify'; 
+import { AddToCart } from '../../Redux/cartSlice';
 
 const ProductDetail: React.FC = () => {
   const renderStars = (rating: number) => {
@@ -66,19 +66,22 @@ const ProductDetail: React.FC = () => {
     const selectedColor = 'black';
 
     dispatch(
-      addToCart({
+      
+      AddToCart({
         id: product.id,
         name: product.name,
         image: product.image,
         price: product.price,
         quantity,
         color: selectedColor,
-      })
+      }),
+      
     );
-
-    toast.success('Item added to cart!' , {
+    toast.success("Item Added To cart!", {
       theme:'dark'
-    }); 
+    })
+    
+    
   };
 
   return (

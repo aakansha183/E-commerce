@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  Box,
-  Card,
-  CardContent,
+  Box,  
   Typography,
   Button,
   Grid,
