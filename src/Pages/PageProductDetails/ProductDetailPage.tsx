@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Container, Grid, Typography, Divider, Button } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
@@ -17,6 +16,8 @@ import { toast } from 'react-toastify';
 import { AddToCart } from '../../Redux/cartSlice';
 
 const ProductDetail: React.FC = () => {
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+
   const renderStars = (rating: number) => {
     return (
       <>
@@ -63,10 +64,18 @@ const ProductDetail: React.FC = () => {
   const handleDecrement = () => setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
 
   const handleAddToCart = () => {
+    if(!selectedSize) {
+      toast.error("Select a size",{
+        theme:'dark'
+      })
+      return;
+    }
+    console.log(`Adding to cart: Size ${selectedSize}`);
     const selectedColor = 'black';
 
     dispatch(
-      
+     
+
       AddToCart({
         id: product.id,
         name: product.name,
@@ -74,12 +83,13 @@ const ProductDetail: React.FC = () => {
         price: product.price,
         quantity,
         color: selectedColor,
+        size:selectedSize,
       }),
-      
+      toast.success("Item Added To cart!", {
+        theme:'dark'
+      })
     );
-    toast.success("Item Added To cart!", {
-      theme:'dark'
-    })
+    
     
     
   };
@@ -195,7 +205,7 @@ const ProductDetail: React.FC = () => {
 
             <Divider sx={{ mt: 3 }} />
             <Box sx = {{marginTop:'40px'}}>
-              <MyButtons/>
+              <MyButtons onSelectSize = {setSelectedSize}/>
             </Box>
             <Divider sx={{ mt: 3 }} />
             <Box sx={{ display: 'flex', alignItems: 'center', mt: 3, gap: 2 }}>

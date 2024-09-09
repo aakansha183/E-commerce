@@ -79,6 +79,12 @@ const CartComponent: React.FC = () => {
                       {item.color}
                     </Typography>
                   </Typography>
+                  <Typography variant="body2" sx = {{marginTop:'5px'}}>
+                    <span style={{ color: 'black' }}>Size:</span>
+                    <Typography variant="body2" component="span" style={{ color: 'grey' }}>
+                      {item.size}
+                    </Typography>
+                  </Typography>
                   <Typography variant="h6" sx={{ fontWeight: '700', marginTop: 1, fontSize: '24px', lineHeight: '32.4px' }}>
                     ${item.price}
                   </Typography>

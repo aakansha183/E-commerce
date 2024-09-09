@@ -91,7 +91,7 @@ const Header: React.FC = () => {
 
   const drawerContent = (
     <Box sx={{ width: 250, padding: 2 }} role="presentation">
-      <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link to = "/Category" style={{ textDecoration: 'none', color: 'inherit' }}>
         <Typography variant="body1" sx={{ marginBottom: 2 }}>Shop</Typography>
       </Link>
       <Typography variant="body1" sx={{ marginBottom: 2 }}>On Sale</Typography>
@@ -118,7 +118,7 @@ const Header: React.FC = () => {
                 </Typography>
               </Link>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', color: '#000000', marginLeft: '80px' }}>
-                <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link to="/Category" style={{ textDecoration: 'none', color: 'inherit' }}>
                   <Typography variant="body1">Shop</Typography>
                 </Link>
                 <Typography variant="body1">On Sale</Typography>

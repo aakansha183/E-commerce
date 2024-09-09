@@ -27,12 +27,12 @@ const StyledButton: React.FC<StyledButtonProps> = ({ name, isClicked, onClick })
     </Button>
   );
 };
-
-const MyButtons: React.FC = () => {
+const MyButtons: React.FC<{ onSelectSize: (size: string) => void }> = ({ onSelectSize }) => {
   const [clickedButton, setClickedButton] = useState<string | null>(null);
 
   const handleClick = (buttonName: string) => {
     setClickedButton(buttonName);
+    onSelectSize(buttonName); 
   };
 
   const buttons = ['Small', 'Medium', 'Large', 'X-Large'];

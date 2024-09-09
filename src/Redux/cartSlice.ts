@@ -7,6 +7,7 @@ interface CartItem {
   price: number;
   quantity: number;
   color: string | null;
+  size:string
 }
 
 interface CartState {
