@@ -64,18 +64,17 @@ const ProductDetail: React.FC = () => {
   const handleDecrement = () => setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
 
   const handleAddToCart = () => {
-    if(!selectedSize) {
-      toast.error("Select a size",{
-        theme:'dark'
-      })
+    if (!selectedSize) {
+      toast.error("Select a size", {
+        theme: 'dark'
+      });
       return;
     }
+    
     console.log(`Adding to cart: Size ${selectedSize}`);
     const selectedColor = 'black';
-
+  
     dispatch(
-     
-
       AddToCart({
         id: product.id,
         name: product.name,
@@ -83,16 +82,15 @@ const ProductDetail: React.FC = () => {
         price: product.price,
         quantity,
         color: selectedColor,
-        size:selectedSize,
-      }),
-      toast.success("Item Added To cart!", {
-        theme:'dark'
+        size: selectedSize,
       })
     );
-    
-    
-    
+  
+    toast.success("Item Added To Cart!", {
+      theme: 'dark'
+    });
   };
+  
 
   return (
     <Box>

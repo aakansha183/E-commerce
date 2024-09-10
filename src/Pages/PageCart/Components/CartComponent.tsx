@@ -50,7 +50,7 @@ const CartComponent: React.FC = () => {
   }, [cartItems]);
 
   return (
-    <Box sx = {{marginLeft:'20px'}}>
+    <Box sx={{ marginLeft: '20px' }}>
       <Typography
         sx={{
           fontFamily: 'Poppins',
@@ -63,173 +63,181 @@ const CartComponent: React.FC = () => {
       >
         YOUR CART
       </Typography>
-      <Box display="flex" padding={'15px 170px'} sx={{ backgroundColor: '#ffffff', marginBottom: -15 }}>
-        <Box flex={1.3} sx={{ border: '1px solid #e0e0e0', marginRight: '20px', borderRadius: '20px' }}>
-          {cartItems.map((item, index) => (
-            <Box key={item.id}>
-              <Box display="flex" alignItems="center" mb={4} sx={{ padding: '20px 24px' }}>
-                <Box component="img" src={item.image} alt={item.name} width={100} height={100} sx={{ borderRadius: '10px' }} />
-                <Box flex={1} pl={2}>
-                  <Typography variant="h6" sx={{ fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
-                    {item.name}
-                  </Typography>
-                  <Typography variant="body2">
-                    <span style={{ color: 'black' }}>Color:</span>
-                    <Typography variant="body2" component="span" style={{ color: 'grey' }}>
-                      {item.color}
-                    </Typography>
-                  </Typography>
-                  <Typography variant="body2" sx = {{marginTop:'5px'}}>
-                    <span style={{ color: 'black' }}>Size:</span>
-                    <Typography variant="body2" component="span" style={{ color: 'grey' }}>
-                      {item.size}
-                    </Typography>
-                  </Typography>
-                  <Typography variant="h6" sx={{ fontWeight: '700', marginTop: 1, fontSize: '24px', lineHeight: '32.4px' }}>
-                    ${item.price}
-                  </Typography>
-                </Box>
-                <Box display="flex" flexDirection="column" alignItems="flex-end">
-                  <Box onClick={() => handleDelete(item.id)}>
-                    <IconButton>
-                    <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                  <IncrementDecrementBox
-                    count={itemQuantities[item.id] || 1}
-                    onIncrement={() => handleIncrement(item.id)}
-                    onDecrement={() => handleDecrement(item.id)}
-                  />
-                </Box>
-              </Box>
-              {index < cartItems.length - 1 && <Divider sx={{ margin: '0 24px' }} />}
-            </Box>
-          ))}
-        </Box>
-
-        <Box
-          flex={1}
-          sx={{
-            border: '1px solid #e0e0e0',
-            borderRadius: '20px',
-            padding: '20px',
-            height: '450px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography variant="h5" sx={{ fontWeight: '700', fontSize: '24px', lineHeight: '32.4px' }}>
-            Order Summary
+      
+      {cartItems.length === 0 ? (
+        <Box display="flex" justifyContent="center" alignItems="center" height="300px">
+          <Typography variant="h6" sx={{ fontWeight: '700', fontSize: '24px', color: 'grey' }}>
+            Nothing to show!! Start Adding item to cart...
           </Typography>
-          <Box mb={2}>
-            <Grid container justifyContent="space-between">
-              <Typography variant="body1" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px', color: 'grey' }}>
-                Subtotal
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
-                ${subtotal}
-              </Typography>
-            </Grid>
-            <Grid container justifyContent="space-between" mt={1}>
-              <Typography variant="body1" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px', color: 'grey' }}>
-                Discount (-20%)
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#FF3333', fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
-                -${discount.toFixed(2)}
-              </Typography>
-            </Grid>
-            <Grid container justifyContent="space-between" mt={1}>
-              <Typography variant="body1" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px', color: 'grey' }}>
-                Delivery Fee
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
-                ${deliveryFee}
-              </Typography>
-            </Grid>
-          </Box>
-          <Divider />
-          <Box mt={2} mb={2}>
-            <Grid container justifyContent="space-between">
-              <Typography variant="h6" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px' }}>
-                Total
-              </Typography>
-              <Typography variant="h6" sx={{ fontWeight: '700', fontSize: '24px', lineHeight: '32.4px' }}>
-                ${total}
-              </Typography>
-            </Grid>
+        </Box>
+      ) : (
+        <Box display="flex" padding={'15px 170px'} sx={{ backgroundColor: '#ffffff', marginBottom: -15 }}>
+          <Box flex={1.3} sx={{ border: '1px solid #e0e0e0', marginRight: '20px', borderRadius: '20px' }}>
+            {cartItems.map((item, index) => (
+              <Box key={item.id}>
+                <Box display="flex" alignItems="center" mb={4} sx={{ padding: '20px 24px' }}>
+                  <Box component="img" src={item.image} alt={item.name} width={100} height={100} sx={{ borderRadius: '10px' }} />
+                  <Box flex={1} pl={2}>
+                    <Typography variant="h6" sx={{ fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
+                      {item.name}
+                    </Typography>
+                    <Typography variant="body2">
+                      <span style={{ color: 'black' }}>Color:</span>
+                      <Typography variant="body2" component="span" style={{ color: 'grey' }}>
+                        {item.color}
+                      </Typography>
+                    </Typography>
+                    <Typography variant="body2" sx={{ marginTop: '5px' }}>
+                      <span style={{ color: 'black' }}>Size:</span>
+                      <Typography variant="body2" component="span" style={{ color: 'grey' }}>
+                        {item.size}
+                      </Typography>
+                    </Typography>
+                    <Typography variant="h6" sx={{ fontWeight: '700', marginTop: 1, fontSize: '24px', lineHeight: '32.4px' }}>
+                      ${item.price}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" flexDirection="column" alignItems="flex-end">
+                    <Box onClick={() => handleDelete(item.id)}>
+                      <IconButton>
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
+                    <IncrementDecrementBox
+                      count={itemQuantities[item.id] || 1}
+                      onIncrement={() => handleIncrement(item.id)}
+                      onDecrement={() => handleDecrement(item.id)}
+                    />
+                  </Box>
+                </Box>
+                {index < cartItems.length - 1 && <Divider sx={{ margin: '0 24px' }} />}
+              </Box>
+            ))}
           </Box>
 
-          <Box display="flex" alignItems="center" gap="10px" marginBottom={'20px'}>
-            <div style={{ position: 'relative', flex: 1 }}>
-              <span
-                style={{
-                  position: 'absolute',
-                  left: '10px',
-                  top: '60%',
-                  transform: 'translateY(-50%)',
-                  color: '#ccc',
-                  fontSize: '20px',
+          <Box
+            flex={1}
+            sx={{
+              border: '1px solid #e0e0e0',
+              borderRadius: '20px',
+              padding: '20px',
+              height: '450px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: '700', fontSize: '24px', lineHeight: '32.4px' }}>
+              Order Summary
+            </Typography>
+            <Box mb={2}>
+              <Grid container justifyContent="space-between">
+                <Typography variant="body1" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px', color: 'grey' }}>
+                  Subtotal
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
+                  ${subtotal}
+                </Typography>
+              </Grid>
+              <Grid container justifyContent="space-between" mt={1}>
+                <Typography variant="body1" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px', color: 'grey' }}>
+                  Discount (-20%)
+                </Typography>
+                <Typography variant="body1" sx={{ color: '#FF3333', fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
+                  -${discount.toFixed(2)}
+                </Typography>
+              </Grid>
+              <Grid container justifyContent="space-between" mt={1}>
+                <Typography variant="body1" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px', color: 'grey' }}>
+                  Delivery Fee
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: '700', fontSize: '20px', lineHeight: '27px' }}>
+                  ${deliveryFee}
+                </Typography>
+              </Grid>
+            </Box>
+            <Divider />
+            <Box mt={2} mb={2}>
+              <Grid container justifyContent="space-between">
+                <Typography variant="h6" sx={{ fontWeight: '400', fontSize: '20px', lineHeight: '27px' }}>
+                  Total
+                </Typography>
+                <Typography variant="h6" sx={{ fontWeight: '700', fontSize: '24px', lineHeight: '32.4px' }}>
+                  ${total}
+                </Typography>
+              </Grid>
+            </Box>
+
+            <Box display="flex" alignItems="center" gap="10px" marginBottom={'20px'}>
+              <div style={{ position: 'relative', flex: 1 }}>
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '10px',
+                    top: '60%',
+                    transform: 'translateY(-50%)',
+                    color: '#ccc',
+                    fontSize: '20px',
+                  }}
+                >
+                  <TagIcon />
+                </span>
+                <input
+                  type="text"
+                  placeholder="Add promo code"
+                  style={{
+                    backgroundColor: '#F0F0F0',
+                    width: '90%',
+                    height: '48px',
+                    paddingLeft: '40px',
+                    border: '1px solid #ccc',
+                    borderRadius: '62px',
+                    fontSize: '16px',
+                  }}
+                />
+              </div>
+
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: '#000',
+                  color: '#fff',
+                  fontWeight: 'bold',
+                  borderRadius: '62px',
+                  '&:hover': {
+                    backgroundColor: '#333',
+                  },
+                  width: '190px',
+                  height: '48px',
+                  marginLeft: '40px'
                 }}
               >
-                <TagIcon />
-              </span>
-              <input
-                type="text"
-                placeholder="Add promo code"
-                style={{
-                  backgroundColor: '#F0F0F0',
-                  width: '90%',
-                  height: '48px',
-                  paddingLeft: '40px',
-                  border: '1px solid #ccc',
-                  borderRadius: '62px',
-                  fontSize: '16px',
-                }}
-              />
-            </div>
+                Apply
+              </Button>
+            </Box>
 
             <Button
               variant="contained"
-              color="primary"
               sx={{
-                backgroundColor: '#000',
-                color: '#fff',
-                fontWeight: 'bold',
-                borderRadius: '62px',
+                mt: 2,
+                backgroundColor: '#000000',
+                color: '#FFFFFF',
+                fontWeight: '700',
+                fontSize: '16px',
+                height: '50px',
+                borderRadius: '50px',
                 '&:hover': {
-                  backgroundColor: '#333',
+                  backgroundColor: '#333333',
                 },
-                width: '190px',
-                height: '48px',
-                marginLeft:'40px'
               }}
             >
-              Apply
+              Checkout
             </Button>
           </Box>
-
-          <Button
-            variant="contained"
-            sx={{
-              mt: 2,
-              backgroundColor: '#000',
-              color: '#fff',
-              fontWeight: 'bold',
-              borderRadius: '62px',
-              '&:hover': {
-                backgroundColor: '#333',
-              },
-              width: '100%',
-              padding: '16px 0',
-              
-              marginBottom:'30px'
-            }}
-          >
-            Go to Checkout
-          </Button>
         </Box>
-      </Box>
+      )}
+
       <ToastContainer />
     </Box>
   );

@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 const products = [
   {
-    id: 5,
+    id: 7,
     image: GreenShirt,
     name: 'Vertical Striped Shirt',
     price: '212',
@@ -20,21 +20,21 @@ const products = [
     rating: 5.0,
   },
   {
-    id: 6,
+    id: 8,
     image: OrangeTshirt,
     name: 'Courage Graphic T-shirt',
     price: '145',
     rating: 4.0,
   },
   {
-    id: 7,
+    id: 9,
     image: Shorts,
     name: 'Loose Fit Bermuda Shorts',
     price: '80',
     rating: 3.0,
   },
   {
-    id: 8,
+    id: 11,
     image: Jeans,
     name: 'Faded Skinny Jeans',
     price: '210',
