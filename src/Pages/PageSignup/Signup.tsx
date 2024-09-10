@@ -83,7 +83,7 @@ const Register: React.FC = () => {
          
             variant="h4"
             gutterBottom
-            sx={{ marginBottom:'40px',flexGrow: 1, color: '#000000', fontSize: '40px', fontWeight: 'bold', fontFamily: 'Poppins',marginTop:'-60px',marginLeft:'230px' }}
+            sx={{ marginBottom:'40px',flexGrow: 1, color: '#000000', fontSize: '40px', fontWeight: '700', fontFamily: 'Poppins',marginTop:'-60px',marginLeft:'230px' }}
             
           >
             SHOP.CO

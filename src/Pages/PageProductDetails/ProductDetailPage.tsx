@@ -12,12 +12,17 @@ import IncrementDecrementBox from './Components/ComponentIncrementDecrementBox';
 import Footer from '../../CommonComponents/Footer';
 import SuggestedProducts from './Components/ComponentProductCard';
 import ProductTabs from './Components/ComponentProductTabs';
-import { toast } from 'react-toastify'; 
+import { toast, ToastContainer } from 'react-toastify'; 
 import { AddToCart } from '../../Redux/cartSlice';
 
 const ProductDetail: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
+
+  React.useEffect(() => {
+    console.log(selectedSize, 'changed')
+  }, [selectedSize]);
+  
   const renderStars = (rating: number) => {
     return (
       <>
@@ -43,6 +48,7 @@ const ProductDetail: React.FC = () => {
     return null;
   }
 
+
   const { product } = location.state as {
     product: {
       id: string;
@@ -65,13 +71,15 @@ const ProductDetail: React.FC = () => {
 
   const handleAddToCart = () => {
     if (!selectedSize) {
+      console.log(`toast1 Adding to cart: Size ${selectedSize}`);  
       toast.error("Select a size", {
-        theme: 'dark'
+        theme: 'dark',
+       
       });
+    
       return;
     }
     
-    console.log(`Adding to cart: Size ${selectedSize}`);
     const selectedColor = 'black';
   
     dispatch(
@@ -87,7 +95,9 @@ const ProductDetail: React.FC = () => {
     );
   
     toast.success("Item Added To Cart!", {
-      theme: 'dark'
+      theme: 'dark',
+      autoClose: 1000,
+    
     });
   };
   
@@ -96,7 +106,7 @@ const ProductDetail: React.FC = () => {
     <Box>
       <TopHeader />
       <Header />
-      <Divider sx={{ mt: 2 }} />
+      <Divider sx={{ mt: 2,width:'86%',marginLeft:'130px' }} />
       <Container maxWidth="xl" sx={{ marginTop: '50px' }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>

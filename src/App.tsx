@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <ToastContainer /> 
+      <ToastContainer />
       <AppRoutes />
     </Provider>
   );

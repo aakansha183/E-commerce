@@ -28,7 +28,7 @@ const products: Product[] = [
     rating: 4.0,
   },
   {
-    id: 11,
+    id: 15,
     name: 'Gradient Graphic T-shirt',
     image: PrintedTshirt,
     price: 145,
@@ -62,7 +62,7 @@ const SuggestedProducts: React.FC = () => {
   };
 
   return (
-    <Box  sx={{ textAlign: 'center', mt: 4, padding: '40px 50px', marginRight: 8 }}>
+    <Box  sx={{ textAlign: 'center', mt: 4, padding: '40px -10px', marginRight: 8 }}>
       <Typography
         variant="h4"
         sx={{ fontWeight: '700', fontSize: '48px', lineHeight: '57.6px', fontFamily: 'Poppins', marginBottom: '20px' }}
@@ -79,7 +79,9 @@ const SuggestedProducts: React.FC = () => {
                 '&:hover': {
                   transform: 'scale(1.05)',
                 },
+               
               }}
+              
             >
               <Box
                 component="img"
@@ -89,7 +91,7 @@ const SuggestedProducts: React.FC = () => {
                 }}
                 src={product.image}
                 alt={product.name}
-                sx={{ width: '120%', borderRadius: 4 }}
+                sx={{ width: '120%', borderRadius: 4}}
               />
               <Typography
                 variant="subtitle1"

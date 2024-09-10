@@ -3,9 +3,6 @@ import { Box, Grid, Typography, Button, Rating, Pagination, Divider } from '@mui
 import { useFilter } from './FilterContext';
 import products from '../Utils/ConstantsCategory';
 import { useNavigate } from 'react-router-dom';
-
-
-
 const ProductGrid: React.FC = () => {
   const navigate = useNavigate();
   const { priceRange } = useFilter();

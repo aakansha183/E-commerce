@@ -10,8 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import { styled, useTheme } from '@mui/material/styles';
-import { useMediaQuery } from '@mui/material';
-import { toast } from 'react-toastify';
+import { Divider, useMediaQuery } from '@mui/material';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchIcon from '../Assests/ImagesData/SearchIcon';
 import CartIcon from '../Assests/ImagesData/CartIcon';
@@ -104,6 +104,7 @@ const Header: React.FC = () => {
 
   return (
     <Box sx={{ overflow: 'hidden',padding:'0px 100px' }}> 
+    <ToastContainer />
       <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2 }}>
         <Toolbar>
           {!isMobile ? (

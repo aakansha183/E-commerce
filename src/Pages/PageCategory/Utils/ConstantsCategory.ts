@@ -9,7 +9,7 @@ import OrangeTshirt from "../../../Assests/Images/OrangeTshirt.png"
 import GreenShirt from "../../../Assests/Images/GreenShirt.png"
  const products = [
     {
-      id: 1,
+      id: 15,
       name: 'Gradient Graphic T-shirt',
       price: 145,
       rating: 3.5,

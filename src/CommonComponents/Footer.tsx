@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography, TextField, Button, InputAdornment } from '@mui/material';
+import { Box, Grid, Typography, TextField, Button, InputAdornment, Divider } from '@mui/material';
 import { Email } from '@mui/icons-material';
 import VisaIcon from '../Assests/ImagesData/VisaIcon';
 import Mastercard from '../Assests/ImagesData/MasterCardIcon';
@@ -102,15 +102,14 @@ const Footer: React.FC = () => {
         ))}
       </Grid>
 
-      <Box sx={{ padding: '15px 0', borderTop: '1px solid #e0e0e0', textAlign: 'left'}}>
-        <Typography variant="body2" color="textSecondary" fontFamily="Poppins" sx= {{
+      <Divider sx = {{marginBottom:'40px',width:'82.5%',marginLeft:'165px'}}/>
+        <Typography variant="body2" color="#6c757d" fontFamily="Poppins" sx= {{
           marginTop:'30px',marginLeft:'170px'
         }}>
           Shop.co © 2000-2023, All Rights Reserved
         </Typography>
-      </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'right', gap: 2, marginRight: '50px', marginTop: '-30px' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'right', gap: 2, marginRight: '140px',marginBottom:'50px',marginTop:'-30px' }}>
         {paymentIcons.map((payment, index) => (
           <a href={payment.link} target="_blank" key={index} rel="noopener noreferrer">
             {payment.icon}

@@ -11,8 +11,8 @@ import CartPage from "../Pages/PageCart/CartPage";
 
 const AppRoutes: React.FC = () => {
   return (
+    <>
     <Router>
-      <ToastContainer />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
@@ -21,10 +21,8 @@ const AppRoutes: React.FC = () => {
         <Route path="/Category" element={<CategoryDetails />} />
         <Route path="/ProductDetails" element={<ProductDetail />} />
         <Route path="/Cart" element={<CartPage />} />
-
-
       </Routes>
-    </Router>
+    </Router></>
   );
 };
 

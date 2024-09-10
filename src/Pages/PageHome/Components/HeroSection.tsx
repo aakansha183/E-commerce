@@ -11,12 +11,12 @@ const HeroSection: React.FC = () => {
     
     <Box
       sx={{
-        marginTop:'30px',
+        marginTop:'10px',
         backgroundImage: `url(${HeroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         color: '#000', 
-        padding: '50px 0',
+        padding: '60px 0',
         width: '100%',
         height: '660px',
       }}

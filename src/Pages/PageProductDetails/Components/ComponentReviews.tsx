@@ -10,7 +10,7 @@ interface ReviewsListProps {
 
 const ReviewCard: React.FC<Review> = ({ name, rating, date, review }) => {
   return (
-    <Card variant="outlined" sx={{ marginBottom: 2, width: '600px', height: '240px', borderRadius: '20px', padding: '20px' }}>
+    <Card variant="outlined" sx={{ marginBottom: 2, width: '640px', height: '240px', borderRadius: '20px', padding: '20px' }}>
       <CardContent>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <Box display="flex" alignItems="center" marginBottom={1}>
