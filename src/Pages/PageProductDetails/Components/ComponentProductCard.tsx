@@ -62,7 +62,7 @@ const SuggestedProducts: React.FC = () => {
   };
 
   return (
-    <Box  sx={{ textAlign: 'center', mt: 4, padding: '40px -10px', marginRight: 8 }}>
+    <Box  sx={{ textAlign: 'center', mt: 4, padding: '40px 150px', marginRight: 8 }}>
       <Typography
         variant="h4"
         sx={{ fontWeight: '700', fontSize: '48px', lineHeight: '57.6px', fontFamily: 'Poppins', marginBottom: '20px' }}

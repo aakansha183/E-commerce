@@ -8,6 +8,7 @@ import HomePage from "../Pages/PageHome/HomePage";
 import CategoryDetails from "../Pages/PageCategory/CategoryDetails";
 import ProductDetail from "../Pages/PageProductDetails/ProductDetailPage";
 import CartPage from "../Pages/PageCart/CartPage";
+import CheckoutPage from "../Pages/PageCheckout/PageCheckout";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/Category" element={<CategoryDetails />} />
         <Route path="/ProductDetails" element={<ProductDetail />} />
         <Route path="/Cart" element={<CartPage />} />
+        <Route path = "/checkout" element = {<CheckoutPage/>}/>
       </Routes>
     </Router></>
   );

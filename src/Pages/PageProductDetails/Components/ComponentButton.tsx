@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 interface StyledButtonProps {
   name: string;
@@ -38,6 +38,14 @@ const MyButtons: React.FC<{ onSelectSize: (size: string) => void }> = ({ onSelec
   const buttons = ['Small', 'Medium', 'Large', 'X-Large'];
 
   return (
+    <Box>
+      <Typography sx = {{
+        marginBottom:'10px',
+        fontWeight:'400',
+        fontSize:'16px',
+        lineHeight:'21.6px',
+        color:'GrayText'
+      }}>Choose Size</Typography>
     <Box sx={{ display: 'flex', gap: '12px', mt: 1 }}>
       {buttons.map((button) => (
         <StyledButton
@@ -47,6 +55,7 @@ const MyButtons: React.FC<{ onSelectSize: (size: string) => void }> = ({ onSelec
           onClick={handleClick}
         />
       ))}
+    </Box>
     </Box>
   );
 };

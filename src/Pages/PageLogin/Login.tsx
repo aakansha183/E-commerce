@@ -32,7 +32,7 @@ const Login: React.FC = () => {
         const success = await login(values.username, values.password);
         if (success) {
           navigate("/Home");
-          toast.success("Successfully Logged In",{ theme: 'dark' });
+          toast.success("Successfully Logged In", { theme: "dark" });
         } else {
           setError("Invalid username or password");
         }
@@ -51,7 +51,9 @@ const Login: React.FC = () => {
         if (validationErrors instanceof yup.ValidationError) {
           validationErrors.inner.forEach((error) => {
             if (error.path) {
-              (errors as FormikErrors<LoginFormValues>)[error.path as keyof LoginFormValues] = error.message;
+              (errors as FormikErrors<LoginFormValues>)[
+                error.path as keyof LoginFormValues
+              ] = error.message;
             }
           });
         }
@@ -63,115 +65,132 @@ const Login: React.FC = () => {
   return (
     <Container maxWidth="xs">
       <Box
-      sx = {{
-        marginTop:'80px',
-        marginBottom:'-250px'
-      }}
-      
+        sx={{
+          marginTop: "80px",
+          marginBottom: "-250px",
+        }}
       >
-        <StarIcon/>
-        </Box>
-      <Paper 
-       sx={{
-        boxShadow: 0,
-        border: 'solid 2px #f0f0f0',
-        padding: "128px",
-        marginTop: "130px",
-        height: "auto",
-        maxHeight: "90vh",
-        width:'200%',
-        borderRadius:'22px',
-        marginLeft:'-280px',
-        backgroundColor:'#ffffff'
-
-      }}>
-           <Typography
-         
-         variant="h4"
-         gutterBottom
-         sx={{ marginBottom:'40px',flexGrow: 1, color: '#000000', fontSize: '40px', fontWeight: 'bold', fontFamily: 'Poppins',marginTop:'-60px',marginLeft:'230px' }}
-         
-       >
-         SHOP.CO
-       </Typography>
-          <form onSubmit={formik.handleSubmit}>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12}>
-                <TextField
-                  id="username"
-                  name="username"
-                  label="Username"
-                  variant="outlined"
-                  fullWidth
-                  value={formik.values.username}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={formik.touched.username && Boolean(formik.errors.username)}
-                  helperText={formik.touched.username && formik.errors.username}
-                  InputProps={{
-                    style:{
+        <StarIcon />
+      </Box>
+      <Paper
+        sx={{
+          boxShadow: 0,
+          border: "solid 2px #f0f0f0",
+          padding: "128px",
+          marginTop: "130px",
+          height: "auto",
+          maxHeight: "90vh",
+          width: "200%",
+          borderRadius: "22px",
+          marginLeft: "-280px",
+          backgroundColor: "#ffffff",
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{
+            marginBottom: "40px",
+            flexGrow: 1,
+            color: "#000000",
+            fontSize: "40px",
+            fontWeight: "bold",
+            fontFamily: "Poppins",
+            marginTop: "-60px",
+            marginLeft: "230px",
+          }}
+        >
+          SHOP.CO
+        </Typography>
+        <form onSubmit={formik.handleSubmit}>
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12}>
+              <TextField
+                id="username"
+                name="username"
+                label="Username"
+                variant="outlined"
+                fullWidth
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.username && Boolean(formik.errors.username)
+                }
+                helperText={formik.touched.username && formik.errors.username}
+                InputProps={{
+                  style: {
                     borderRadius: "28px",
-                  }
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  id="password"
-                  name="password"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={formik.touched.password && Boolean(formik.errors.password)}
-                  helperText={formik.touched.password && formik.errors.password}
-                  InputProps={{
-                    style:{
-                    borderRadius: "28px",
-                  }
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  style={{ marginTop: "1rem" }}
-                  disabled={formik.isSubmitting}
-                  sx= {{
-                    backgroundColor:'#000000',
-                    borderRadius:'40px',
-                    width:'350px',
-                    marginLeft:'230px',
-                    height:'50px'
-                  }}
-                >
-                  Login
-                </Button>
-              </Grid>
+                  },
+                }}
+              />
             </Grid>
-          </form>
-          {error && (
-            <Typography variant="body1" color="error" style={{ marginTop: "1rem" }}>
-              {error}
-            </Typography>
-          )}
-          <Grid container justifyContent="center" style={{ marginTop: "1rem" }}>
-            <Grid item>
-              Don’t have an account?{" "}
-              <Link component="button" variant="body2" onClick={() => navigate("/register")}>
-                Register
-              </Link>
+            <Grid item xs={12}>
+              <TextField
+                id="password"
+                name="password"
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
+                InputProps={{
+                  style: {
+                    borderRadius: "28px",
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                size="large"
+                style={{ marginTop: "1rem" }}
+                disabled={formik.isSubmitting}
+                sx={{
+                  backgroundColor: "#000000",
+                  borderRadius: "40px",
+                  width: "350px",
+                  marginLeft: "230px",
+                  height: "50px",
+                }}
+              >
+                Login
+              </Button>
             </Grid>
           </Grid>
+        </form>
+        {error && (
+          <Typography
+            variant="body1"
+            color="error"
+            style={{ marginTop: "1rem" }}
+          >
+            {error}
+          </Typography>
+        )}
+        <Grid container justifyContent="center" style={{ marginTop: "1rem" }}>
+          <Grid item>
+            Don’t have an account?{" "}
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </Link>
+          </Grid>
+        </Grid>
       </Paper>
-      
     </Container>
   );
 };

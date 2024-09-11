@@ -103,7 +103,7 @@ const Header: React.FC = () => {
   );
 
   return (
-    <Box sx={{ overflow: 'hidden',padding:'0px 100px' }}> 
+    <Box sx={{ overflow: 'hidden',padding:'0px 150px' }}> 
     <ToastContainer />
       <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2 }}>
         <Toolbar>

@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import FilterIcon from '../../../Assests/ImagesData/FilterIcon';
 import ReviewsList from './ComponentReviews';
-import { Review, TabPanelProps } from '../Utils/Interfaces';
+import { Review, TabPanelProps } from '../../../Utils/Interfaces/InterfaceReview';
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -139,9 +139,14 @@ const ProductTabs: React.FC = () => {
           borderBottom: '1px solid #E0E0E0',
           '& .MuiTab-root': {
             textTransform: 'inherit',
-            fontSize: '16px',
+            fontSize: '20px',
             fontWeight: '400',
             color: '#757575',
+            padding: '0px 90px', 
+           marginTop:'40px',
+           
+
+            
           
           },
           '& .Mui-selected': {
@@ -170,9 +175,11 @@ const ProductTabs: React.FC = () => {
           <Typography
             variant="h6"
             sx={{
-              fontWeight: 'bold',
-              fontSize: '18px',
+              fontWeight: '700',
+              fontSize: '24px',
               color: '#000000',
+              marginLeft:'-20px',
+              lineHeight:''
               
             }}
           >
