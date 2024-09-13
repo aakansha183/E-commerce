@@ -62,31 +62,40 @@ const TopSelling: React.FC = () => {
 
   return (
     <Box
-      sx={{ textAlign: "center", my: 5, marginRight: 8, padding: "40px 150px" }}
+      sx={{
+        textAlign: "center",
+        my: 5,
+        px: { xs: 2, md: 10 }, 
+      }}
     >
       <Divider
         sx={{
           marginBottom: 8,
           marginTop: -3,
-          width: "103%",
-          marginLeft: "20px",
+          width: "100%", 
         }}
       />
       <Typography
         variant="h4"
         sx={{
           fontWeight: "700",
-          fontSize: "48px",
-          lineHeight: "57.6px",
+          fontSize: { xs: "28px", md: "48px" }, 
+          lineHeight: { xs: "35px", md: "57.6px" },
           fontFamily: "Poppins",
           marginBottom: "20px",
         }}
       >
         TOP SELLING
       </Typography>
-      <Grid container spacing={7} justifyContent="center">
+      <Grid container spacing={2} justifyContent="center">
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={3} key={product.id}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            key={product.id}
+          >
             <Box
               sx={{
                 p: 2,
@@ -101,7 +110,8 @@ const TopSelling: React.FC = () => {
                 src={product.image}
                 alt={product.name}
                 style={{
-                  width: "120%",
+                  width: "100%",
+                  height: "auto",
                   borderRadius: "8px",
                   marginBottom: "15px",
                 }}
@@ -117,8 +127,8 @@ const TopSelling: React.FC = () => {
                   mt: 2,
                   textAlign: "left",
                   marginLeft: "10px",
-                  fontSize: "20px",
-                  lineHeight: "27px",
+                  fontSize: { xs: "16px", md: "20px" },
+                  lineHeight: { xs: "22px", md: "27px" },
                 }}
               >
                 {product.name}
@@ -137,7 +147,7 @@ const TopSelling: React.FC = () => {
                   sx={{
                     marginLeft: "10px",
                     fontWeight: "400",
-                    fontSize: "14px",
+                    fontSize: { xs: "12px", md: "14px" },
                     lineHeight: "18.9px",
                   }}
                 >
@@ -148,8 +158,8 @@ const TopSelling: React.FC = () => {
                 <Typography
                   variant="h6"
                   fontWeight="700"
-                  fontSize={"24px"}
-                  lineHeight={"32.4px"}
+                  fontSize={{ xs: "18px", md: "24px" }} 
+                  lineHeight={{ xs: "24px", md: "32.4px" }}
                 >
                   ${product.price}
                   {product.originalPrice && (
@@ -161,8 +171,8 @@ const TopSelling: React.FC = () => {
                         ml: 1,
                         color: "#D3D3D3",
                         fontWeight: "700",
-                        fontSize: "24px",
-                        lineHeight: "32.4px",
+                        fontSize: { xs: "16px", md: "24px" },
+                        lineHeight: { xs: "22px", md: "32.4px" },
                       }}
                     >
                       ${product.originalPrice}
@@ -176,10 +186,10 @@ const TopSelling: React.FC = () => {
                       color: "#FF3333",
                       fontWeight: "bold",
                       backgroundColor: "#FFE9F0",
-                      padding: "6px 14px",
+                      padding: { xs: "4px 10px", md: "6px 14px" }, 
                       marginLeft: 17,
                       marginTop: -4,
-                      width: "40px",
+                      width: "fit-content", 
                       borderRadius: "62px",
                       textAlign: "center",
                     }}
@@ -200,18 +210,22 @@ const TopSelling: React.FC = () => {
         }}
         sx={{
           mt: 2,
-          width: "218px",
-          height: "52px",
+          width: { xs: "150px", md: "218px" },
+          height: { xs: "40px", md: "52px" },
           borderRadius: "62px",
           textTransform: "none",
-          padding: "16px 54px",
+          padding: { xs: "8px 20px", md: "16px 54px" },
           fontWeight: "bold",
           borderColor: "#D3D3D3",
           color: "black",
         }}
       >
         <Typography
-          sx={{ fontWeight: "500", fontSize: "16px", lineHeight: "21.6px" }}
+          sx={{
+            fontWeight: "500",
+            fontSize: { xs: "14px", md: "16px" },
+            lineHeight: { xs: "18px", md: "21.6px" },
+          }}
         >
           View All
         </Typography>

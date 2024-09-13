@@ -5,28 +5,42 @@ import ProductGrid from "./Components/ComponentCategoryProductCrad";
 import TopHeader from "../../CommonComponents/TopHeader";
 import Header from "../../CommonComponents/Header";
 import Footer from "../../CommonComponents/Footer";
+import { FilterProvider } from "./Components/FilterContext";
 
-import { FilterProvider } from "./Components/FilterContext"; 
 const CategoryDetails: React.FC = () => {
   return (
-    <Box>
+    <Box sx={{ overflowX: 'hidden' }}>
       <TopHeader />
       <Header />
 
-      <Divider sx={{ mt: 2,width: '87%',marginLeft:'120px' }} />
+      <Divider 
+        sx={{ 
+          mt: 2, 
+          width: { xs: '100%', md: '81%' }, 
+          marginX: 'auto'
+        }} 
+      />
 
       <FilterProvider>
-        <Box sx={{ display: 'flex', paddingRight: 1, mt: 4, mb: 18 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' }, 
+          padding: { xs: 1, md: 2 }, 
+          mt: 4, 
+          mb: 18, 
+          maxWidth: '100%', 
+        }}>
           <Grid container spacing={2}>
-            <Grid item xs={9} sm={3}>
-              <FilterComponent />
+            <Grid item xs={12} md={3}>
+              <FilterComponent /> 
             </Grid>
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} md={9}>
               <ProductGrid />
             </Grid>
           </Grid>
         </Box>
       </FilterProvider>
+      
       <Footer />
     </Box>
   );

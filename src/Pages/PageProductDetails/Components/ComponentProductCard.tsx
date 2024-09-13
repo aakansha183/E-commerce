@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button,Grid } from '@mui/material';
+import { Box, Typography, Button, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Rating } from '@mui/material';
 import BlueTshirt from '../../../Assests/Images/BlueShirt.png';
@@ -62,10 +62,23 @@ const SuggestedProducts: React.FC = () => {
   };
 
   return (
-    <Box  sx={{ textAlign: 'center', mt: 4, padding: '40px 150px', marginRight: 8 }}>
+    <Box
+      sx={{
+        textAlign: 'center',
+        mt: 4,
+        padding: { xs: '20px', sm: '40px 20px', md: '40px 100px' }, 
+        marginRight: { xs: 0, md: 8 }, 
+      }}
+    >
       <Typography
         variant="h4"
-        sx={{ fontWeight: '700', fontSize: '48px', lineHeight: '57.6px', fontFamily: 'Poppins', marginBottom: '20px' }}
+        sx={{
+          fontWeight: '700',
+          fontSize: { xs: '24px', sm: '36px', md: '48px' }, 
+          lineHeight: { xs: '30px', sm: '40px', md: '57.6px' },
+          fontFamily: 'Poppins',
+          marginBottom: '20px',
+        }}
       >
         YOU MIGHT ALSO LIKE
       </Typography>
@@ -79,9 +92,7 @@ const SuggestedProducts: React.FC = () => {
                 '&:hover': {
                   transform: 'scale(1.05)',
                 },
-               
               }}
-              
             >
               <Box
                 component="img"
@@ -91,12 +102,22 @@ const SuggestedProducts: React.FC = () => {
                 }}
                 src={product.image}
                 alt={product.name}
-                sx={{ width: '120%', borderRadius: 4}}
+                sx={{
+                  width: '100%', 
+                  height: 'auto',
+                  borderRadius: 4,
+                }}
               />
               <Typography
                 variant="subtitle1"
                 fontWeight="700"
-                sx={{ mt: 2, textAlign: 'left', marginLeft: '10px', fontSize: '20px', lineHeight: '27px' }}
+                sx={{
+                  mt: 2,
+                  textAlign: 'left',
+                  marginLeft: '10px',
+                  fontSize: { xs: '16px', sm: '18px', md: '20px' }, 
+                  lineHeight: { xs: '24px', sm: '26px', md: '27px' },
+                }}
               >
                 {product.name}
               </Typography>
@@ -104,13 +125,23 @@ const SuggestedProducts: React.FC = () => {
                 {renderStars(product.rating)}
                 <Typography
                   variant="body2"
-                  sx={{ marginLeft: '10px', fontWeight: '400', fontSize: '14px', lineHeight: '18.9px' }}
+                  sx={{
+                    marginLeft: '10px',
+                    fontWeight: '400',
+                    fontSize: { xs: '12px', sm: '14px', md: '14px' },
+                    lineHeight: { xs: '16px', sm: '18px', md: '18.9px' },
+                  }}
                 >
                   {product.rating}/5
                 </Typography>
               </Box>
               <Box sx={{ mt: 1, textAlign: 'left', marginLeft: '10px' }}>
-                <Typography variant="h6" fontWeight="700" fontSize={'24px'} lineHeight={'32.4px'}>
+                <Typography
+                  variant="h6"
+                  fontWeight="700"
+                  fontSize={{ xs: '18px', sm: '20px', md: '24px' }} 
+                  lineHeight={{ xs: '24px', sm: '30px', md: '32.4px' }}
+                >
                   ${product.price}
                   {product.originalPrice && (
                     <Typography
@@ -121,8 +152,8 @@ const SuggestedProducts: React.FC = () => {
                         ml: 1,
                         color: '#D3D3D3',
                         fontWeight: '700',
-                        fontSize: '24px',
-                        lineHeight: '32.4px',
+                        fontSize: { xs: '18px', sm: '20px', md: '24px' },
+                        lineHeight: { xs: '24px', sm: '30px', md: '32.4px' },
                       }}
                     >
                       ${product.originalPrice}
@@ -136,7 +167,7 @@ const SuggestedProducts: React.FC = () => {
                       color: '#FF3333',
                       fontWeight: 'bold',
                       backgroundColor: '#FFE9F0',
-                      padding: '6px 14px 6px 14px',
+                      padding: '6px 14px',
                       marginLeft: 17,
                       marginTop: -4,
                       width: '40px',
@@ -164,18 +195,18 @@ const SuggestedProducts: React.FC = () => {
           height: '52px',
           borderRadius: '62px',
           textTransform: 'none',
-          padding: '16px 54px 16px 54px',
+          padding: '16px 54px',
           fontWeight: 'bold',
           borderColor: '#D3D3D3',
           color: 'black',
-          marginBottom:'100px'
+          marginBottom: '100px',
         }}
       >
         <Typography
           sx={{
             fontWeight: '500',
-            fontSize: '16px',
-            lineHeight: '21.6px',
+            fontSize: { xs: '14px', sm: '16px', md: '16px' }, 
+            lineHeight: { xs: '18px', sm: '21.6px', md: '21.6px' },
           }}
         >
           View All

@@ -61,9 +61,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const { logout, isLoggedIn } = useAuth(); 
+  const { logout, isLoggedIn } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false); 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -89,9 +90,16 @@ const Header: React.FC = () => {
     setDrawerOpen(open);
   };
 
+  const handleSearchIconClick = () => {
+    setMobileSearchOpen((prev) => !prev); 
+  };
+
   const drawerContent = (
     <Box sx={{ width: 250, padding: 2 }} role="presentation">
-      <Link to = "/Category" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Typography variant="h6" sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: 'Poppins', marginBottom: 2 }}>
+        SHOP.CO
+      </Typography>
+      <Link to="/Category" style={{ textDecoration: 'none', color: 'inherit' }}>
         <Typography variant="body1" sx={{ marginBottom: 2 }}>Shop</Typography>
       </Link>
       <Typography variant="body1" sx={{ marginBottom: 2 }}>On Sale</Typography>
@@ -103,11 +111,29 @@ const Header: React.FC = () => {
   );
 
   return (
-    <Box sx={{ overflow: 'hidden',padding:'0px 150px' }}> 
-    <ToastContainer />
+    <Box sx={{ overflow: 'hidden', padding: { xs: '0px 20px', md: '0px 150px' } }}> 
+      <ToastContainer />
       <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2 }}>
         <Toolbar>
-          {!isMobile ? (
+          {isMobile ? (
+            <>
+              <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+              <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+                {drawerContent}
+              </Drawer>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: 'Poppins', marginLeft: '10px' }}
+                >
+                  SHOP.CO
+                </Typography>
+              </Link>
+            </>
+          ) : (
             <>
               <Link to="/" style={{ textDecoration: 'none' }}>
                 <Typography
@@ -129,13 +155,10 @@ const Header: React.FC = () => {
                 <Typography variant="body1">Brands</Typography>
               </Box>
             </>
-          ) : (
-            <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
           )}
 
           <Box sx={{ flexGrow: 1 }} />
+          
           {!isMobile ? (
             <Search>
               <SearchIconWrapper>
@@ -147,18 +170,29 @@ const Header: React.FC = () => {
               />
             </Search>
           ) : (
-            <IconButton color="inherit">
-              <SearchIcon />
-            </IconButton>
+            <>
+              <IconButton color="inherit" onClick={handleSearchIconClick}>
+                <SearchIcon />
+              </IconButton>
+              {mobileSearchOpen && (
+                <Search sx={{ position: 'absolute', top: 64, left: 0, right: 0 }}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search for products..."
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </Search>
+              )}
+            </>
           )}
+
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: isMobile ? '10px' : '20px' }}>
             <IconButton color="inherit" onClick={() => { navigate('/Cart') }}>
               <CartIcon />
             </IconButton>
-            <IconButton 
-              color="inherit" 
-              onClick={handleMenuOpen}
-            >
+            <IconButton color="inherit" onClick={handleMenuOpen}>
               <AccountIcon />
             </IconButton>
             <Menu
@@ -179,13 +213,10 @@ const Header: React.FC = () => {
           </Box>
         </Toolbar>
       </AppBar>
-
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        {drawerContent}
-      </Drawer>
     </Box>
   );
 };
 
 export default Header;
+
 

@@ -7,7 +7,6 @@ import OrangeBlackShirt from "../../../Assests/Images/OrangeBlackTshirt.png"
 import DenimShorts from "../../../Assests/Images/DenimShorts.png"
 import OrangeTshirt from "../../../Assests/Images/OrangeTshirt.png"
 import GreenShirt from "../../../Assests/Images/GreenShirt.png"
-import { colors } from '@mui/material';
  const products = [
     {
       id: 15,

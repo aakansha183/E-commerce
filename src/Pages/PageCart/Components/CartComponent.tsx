@@ -6,12 +6,14 @@ import {
   Button,
   Divider,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Redux/Store";
 import IncrementDecrementBox from "../../PageProductDetails/Components/ComponentIncrementDecrementBox";
 import DeleteIcon from "../../../Assests/ImagesData/DeleteIcon";
-import { removeItem } from "../../../Redux/cartSlice";
+import { removeItem, updateQuantity } from "../../../Redux/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TagIcon from "../../../Assests/ImagesData/TagIcon";
@@ -23,23 +25,25 @@ const CartComponent: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const navigate = useNavigate();
-  const [itemQuantities, setItemQuantities] = useState<Record<ItemId, number>>(
-    {}
-  );
-  const [addedItems, setAddedItems] = useState<Set<ItemId>>(new Set());
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleIncrement = (itemId: ItemId) => {
-    setItemQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [itemId]: (prevQuantities[itemId] || 1) + 1,
-    }));
+    const existingItem = cartItems.find((item) => item.id === itemId);
+    if (existingItem) {
+      dispatch(
+        updateQuantity({ id: itemId, quantity: existingItem.quantity + 1 })
+      );
+    }
   };
 
   const handleDecrement = (itemId: ItemId) => {
-    setItemQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [itemId]: Math.max((prevQuantities[itemId] || 1) - 1, 1),
-    }));
+    const existingItem = cartItems.find((item) => item.id === itemId);
+    if (existingItem && existingItem.quantity > 1) {
+      dispatch(
+        updateQuantity({ id: itemId, quantity: existingItem.quantity - 1 })
+      );
+    }
   };
 
   const handleDelete = (itemId: ItemId) => {
@@ -51,27 +55,31 @@ const CartComponent: React.FC = () => {
   };
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * (itemQuantities[item.id] || 1),
+    (acc, item) => acc + item.price * item.quantity,
     0
   );
   const discount = subtotal * 0.2;
   const deliveryFee = 15;
   const total = subtotal - discount + deliveryFee;
 
-  useEffect(() => {
-    setAddedItems(new Set());
-  }, [cartItems]);
+  useEffect(() => {}, [cartItems]);
 
   return (
-    <Box sx={{ marginLeft: "20px" }}>
+    <Box
+      sx={{
+        marginLeft: isMobile ? "5px" : "20px",
+        padding: isMobile ? "0 10px" : "0",
+      }}
+    >
       <Typography
         sx={{
           fontFamily: "Poppins",
           fontWeight: "700",
-          fontSize: "40px",
-          lineHeight: "48px",
-          marginLeft: "170px",
-          marginTop: "80px",
+          fontSize: isMobile ? "24px" : "40px",
+          lineHeight: isMobile ? "32px" : "48px",
+          marginLeft: isMobile ? "0" : "170px",
+          marginTop: isMobile ? "40px" : "80px",
+          textAlign: isMobile ? "center" : "left",
         }}
       >
         YOUR CART
@@ -94,21 +102,24 @@ const CartComponent: React.FC = () => {
       ) : (
         <Box
           display="flex"
-          padding={"15px 170px"}
+          flexDirection={isMobile ? "column" : "row"}
+          padding={isMobile ? "15px" : "15px 170px"}
           sx={{ backgroundColor: "#ffffff", marginBottom: -15 }}
         >
           <Box
-            flex={1.3}
+            flex={isMobile ? "none" : 1.3}
             sx={{
               border: "1px solid #e0e0e0",
-              marginRight: "20px",
+              marginRight: isMobile ? "20px" : "20px",
               borderRadius: "20px",
+              width: isMobile ? "100%" : "auto",
             }}
           >
             {cartItems.map((item, index) => (
               <Box key={item.id}>
                 <Box
                   display="flex"
+                  flexDirection={isMobile ? "column" : "row"}
                   alignItems="center"
                   mb={4}
                   sx={{ padding: "20px 24px" }}
@@ -121,7 +132,11 @@ const CartComponent: React.FC = () => {
                     height={100}
                     sx={{ borderRadius: "10px" }}
                   />
-                  <Box flex={1} pl={2}>
+                  <Box
+                    flex={1}
+                    pl={isMobile ? 0 : 2}
+                    textAlign={isMobile ? "center" : "left"}
+                  >
                     <Typography
                       variant="h6"
                       sx={{
@@ -166,8 +181,9 @@ const CartComponent: React.FC = () => {
                   </Box>
                   <Box
                     display="flex"
-                    flexDirection="column"
-                    alignItems="flex-end"
+                    flexDirection={isMobile ? "row" : "column"}
+                    alignItems={isMobile ? "center" : "flex-end"}
+                    gap={isMobile ? "10px" : "0"}
                   >
                     <Box onClick={() => handleDelete(item.id)}>
                       <IconButton>
@@ -175,7 +191,7 @@ const CartComponent: React.FC = () => {
                       </IconButton>
                     </Box>
                     <IncrementDecrementBox
-                      count={itemQuantities[item.id] || 1}
+                      count={item.quantity} // Use item's actual quantity
                       onIncrement={() => handleIncrement(item.id)}
                       onDecrement={() => handleDecrement(item.id)}
                     />
@@ -189,20 +205,26 @@ const CartComponent: React.FC = () => {
           </Box>
 
           <Box
-            flex={1}
+            flex={isMobile ? "none" : 1}
             sx={{
               border: "1px solid #e0e0e0",
               borderRadius: "20px",
-              padding: "20px",
-              height: "450px",
+              padding: isMobile ? "5px" : "20px",
+              height: "auto", // Ensure dynamic height
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              width: isMobile ? "100%" : "auto",
+              backgroundColor: "#ffffff",
             }}
           >
             <Typography
               variant="h5"
-              sx={{ fontWeight: "700", fontSize: "24px", lineHeight: "32.4px" }}
+              sx={{
+                fontWeight: "700",
+                fontSize: isMobile ? "20px" : "24px",
+                lineHeight: isMobile ? "28px" : "32.4px",
+              }}
             >
               Order Summary
             </Typography>
@@ -212,8 +234,8 @@ const CartComponent: React.FC = () => {
                   variant="body1"
                   sx={{
                     fontWeight: "400",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                     color: "grey",
                   }}
                 >
@@ -223,8 +245,8 @@ const CartComponent: React.FC = () => {
                   variant="body1"
                   sx={{
                     fontWeight: "700",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                   }}
                 >
                   ${subtotal}
@@ -235,8 +257,8 @@ const CartComponent: React.FC = () => {
                   variant="body1"
                   sx={{
                     fontWeight: "400",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                     color: "grey",
                   }}
                 >
@@ -247,8 +269,8 @@ const CartComponent: React.FC = () => {
                   sx={{
                     color: "#FF3333",
                     fontWeight: "700",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                   }}
                 >
                   -${discount.toFixed(2)}
@@ -259,8 +281,8 @@ const CartComponent: React.FC = () => {
                   variant="body1"
                   sx={{
                     fontWeight: "400",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                     color: "grey",
                   }}
                 >
@@ -270,114 +292,52 @@ const CartComponent: React.FC = () => {
                   variant="body1"
                   sx={{
                     fontWeight: "700",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                   }}
                 >
                   ${deliveryFee}
                 </Typography>
               </Grid>
-            </Box>
-            <Divider />
-            <Box mt={2} mb={2}>
-              <Grid container justifyContent="space-between">
+              <Divider sx={{ margin: "20px 0" }} />
+              <Grid container justifyContent="space-between" mt={1}>
                 <Typography
-                  variant="h6"
+                  variant="body1"
                   sx={{
                     fontWeight: "400",
-                    fontSize: "20px",
-                    lineHeight: "27px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
+                    color: "grey",
                   }}
                 >
                   Total
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="body1"
                   sx={{
                     fontWeight: "700",
-                    fontSize: "24px",
-                    lineHeight: "32.4px",
+                    fontSize: isMobile ? "16px" : "20px",
+                    lineHeight: isMobile ? "22px" : "27px",
                   }}
                 >
-                  ${total}
+                  ${total.toFixed(2)}
                 </Typography>
               </Grid>
             </Box>
-
-            <Box
-              display="flex"
-              alignItems="center"
-              gap="10px"
-              marginBottom={"20px"}
-            >
-              <div style={{ position: "relative", flex: 1 }}>
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "10px",
-                    top: "60%",
-                    transform: "translateY(-50%)",
-                    color: "#ccc",
-                    fontSize: "20px",
-                  }}
-                >
-                  <TagIcon />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Add promo code"
-                  style={{
-                    backgroundColor: "#F0F0F0",
-                    width: "90%",
-                    height: "48px",
-                    paddingLeft: "40px",
-                    border: "1px solid #ccc",
-                    borderRadius: "62px",
-                    fontSize: "16px",
-                  }}
-                />
-              </div>
-
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: "#000",
-                  color: "#fff",
-                  fontWeight: "bold",
-                  borderRadius: "62px",
-                  "&:hover": {
-                    backgroundColor: "#333",
-                  },
-                  width: "190px",
-                  height: "48px",
-                  marginLeft: "40px",
-                }}
-              >
-                Apply
-              </Button>
-            </Box>
-
             <Button
+              fullWidth
               variant="contained"
+              color="primary"
+              onClick={() => navigate("/checkout")}
               sx={{
-                mt: 2,
-                backgroundColor: "#000000",
-                color: "#FFFFFF",
-                fontWeight: "700",
-                fontSize: "16px",
+                backgroundColor: "#000",
+                fontSize: "18px",
+                textTransform: "none",
                 height: "50px",
-                borderRadius: "50px",
-                "&:hover": {
-                  backgroundColor: "#333333",
-                },
+                borderRadius: "8px",
               }}
-              onClick={() => {
-                navigate("/checkout");
-                window.scrollTo(0, 0);
-              }}
-             >
-              Checkout
+            >
+              Proceed to Checkout
             </Button>
           </Box>
         </Box>

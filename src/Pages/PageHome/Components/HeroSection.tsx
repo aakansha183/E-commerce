@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Typography, Grid, Container, Grid2 } from "@mui/material";
+import { Box, Button, Typography, Grid, Container } from "@mui/material";
 import HeroImage from "../../../Assests/Images/HeroImage.png";
 import { useNavigate } from "react-router-dom";
 import StarIcon from "../../../Assests/ImagesData/StarIcon";
@@ -17,14 +17,17 @@ const HeroSection: React.FC = () => {
         color: "#000",
         padding: "60px 0",
         width: "100%",
-        height: "660px",
+        height: { xs: "auto", md: "660px" },
       }}
     >
       <Container>
         <Grid
           container
           justifyContent="flex-start"
-          sx={{ marginLeft: "-200px", marginTop: "70px" }}
+          sx={{
+            marginLeft: { xs: "0", md: "-200px" }, 
+            marginTop: { xs: "20px", md: "70px" }, 
+          }}
         >
           <Grid item xs={12} md={6}>
             <Typography
@@ -33,8 +36,8 @@ const HeroSection: React.FC = () => {
               sx={{
                 fontWeight: "700",
                 fontFamily: "Poppins",
-                fontSize: "64px",
-                lineHeight: "64px",
+                fontSize: { xs: "32px", md: "64px" }, 
+                lineHeight: { xs: "40px", md: "64px" },
               }}
             >
               FIND CLOTHES THAT MATCHES YOUR STYLE
@@ -45,8 +48,8 @@ const HeroSection: React.FC = () => {
                 marginTop: 2,
                 marginBottom: 4,
                 fontWeight: "400",
-                fontSize: "16px",
-                lineHeight: "22px",
+                fontSize: { xs: "14px", md: "16px" }, 
+                lineHeight: { xs: "20px", md: "22px" }, 
                 color: "grey",
               }}
             >
@@ -61,9 +64,9 @@ const HeroSection: React.FC = () => {
               sx={{
                 backgroundColor: "black",
                 color: "white",
-                padding: "16px 54px 16px 54px",
-                width: "210px",
-                height: "52px",
+                padding: { xs: "12px 40px", md: "16px 54px" }, 
+                width: { xs: "160px", md: "210px" },
+                height: { xs: "40px", md: "52px" },
                 borderRadius: "62px",
               }}
               onClick={() => {
@@ -82,17 +85,20 @@ const HeroSection: React.FC = () => {
           spacing={5}
           sx={{
             marginTop: 1,
-            marginLeft: -28,
+            marginLeft: { xs: 0, md: -28 },
             fontWeight: "700",
-            fontSize: "40px",
-            lineHeight: "54px",
+            fontSize: { xs: "24px", md: "40px" }, 
+            lineHeight: { xs: "32px", md: "54px" }, 
           }}
         >
-          {" "}
           <Grid item>
             <Typography
               variant="h6"
-              sx={{ fontWeight: "700", fontSize: "40px", lineHeight: "54px" }}
+              sx={{
+                fontWeight: "700",
+                fontSize: { xs: "24px", md: "40px" }, 
+                lineHeight: { xs: "32px", md: "54px" },
+              }}
             >
               200+
             </Typography>
@@ -100,11 +106,10 @@ const HeroSection: React.FC = () => {
               variant="body2"
               sx={{
                 fontWeight: "400",
-                fontSize: "15px",
-                lineHeight: "22px",
+                fontSize: { xs: "12px", md: "15px" }, 
+                lineHeight: { xs: "18px", md: "22px" }, 
                 color: "grey",
-                width: "141px",
-                height: "22px",
+                width: { xs: "auto", md: "141px" }, 
               }}
             >
               International Brands
@@ -113,7 +118,11 @@ const HeroSection: React.FC = () => {
           <Grid item>
             <Typography
               variant="h6"
-              sx={{ fontWeight: "700", fontSize: "40px", lineHeight: "54px" }}
+              sx={{
+                fontWeight: "700",
+                fontSize: { xs: "24px", md: "40px" },
+                lineHeight: { xs: "32px", md: "54px" },
+              }}
             >
               2,000+
             </Typography>
@@ -121,11 +130,10 @@ const HeroSection: React.FC = () => {
               variant="body2"
               sx={{
                 fontWeight: "400",
-                fontSize: "15px",
-                lineHeight: "22px",
+                fontSize: { xs: "12px", md: "15px" },
+                lineHeight: { xs: "18px", md: "22px" },
                 color: "grey",
-                width: "150px",
-                height: "22px",
+                width: { xs: "auto", md: "150px" },
               }}
             >
               High-Quality Products
@@ -134,7 +142,11 @@ const HeroSection: React.FC = () => {
           <Grid item>
             <Typography
               variant="h6"
-              sx={{ fontWeight: "700", fontSize: "40px", lineHeight: "54px" }}
+              sx={{
+                fontWeight: "700",
+                fontSize: { xs: "24px", md: "40px" },
+                lineHeight: { xs: "32px", md: "54px" },
+              }}
             >
               30,000+
             </Typography>
@@ -142,29 +154,29 @@ const HeroSection: React.FC = () => {
               variant="body2"
               sx={{
                 fontWeight: "400",
-                fontSize: "15px",
-                lineHeight: "22px",
+                fontSize: { xs: "12px", md: "15px" },
+                lineHeight: { xs: "18px", md: "22px" },
                 color: "grey",
-                width: "141px",
-                height: "22px",
+                width: { xs: "auto", md: "141px" },
               }}
             >
               Happy Customers
             </Typography>
           </Grid>
         </Grid>
+
         <Box
           sx={{
-            marginLeft: "1200px",
-            marginTop: "-500px",
+            marginLeft: { xs: "auto", md: "1200px" }, 
+            marginTop: { xs: "50px", md: "-500px" }, 
           }}
         >
           <StarIcon />
         </Box>
         <Box
           sx={{
-            marginLeft: "650px",
-            marginTop: "80px",
+            marginLeft: { xs: "300px", md: "650px" }, 
+            marginTop: { xs: "30px", md: "80px" }, 
           }}
         >
           <StarIcon />

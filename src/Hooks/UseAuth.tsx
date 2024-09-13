@@ -4,14 +4,8 @@ import { User } from "../Pages/PageLogin/Utils/Interfaces/LoginInterfaces";
 import { setUser } from "../Redux/UserSlice";
 import { RootState } from "../Redux/Store";
 import localforage from "localforage";
+import { AuthState } from "../Utils/Interfaces/InterfacesAuthState";
 
-interface AuthState {
-  currentUser: User | null;
-  isLoggedIn: boolean;
-  login: (username: string, password: string) => Promise<boolean>;
-  logout: () => Promise<void>;
-  register: (newUser: User) => Promise<void>;
-}
 
 const useAuth = (): AuthState => {
   const dispatch = useDispatch();

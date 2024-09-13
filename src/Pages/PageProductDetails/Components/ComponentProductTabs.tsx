@@ -10,6 +10,8 @@ import {
   MenuItem,
   TextField,
   Rating,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import FilterIcon from '../../../Assests/ImagesData/FilterIcon';
 import ReviewsList from './ComponentReviews';
@@ -129,6 +131,9 @@ const ProductTabs: React.FC = () => {
     setReviewOpen(false);
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs
@@ -139,15 +144,11 @@ const ProductTabs: React.FC = () => {
           borderBottom: '1px solid #E0E0E0',
           '& .MuiTab-root': {
             textTransform: 'inherit',
-            fontSize: '20px',
+            fontSize: isMobile ? '16px' : '20px', 
             fontWeight: '400',
             color: '#757575',
-            padding: '0px 90px', 
-           marginTop:'40px',
-           
-
-            
-          
+            padding: isMobile ? '0px 24px' : '0px 90px', 
+            marginTop: '40px',
           },
           '& .Mui-selected': {
             color: '#000000',
@@ -163,11 +164,11 @@ const ProductTabs: React.FC = () => {
         <Tab label="FAQs" />
       </Tabs>
       <TabPanel value={value} index={0}>
-      
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Box
           display="flex"
+          flexDirection={isMobile ? 'column' : 'row'} 
           alignItems="center"
           justifyContent="space-between"
           mb={2}
@@ -176,63 +177,67 @@ const ProductTabs: React.FC = () => {
             variant="h6"
             sx={{
               fontWeight: '700',
-              fontSize: '24px',
+              fontSize: isMobile ? '20px' : '24px',
               color: '#000000',
-              marginLeft:'-20px',
-              lineHeight:''
-              
+              marginLeft: isMobile ? '0' : '-20px',
+              textAlign: isMobile ? 'center' : 'left', 
             }}
           >
             All Reviews ({reviews.length})
           </Typography>
-          <Box display="flex" alignItems="center">
-            <Box sx ={{marginRight:'10px'}} >
-            <FilterIcon/>
+          <Box display="flex" alignItems="center" flexDirection={isMobile ? 'column' : 'row'}>
+            <Box sx={{ marginRight: isMobile ? '0' : '10px' }}>
+              <FilterIcon />
             </Box>
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleMenuClick}
-             
-              sx={{
-                textTransform: 'none',
-                backgroundColor: '#F5F5F5',
-                color: '#757575',
-                borderRadius: '62px',
-                width:'120px',
-                height:'48px',
-                padding: '16px 20px 16px 20px',
-                marginRight: '8px',
-              }}
+            <Box
+              display="flex"
+              flexDirection={isMobile ? 'column' : 'row'}
+              alignItems="center"
+              mt={isMobile ? 2 : 0}
             >
-              Latest
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-            >
-              <MenuItem onClick={handleMenuClose}>Latest</MenuItem>
-             
-            </Menu>
-            <Button
-              variant="contained"
-              onClick={handleWriteReviewClick}
-              sx={{
-                textTransform: 'none',
-                backgroundColor: '#000000',
-                color: '#FFFFFF',
-                borderRadius: '62px',
-                padding: '16px 20px 16px 20px',
-                width:'166px',
-                height:'48px'
-
-              }}
-            >
-              Write a Review
-            </Button>
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleMenuClick}
+                sx={{
+                  textTransform: 'none',
+                  backgroundColor: '#F5F5F5',
+                  color: '#757575',
+                  borderRadius: '62px',
+                  width: isMobile ? '100%' : '120px', 
+                  height: '48px',
+                  padding: '16px',
+                  marginRight: isMobile ? '0' : '8px',
+                  mb: isMobile ? 1 : 0,
+                }}
+              >
+                Latest
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={handleMenuClose}>Latest</MenuItem>
+              </Menu>
+              <Button
+                variant="contained"
+                onClick={handleWriteReviewClick}
+                sx={{
+                  textTransform: 'none',
+                  backgroundColor: '#000000',
+                  color: '#FFFFFF',
+                  borderRadius: '62px',
+                  padding: '16px 20px',
+                  width: isMobile ? '100%' : '166px',
+                  height: '48px',
+                }}
+              >
+                Write a Review
+              </Button>
+            </Box>
           </Box>
         </Box>
 
@@ -243,75 +248,46 @@ const ProductTabs: React.FC = () => {
               border: '1px solid #E0E0E0',
               borderRadius: '8px',
               mt: 2,
-              backgroundColor: '#FAFAFA',
-              mb: 2,
+              backgroundColor: '#FFFFFF',
             }}
           >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 'bold',
-                fontSize: '18px',
-                color: '#000000',
-              }}
+            <Typography variant="h6" sx={{ mb: 2 }}>Write a Review</Typography>
+            <TextField
+              label="Name"
+              variant="outlined"
+              fullWidth
+              sx={{ mb: 2 }}
+              value={newReview.name}
+              onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
+            />
+          <Rating
+  value={newReview.rating}
+  onChange={(event, newValue: number | null) => setNewReview({ ...newReview, rating: newValue ?? 0 })}
+  sx={{ mb: 2 }}
+/>
+            <TextField
+              label="Review"
+              variant="outlined"
+              fullWidth
+              multiline
+              rows={4}
+              sx={{ mb: 2 }}
+              value={newReview.review}
+              onChange={(e) => setNewReview({ ...newReview, review: e.target.value })}
+            />
+            <Button
+              variant="contained"
+              onClick={handleReviewSubmit}
+              sx={{ width: '100%' }}
             >
-              Write a Review
-            </Typography>
-            <Box component="form">
-              <TextField
-                label="Your Name"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                value={newReview.name}
-                onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
-              />
-              <Box mb={2}>
-                <Typography variant="body1" sx={{ color: '#757575' }}>
-                  Your Rating
-                </Typography>
-                <Rating
-                  value={newReview.rating}
-                  onChange={(e, newValue) => setNewReview({ ...newReview, rating: newValue || 0 })}
-                />
-              </Box>
-              <Box mb={2}>
-                <Typography variant="body1" sx={{ color: '#757575' }}>
-                  Your Review
-                </Typography>
-                <textarea
-                  rows={4}
-                  style={{
-                    width: '100%',
-                    padding: '8px',
-                    borderRadius: '4px',
-                    border: '1px solid #E0E0E0',
-                    fontSize: '14px',
-                  }}
-                  value={newReview.review}
-                  onChange={(e) => setNewReview({ ...newReview, review: e.target.value })}
-                />
-              </Box>
-              <Button
-                variant="contained"
-                onClick={handleReviewSubmit}
-                sx={{
-                  textTransform: 'none',
-                  backgroundColor: '#000000',
-                  color: '#FFFFFF',
-                  padding: '6px 16px',
-                }}
-              >
-                Submit Review
-              </Button>
-            </Box>
+              Submit Review
+            </Button>
           </Box>
         )}
 
-        {value === 1 && <ReviewsList reviews={reviews} />}
+        <ReviewsList reviews={reviews} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        
       </TabPanel>
     </Box>
   );

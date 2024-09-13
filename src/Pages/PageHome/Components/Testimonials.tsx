@@ -28,6 +28,7 @@ const Testimonials: React.FC = () => {
         margin: "0 auto",
         overflow: "hidden",
         marginBottom: "120px",
+        padding: { xs: "0 20px", md: "0 40px" },
       }}
     >
       <Box
@@ -36,6 +37,7 @@ const Testimonials: React.FC = () => {
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: 2,
+          padding: { xs: "0 10px", md: "0 40px" },
         }}
       >
         <Typography
@@ -43,86 +45,75 @@ const Testimonials: React.FC = () => {
           component="h2"
           sx={{
             fontWeight: "700",
-            fontSize: "48px",
-            lineHeight: "57.6px",
-            marginLeft: "140px",
+            fontSize: { xs: "24px", sm: "36px", md: "48px" },
+            lineHeight: { xs: "32px", sm: "42px", md: "57.6px" },
             fontFamily: "Poppins",
-            marginBottom: "40px",
+            marginBottom: { xs: "20px", md: "40px" },
           }}
         >
           OUR HAPPY CUSTOMERS
         </Typography>
-        <Box sx={{ marginRight: "30px", height: "30px" }}>
-          <IconButton onClick={scrollLeft}>
+
+        <Box
+          sx={{
+            display: "flex",
+            marginRight: { xs: "0px", sm: "10px", md: "30px" },
+            height: { xs: "25px", sm: "30px" },
+          }}
+        >
+          <IconButton
+            onClick={scrollLeft}
+            sx={{
+              padding: { xs: "5px", sm: "10px" },
+              "& svg": {
+                fontSize: { xs: "16px", sm: "24px" },
+              },
+            }}
+          >
             <ArrowBackIosNewIcon />
           </IconButton>
-          <IconButton onClick={scrollRight}>
+          <IconButton
+            onClick={scrollRight}
+            sx={{
+              padding: { xs: "5px", sm: "10px" },
+              "& svg": {
+                fontSize: { xs: "16px", sm: "24px" },
+              },
+            }}
+          >
             <ArrowForwardIosIcon />
           </IconButton>
         </Box>
       </Box>
+
       <Box
         ref={testimonialsRef}
         sx={{
           display: "flex",
           alignItems: "center",
           position: "relative",
-          overflowX: "hidden",
           gap: 3,
+          overflowX: "hidden",
+          scrollSnapType: "x mandatory",
         }}
       >
-        <Card
-          sx={{
-            width: "500px",
-            height: "240px",
-            flexShrink: 0,
-            borderRadius: "16px",
-            boxShadow: 3,
-            transition: "all 0.3s ease",
-            transform: "scale(0.9)",
-            filter: "blur(3px)",
-            marginLeft: "-380px",
-          }}
-        >
-          <CardContent>
-            <Box
-              sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}
-            >
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} sx={{ color: "#FFCC00" }} />
-              ))}
-            </Box>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ fontWeight: "bold", marginBottom: 1 }}
-            >
-              {testimonials[0].name}
-              <CheckCircleIcon sx={{ color: "#00C853", marginLeft: 1 }} />
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              "{testimonials[0].text}"
-            </Typography>
-          </CardContent>
-        </Card>
-
-        {[1, 2, 3].map((index) => (
+        {[...testimonials].map((testimonial, index) => (
           <Card
             key={index}
             sx={{
-              width: "500px",
-              height: "240px",
+              width: { xs: "90%", sm: "70%", md: "500px" },
+              height: { xs: "auto", md: "240px" },
+              minHeight: "240px", 
               flexShrink: 0,
               borderRadius: "20px",
               transition: "all 0.3s ease",
               border: "solid 1px #dee2e6",
               boxShadow: 0,
+              scrollSnapAlign: "start",
             }}
           >
-            <CardContent>
-              <Box
-                sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}
-              >
+            <CardContent sx={{ height: "100%" }}> 
+              <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
                 {[...Array(5)].map((_, i) => (
                   <StarIcon key={i} sx={{ color: "#FFCC00" }} />
                 ))}
@@ -130,59 +121,27 @@ const Testimonials: React.FC = () => {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ fontWeight: "bold", marginBottom: 1 }}
+                sx={{
+                  fontWeight: "bold",
+                  marginBottom: 1,
+                  fontSize: { xs: "16px", md: "20px" },
+                }}
               >
-                {testimonials[index].name}
+                {testimonial.name}
                 <CheckCircleIcon sx={{ color: "#00C853", marginLeft: 1 }} />
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                "{testimonials[index].text}"
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{
+                  fontSize: { xs: "14px", md: "16px" },
+                }}
+              >
+                "{testimonial.text}"
               </Typography>
             </CardContent>
           </Card>
         ))}
-
-        <Card
-          sx={{
-            width: "500px",
-            height: "240px",
-            flexShrink: 0,
-            borderRadius: "16px",
-            transition: "all 0.3s ease",
-            transform: "scale(0.9)",
-            filter: "blur(3px)",
-          }}
-        >
-          <CardContent>
-            <Box
-              sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}
-            >
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} sx={{ color: "#FFCC00" }} />
-              ))}
-            </Box>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                fontWeight: "700",
-                marginBottom: 1,
-                fontSize: "20px",
-                lineHeight: "22px",
-              }}
-            >
-              {testimonials[4].name}
-              <CheckCircleIcon sx={{ color: "#00C853", marginLeft: 1 }} />
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ fontWeight: "400", fontSize: "16px", lineHeight: "22px" }}
-            >
-              "{testimonials[4].text}"
-            </Typography>
-          </CardContent>
-        </Card>
       </Box>
     </Box>
   );

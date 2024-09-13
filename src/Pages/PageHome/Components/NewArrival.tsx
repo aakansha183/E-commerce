@@ -28,23 +28,35 @@ const NewArrivals: React.FC = () => {
   return (
     <Box
       id="newarrivals"
-      sx={{ textAlign: "center", mt: 4, padding: "40px 150px", marginRight: 8 }}
+      sx={{
+        textAlign: "center",
+        mt: 4,
+        padding: { xs: "20px", md: "40px 70px" }, 
+        maxWidth: "100%", 
+        overflow: "hidden", 
+      }}
     >
       <Typography
         variant="h4"
         sx={{
           fontWeight: "700",
-          fontSize: "48px",
-          lineHeight: "57.6px",
+          fontSize: { xs: "32px", md: "48px" },
+          lineHeight: { xs: "40px", md: "57.6px" },
           fontFamily: "Poppins",
           marginBottom: "20px",
         }}
       >
         NEW ARRIVALS
       </Typography>
-      <Grid container spacing={7} justifyContent="center">
+      <Grid container spacing={4} justifyContent="center" wrap="wrap">
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={3} key={product.id}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            key={product.id}
+          >
             <Box
               sx={{
                 p: 2,
@@ -62,7 +74,7 @@ const NewArrivals: React.FC = () => {
                 }}
                 src={product.image}
                 alt={product.name}
-                sx={{ width: "120%", borderRadius: 4 }}
+                sx={{ width: "100%", borderRadius: 4 }}
               />
               <Typography
                 variant="subtitle1"
@@ -71,8 +83,8 @@ const NewArrivals: React.FC = () => {
                   mt: 2,
                   textAlign: "left",
                   marginLeft: "10px",
-                  fontSize: "20px",
-                  lineHeight: "27px",
+                  fontSize: { xs: "16px", md: "20px" },
+                  lineHeight: { xs: "22px", md: "27px" },
                 }}
               >
                 {product.name}
@@ -102,8 +114,8 @@ const NewArrivals: React.FC = () => {
                 <Typography
                   variant="h6"
                   fontWeight="700"
-                  fontSize={"24px"}
-                  lineHeight={"32.4px"}
+                  fontSize={{ xs: "20px", md: "24px" }}
+                  lineHeight={{ xs: "28px", md: "32.4px" }}
                 >
                   ${product.price}
                   {product.originalPrice && (
@@ -130,7 +142,7 @@ const NewArrivals: React.FC = () => {
                       color: "#FF3333",
                       fontWeight: "bold",
                       backgroundColor: "#FFE9F0",
-                      padding: "6px 14px 6px 14px",
+                      padding: "6px 14px",
                       marginLeft: 17,
                       marginTop: -4,
                       width: "40px",
@@ -154,11 +166,11 @@ const NewArrivals: React.FC = () => {
         }}
         sx={{
           mt: 2,
-          width: "218px",
-          height: "52px",
+          width: { xs: "150px", md: "218px" },
+          height: { xs: "40px", md: "52px" },
           borderRadius: "62px",
           textTransform: "none",
-          padding: "16px 54px 16px 54px",
+          padding: { xs: "10px 30px", md: "16px 54px" },
           fontWeight: "bold",
           borderColor: "#D3D3D3",
           color: "black",
@@ -167,8 +179,8 @@ const NewArrivals: React.FC = () => {
         <Typography
           sx={{
             fontWeight: "500",
-            fontSize: "16px",
-            lineHeight: "21.6px",
+            fontSize: { xs: "14px", md: "16px" },
+            lineHeight: { xs: "18px", md: "21.6px" },
           }}
         >
           View All

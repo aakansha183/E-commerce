@@ -25,23 +25,54 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ name, rating, price, original
   );
 
   return (
-    <>
-      <Typography variant="h4" fontWeight="700" lineHeight="48px" fontSize="40px" fontFamily="Poppins">
+    <Box sx={{ width: { xs: '100%', sm: '80%', md: '70%', lg: 'auto' }, mx: 'auto' }}>
+      <Typography
+        variant="h4"
+        fontWeight="700"
+        lineHeight="48px"
+        fontSize="40px"
+        fontFamily="Poppins"
+        textAlign="left"
+        sx={{ mb: 1 }}
+      >
         {name}
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'left', mt: 1 }}>
         {renderStars(rating)}
-        <Typography variant="body2" sx={{ ml: 1, color: '#000000', fontSize: '16px', fontWeight: '400' }}>
+        <Typography
+          variant="body2"
+          sx={{ ml: 1, color: '#000000', fontSize: '16px', fontWeight: '400' }}
+        >
           {rating}/5
         </Typography>
       </Box>
       <Typography
         variant="h5"
-        sx={{ mt: 2, fontWeight: '700', fontSize: '32px', lineHeight: '43.2px', color: '#000000', fontFamily: 'Poppins' }}
+        sx={{
+          mt: 2,
+          fontWeight: '700',
+          fontSize: '32px',
+          lineHeight: '43.2px',
+          color: '#000000',
+          fontFamily: 'Poppins',
+          textAlign: 'left'
+        }}
       >
         ${price}
         {originalPrice && (
-          <Typography component="span" variant="body2" sx={{ textDecoration: 'line-through', ml: '10px', color: '#D3D3D3' }}>
+          <Typography
+            component="span"
+            variant="body2"
+            sx={{
+              textDecoration: 'line-through',
+              ml: '10px',
+              color: '#D3D3D3',
+              fontWeight: '700',
+              fontSize: '32px',
+              lineHeight: '43.2px',
+              fontFamily: 'Poppins',
+            }}
+          >
             ${originalPrice}
           </Typography>
         )}
@@ -49,8 +80,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ name, rating, price, original
           <Box
             component="span"
             sx={{
-              ml: '10px',
-              p: '5px 15px',
+              ml: '12px',
+              p: '7px 15px',
               backgroundColor: '#FFE9F0',
               borderRadius: '60px',
               fontSize: '16px',
@@ -62,7 +93,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ name, rating, price, original
           </Box>
         )}
       </Typography>
-    </>
+    </Box>
   );
 };
 

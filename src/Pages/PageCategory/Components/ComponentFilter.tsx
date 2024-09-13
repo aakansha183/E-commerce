@@ -66,14 +66,14 @@ const FilterComponent: React.FC = () => {
       <Box
         key={color}
         sx={{
-          width: 32,
-          height: 32,
+          width: 24,
+          height: 24,
           borderRadius: "50%",
           backgroundColor: color.toLowerCase(),
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          margin: "4px",
+          margin: "2px",
           cursor: "pointer",
         }}
         onClick={() => handleColorChange(color)}
@@ -81,7 +81,7 @@ const FilterComponent: React.FC = () => {
         {selectedColors.includes(color) && (
           <Typography
             sx={{
-              fontSize: "12px",
+              fontSize: "10px",
               color: "white",
               fontWeight: "bold",
             }}
@@ -101,13 +101,13 @@ const FilterComponent: React.FC = () => {
         onClick={() => handleSizeChange(size)}
         variant={selectedSize === size ? "filled" : "outlined"}
         sx={{
-          margin: "5px 5px 10px 0",
+          margin: "3px",
           borderRadius: "20px",
           borderColor: selectedSize === size ? "black" : undefined,
           backgroundColor: selectedSize === size ? "black" : undefined,
           color: selectedSize === size ? "white" : "black",
           fontWeight: selectedSize === size ? "bold" : "normal",
-          padding: "6px 12px",
+          padding: "4px 8px",
         }}
       />
     ));
@@ -122,15 +122,14 @@ const FilterComponent: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "8px 0",
+          padding: "4px 0",
         }}
         onClick={() => handleDressStyleChange(style)}
       >
         <Typography
           sx={{
             fontWeight: "400",
-            fontSize: "16px",
-            lineHeight: "21.6px",
+            fontSize: "12px",
             color: "#909090",
           }}
         >
@@ -144,19 +143,21 @@ const FilterComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "270px",
-        padding: "10px 10px",
+        width: { xs: "100%", sm: "80%", md: "70%", lg: "80%" }, 
+        padding: "8px",
         border: "1px solid #ddd",
         borderRadius: 4,
         bgcolor: "white",
-        position: "absolute",
-        top: "20%",
-        left: "8%",
+        position: "relative",
+        overflow: "auto",
+        maxWidth: "120%",
+        boxSizing: "border-box",
         fontFamily: "Arial, sans-serif",
+        marginLeft: { xs: 0, sm: "20px", md: "40px" }, 
       }}
     >
       <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Typography variant="h6" sx={{ marginBottom: 2, fontWeight: "bold" }}>
+        <Typography variant="h6" sx={{ marginBottom: 1, fontWeight: "bold" }}>
           Filters
         </Typography>
         <FilterIcon />
@@ -173,8 +174,7 @@ const FilterComponent: React.FC = () => {
                 <Typography
                   sx={{
                     fontWeight: "400px",
-                    fontSize: "16px",
-                    lineHeight: "21.6px",
+                    fontSize: "14px",
                     color: "#909090",
                   }}
                 >
@@ -198,8 +198,7 @@ const FilterComponent: React.FC = () => {
               <Typography
                 sx={{
                   fontWeight: "700px",
-                  fontSize: "20px",
-                  lineHeight: "27px",
+                  fontSize: "16px",
                   color: "#000000",
                 }}
               >
@@ -232,8 +231,7 @@ const FilterComponent: React.FC = () => {
               <Typography
                 sx={{
                   fontWeight: "700px",
-                  fontSize: "20px",
-                  lineHeight: "27px",
+                  fontSize: "16px",
                   color: "#000000",
                 }}
               >
@@ -258,8 +256,7 @@ const FilterComponent: React.FC = () => {
               <Typography
                 sx={{
                   fontWeight: "700px",
-                  fontSize: "20px",
-                  lineHeight: "27px",
+                  fontSize: "16px",
                   color: "#000000",
                 }}
               >
@@ -284,8 +281,7 @@ const FilterComponent: React.FC = () => {
               <Typography
                 sx={{
                   fontWeight: "700px",
-                  fontSize: "20px",
-                  lineHeight: "27px",
+                  fontSize: "16px",
                   color: "#000000",
                 }}
               >
@@ -293,28 +289,30 @@ const FilterComponent: React.FC = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Stack>{renderDressStyleOptions()}</Stack>
+              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+                {renderDressStyleOptions()}
+              </Box>
             </AccordionDetails>
           </Accordion>
         </ListItem>
-
-        <Box sx={{ textAlign: "center", marginTop: "10px" }}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "black",
-              color: "white",
-              borderRadius: "20px",
-              padding: "8px 16px",
-              "&:hover": {
-                backgroundColor: "#333",
-              },
-            }}
-          >
-            Apply Filters
-          </Button>
-        </Box>
       </List>
+
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{ mt: 2, flexDirection: { xs: "column", sm: "row" } }}
+      >
+        <Button variant="contained"   sx = {{
+          backgroundColor:'#000000',
+          borderRadius:'62px',
+          width:'300px',
+          height:'50px',
+         
+        }}>
+          Apply
+        </Button>
+       
+      </Stack>
     </Box>
   );
 };
