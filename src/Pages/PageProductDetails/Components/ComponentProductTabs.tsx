@@ -144,7 +144,7 @@ const ProductTabs: React.FC = () => {
           borderBottom: '1px solid #E0E0E0',
           '& .MuiTab-root': {
             textTransform: 'inherit',
-            fontSize: isMobile ? '16px' : '20px', 
+            fontSize: isMobile ? '13px' : '20px', 
             fontWeight: '400',
             color: '#757575',
             padding: isMobile ? '0px 24px' : '0px 90px', 
@@ -233,6 +233,7 @@ const ProductTabs: React.FC = () => {
                   padding: '16px 20px',
                   width: isMobile ? '100%' : '166px',
                   height: '48px',
+                  
                 }}
               >
                 Write a Review
@@ -278,7 +279,12 @@ const ProductTabs: React.FC = () => {
             <Button
               variant="contained"
               onClick={handleReviewSubmit}
-              sx={{ width: '100%' }}
+              sx={{ width: '100%' ,
+                backgroundColor:'#000000',
+                borderRadius:'20px',
+                height:'40px'
+                
+              }}
             >
               Submit Review
             </Button>

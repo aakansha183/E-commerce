@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
       {/* <BrandBar/> */}
       <NewArrivals/>
       <TopSelling/>
-      {/* <DressStyleComponent/> */}
+      <DressStyleComponent/>
       <HappyCustomers/>
       <Box>
         <Footer />

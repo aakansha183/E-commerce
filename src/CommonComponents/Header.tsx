@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import { styled, useTheme } from '@mui/material/styles';
-import { Divider, useMediaQuery } from '@mui/material';
+import { Divider, useMediaQuery, Badge } from '@mui/material';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchIcon from '../Assests/ImagesData/SearchIcon';
@@ -19,6 +19,8 @@ import AccountIcon from '../Assests/ImagesData/AccountIcon';
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import useAuth from '../Hooks/UseAuth';
+import { useSelector } from 'react-redux';
+import { RootState } from '../Redux/Store';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,6 +69,9 @@ const Header: React.FC = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false); 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0); 
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -190,7 +195,9 @@ const Header: React.FC = () => {
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: isMobile ? '10px' : '20px' }}>
             <IconButton color="inherit" onClick={() => { navigate('/Cart') }}>
-              <CartIcon />
+              <Badge badgeContent={cartQuantity} color="error">
+                <CartIcon />
+              </Badge>
             </IconButton>
             <IconButton color="inherit" onClick={handleMenuOpen}>
               <AccountIcon />
@@ -206,7 +213,7 @@ const Header: React.FC = () => {
                 </MenuItem>
               ) : (
                 <MenuItem onClick={() => toast.error("Please log in or sign up", { theme: 'dark' })}>
-                  No User Found
+                  Login / Sign Up
                 </MenuItem>
               )}
             </Menu>
@@ -218,5 +225,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
-

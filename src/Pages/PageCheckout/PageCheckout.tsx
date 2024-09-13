@@ -1,9 +1,11 @@
 import Checkout from "./Components/CheckoutComponent";
 
 const CheckoutPage = () => {
- return (
-  <Checkout/>
- )
+  return (
+    <div style={{ overflowX: "hidden" }}>
+      <Checkout />
+    </div>
+  );
 };
 
 export default CheckoutPage;

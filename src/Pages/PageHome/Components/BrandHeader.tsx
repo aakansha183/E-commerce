@@ -25,6 +25,7 @@ const BrandBar: React.FC = () => {
         overflow: "hidden",
         maxWidth: "100%",
         margin: "0 auto",
+        marginTop:'-50px'
       }}
     >
       <Box sx={{ maxWidth: { xs: "40px", sm: "80px" }, width: "100%",marginLeft:'-30px' }}>

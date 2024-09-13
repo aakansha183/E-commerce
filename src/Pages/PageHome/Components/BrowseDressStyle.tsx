@@ -9,6 +9,7 @@ import { styles } from "../StyleHome/HomeStyle";
 
 const DressStyleComponent = () => {
   const navigate = useNavigate();
+
   return (
     <Box sx={styles.container}>
       <Typography
@@ -17,110 +18,95 @@ const DressStyleComponent = () => {
         align="center"
         sx={{
           fontFamily: "Poppins",
-          fontSize: "48px",
-          lineHeight: "57.6px",
-          marginTop: "40px",
-          marginBottom: "50px",
+          fontSize: { xs: "22px", md: "48px" },
+          lineHeight: { xs: "38.4px", md: "57.6px" },
+          marginTop: { xs: "20px", md: "40px" },
+          marginBottom: { xs: "30px", md: "50px" },
         }}
       >
         BROWSE BY DRESS STYLE
       </Typography>
 
       <Grid container spacing={2}>
-        <Grid container item xs={12} spacing={2} style={{ height: "430px" }}>
-          <Grid item xs={6}>
-            <Box
-              sx={{
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              ...styles.gridItem,
+              transition: "transform 0.3s",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          >
+            <img
+              src={Casual}
+              alt="Casual"
+              style={{ ...styles.image ,marginBottom:'-130px'}}
+              onClick={() => {
+                navigate("/Category");
+                window.scrollTo(0, 0);
               }}
-            >
-              <img
-                src={Casual}
-                alt="Casual"
-                style={{ ...styles.image, height: "10%", width: "73%" }}
-                onClick={() => {
-                  navigate("/Category");
-                  window.scrollTo(0, 0);
-                }}
-              />
-            </Box>
-          </Grid>
-
-          <Grid item xs={6}>
-            <Box
-              sx={{
-                marginLeft: "-130px",
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
-              }}
-            >
-              <img
-                src={Formal}
-                alt="Formal"
-                style={{ ...styles.image, height: "100%", width: "100%" }}
-                onClick={() => {
-                  navigate("/Category");
-                  window.scrollTo(0, 0);
-                }}
-              />
-            </Box>
-          </Grid>
+              
+            />
+          </Box>
         </Grid>
 
-        <Grid container item xs={12} spacing={2}>
-          <Grid item xs={6} style={{ marginTop: "-140px" }}>
-            <Box
-              sx={{
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              ...styles.gridItem,
+              transition: "transform 0.3s",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          >
+            <img
+              src={Formal}
+              alt="Formal"
+              style={{ ...styles.image }}
+              onClick={() => {
+                navigate("/Category");
+                window.scrollTo(0, 0);
               }}
-            >
-              <img
-                src={Party}
-                alt="Party"
-                style={{ ...styles.image, height: "50%", width: "100%" }}
-                onClick={() => {
-                  navigate("/Category");
-                  window.scrollTo(0, 0);
-                }}
-              />
-            </Box>
-          </Grid>
+            />
+          </Box>
+        </Grid>
 
-          <Grid item xs={6} style={{ marginTop: "-140px" }}>
-            <Box
-              sx={{
-                ...styles.gridItem,
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              ...styles.gridItem,
+              transition: "transform 0.3s",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          >
+            <img
+              src={Party}
+              alt="Party"
+              style={{ ...styles.image }}
+              onClick={() => {
+                navigate("/Category");
+                window.scrollTo(0, 0);
               }}
-            >
-              <img
-                src={Gym}
-                alt="Gym"
-                style={{
-                  ...styles.image,
-                  height: "50%",
-                  width: "100%",
-                  marginLeft: "5px",
-                  marginBottom: "-140px",
-                }}
-                onClick={() => {
-                  navigate("/Category");
-                  window.scrollTo(0, 0);
-                }}
-              />
-            </Box>
-          </Grid>
+            />
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <Box
+            sx={{
+              ...styles.gridItem,
+              transition: "transform 0.3s",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          >
+            <img
+              src={Gym}
+              alt="Gym"
+              style={{ ...styles.image,marginBottom:'-140px'  }}
+              onClick={() => {
+                navigate("/Category");
+                window.scrollTo(0, 0);
+              }}
+            />
+          </Box>
         </Grid>
       </Grid>
     </Box>

@@ -10,15 +10,15 @@ interface ReviewsListProps {
 
 const ReviewCard: React.FC<Review> = ({ name, rating, date, review }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Media query for mobile screens
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Card
       variant="outlined"
       sx={{
         marginBottom: 2,
-        width: isMobile ? '100%' : '640px', // Full width on mobile
-        height: isMobile ? 'auto' : '240px', // Auto height on mobile to fit content
+        width: isMobile ? '100%' : '640px', 
+        height: isMobile ? 'auto' : '240px',
         borderRadius: '20px',
         padding: '20px',
       }}
