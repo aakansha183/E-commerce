@@ -6,30 +6,18 @@ import TopHeader from "../../CommonComponents/TopHeader";
 import Header from "../../CommonComponents/Header";
 import Footer from "../../CommonComponents/Footer";
 import { FilterProvider } from "./Components/FilterContext";
+import styles from "../PageCategory/StyleCategory/StyleCategory";
 
 const CategoryDetails: React.FC = () => {
   return (
-    <Box sx={{ overflowX: 'hidden' }}>
+    <Box sx={styles.container}>
       <TopHeader />
       <Header />
 
-      <Divider 
-        sx={{ 
-          mt: 2, 
-          width: { xs: '100%', md: '81%' }, 
-          marginX: 'auto'
-        }} 
-      />
+      <Divider sx={styles.divider} />
 
       <FilterProvider>
-        <Box sx={{ 
-          display: 'flex', 
-          flexDirection: { xs: 'column', md: 'row' }, 
-          padding: { xs: 1, md: 2 }, 
-          mt: 4, 
-          mb: 18, 
-          maxWidth: '100%', 
-        }}>
+        <Box sx={styles.filterWrapper}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={3}>
               <FilterComponent /> 

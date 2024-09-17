@@ -1,4 +1,4 @@
-import { User } from "../../Pages/PageLogin/Utils/Interfaces/LoginInterfaces";
+import { User } from "../../Pages/PageLogin/Types/LoginInterfaces";
 
 export interface AuthState {
     currentUser: User | null;

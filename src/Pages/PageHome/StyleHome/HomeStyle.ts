@@ -32,4 +32,12 @@ export const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "bold",
     fontSize: "20px",
   },
+  
 };
+export const text = {
+  fontFamily: "Poppins",
+          fontSize: { xs: "22px", md: "48px" },
+          lineHeight: { xs: "38.4px", md: "57.6px" },
+          marginTop: { xs: "20px", md: "40px" },
+          marginBottom: { xs: "30px", md: "50px" },
+} 

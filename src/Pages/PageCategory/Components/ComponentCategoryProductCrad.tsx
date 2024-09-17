@@ -1,19 +1,39 @@
 import React from "react";
 import {
   Box,
-  Grid,
   Typography,
   Button,
   Rating,
   Pagination,
   Divider,
 } from "@mui/material";
+import Grid from "@mui/material/Grid2"; 
 import { useFilter } from "./FilterContext";
 import products from "../Utils/ConstantsCategory";
-import { useNavigate } from "react-router-dom";
+import {
+  containerStyles,
+  headerBoxStyles,
+  productTitleStyles,
+  filterTextBoxStyles,
+  sortByTextBoxStyles,
+  sortByLabelStyles,
+  sortByValueStyles,
+  productCardStyles,
+  productImageStyles,
+  productNameStyles,
+  ratingStyles,
+  priceBoxStyles,
+  priceStyles,
+  originalPriceStyles,
+  discountTagStyles,
+  paginationBoxStyles,
+  buttonStyles,
+} from '../StyleCategory/StyleCategoryPage';
+import { useProductNavigate } from "../../../Routes/Navigation";
+import { Translations } from "../../../Utils/Translation/Translation";
 
 const ProductGrid: React.FC = () => {
-  const navigate = useNavigate();
+  const { navigateToProductDetails } = useProductNavigate();
   const { priceRange } = useFilter();
 
   const filteredProducts = products.filter(
@@ -22,87 +42,39 @@ const ProductGrid: React.FC = () => {
   );
 
   return (
-    <Box
-      sx={{
-        padding: 2,
-        marginX: { xs: 1, sm: 2, md: 3 },
-        overflowX: 'hidden', 
-      }}
-    >
-      <Box
-        display="flex"
-        flexDirection={{ xs: "column", sm: "row" }}
-        justifyContent="space-between"
-        alignItems="center"
-        sx={{ marginBottom: 2 }}
-      >
-        <Typography
-          variant="h4"
-          sx={{ fontWeight: "bold", marginBottom: { xs: 2, sm: 1 } }}
-        >
-          Casual
+    <Box sx={containerStyles}>
+      <Box sx={headerBoxStyles}>
+        <Typography variant="h4" sx={productTitleStyles}>
+          {Translations.Casual}
         </Typography>
-        <Box
-          display="flex"
-          flexDirection={{ xs: "column", sm: "row" }}
-          alignItems="center"
-          sx={{ marginBottom: { xs: 2, sm: 1 } }}
-        >
+        <Box sx={filterTextBoxStyles}>
           <Typography variant="body1" sx={{ color: "#808080" }}>
-            Showing {filteredProducts.length} Products
+            {Translations.MostPopular} {filteredProducts.length} {Translations.Products}
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', ml: { xs: 0, sm: 2 } }}>
-            <Typography
-              variant="body1"
-              sx={{ color: "#808080", display: "inline" }}
-            >
-              Sort by:
+          <Box sx={sortByTextBoxStyles}>
+            <Typography variant="body1" sx={sortByLabelStyles}>
+              {Translations.Sortby}
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{ color: "#000000", display: "inline", ml: 1 }}
-            >
-              Most Popular
+            <Typography variant="body1" sx={sortByValueStyles}>
+              {Translations.MostPopular}
             </Typography>
           </Box>
         </Box>
       </Box>
-      <Grid container spacing={2}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {filteredProducts.map((product) => (
-          <Grid item xs={12} sm={6} md={4} key={product.id}>
-            <Box
-              sx={{
-                marginTop: "30px",
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
-              }}
-            >
+          <Grid size = {{xs:12 ,sm:6, md:4 }} key={product.id}>
+            <Box sx={productCardStyles}>
               <Box
                 component="img"
                 onClick={() => {
-                  navigate("/ProductDetails", { state: { product } });
-                  window.scrollTo(0, 0);
+                  navigateToProductDetails(product); 
                 }}
                 src={product.image}
                 alt={product.name}
-                sx={{
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "20px",
-                  marginBottom: 2,
-                  objectFit: "cover",
-                }}
+                sx={productImageStyles}
               />
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "700",
-                  fontSize: { xs: "16px", sm: "18px", md: "20px" },
-                  lineHeight: "27px",
-                }}
-              >
+              <Typography variant="body1" sx={productNameStyles}>
                 {product.name}
               </Typography>
               <Rating
@@ -110,49 +82,18 @@ const ProductGrid: React.FC = () => {
                 value={product.rating}
                 precision={0.5}
                 readOnly
-                sx={{
-                  fontSize: { xs: "1.2rem", sm: "1.4rem", md: "1.6rem" },
-                  marginBottom: 1,
-                  color: "#FFC633",
-                  marginTop: 1,
-                }}
+                sx={ratingStyles}
               />
-              <Box display="flex" alignItems="center" sx={{ marginBottom: 1 }}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: "700",
-                    fontSize: { xs: "18px", sm: "20px", md: "24px" },
-                    lineHeight: "32.4px",
-                  }}
-                >
+              <Box sx={priceBoxStyles}>
+                <Typography variant="h6" sx={priceStyles}>
                   ${product.price}
                 </Typography>
                 {product.originalPrice && (
                   <>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        textDecoration: "line-through",
-                        marginLeft: 1,
-                        color: "#D3D3D3",
-                        fontWeight: "700",
-                        fontSize: { xs: "14px", sm: "16px", md: "20px" },
-                        lineHeight: "32.4px",
-                      }}
-                    >
+                    <Typography variant="body2" sx={originalPriceStyles}>
                       ${product.originalPrice}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        backgroundColor: "#FFE9F0",
-                        color: "#FF3333",
-                        borderRadius: "62px",
-                        padding: "6px 14px",
-                        marginLeft: 0.5,
-                      }}
-                    >
+                    <Typography variant="body2" sx={discountTagStyles}>
                       {product.discount}
                     </Typography>
                   </>
@@ -163,19 +104,13 @@ const ProductGrid: React.FC = () => {
         ))}
       </Grid>
       <Divider sx={{ marginY: 3, width: { xs: '100%', sm: 'auto' } }} />
-      <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mt: 2 }}>
-        <Button
-          variant="outlined"
-          sx={{ color: "black", borderColor: "black", fontSize: "bold" }}
-        >
-          Previous
+      <Box sx={paginationBoxStyles}>
+        <Button variant="outlined" sx={buttonStyles}>
+          {Translations.Previous}
         </Button>
         <Pagination count={10} shape="rounded" />
-        <Button
-          variant="outlined"
-          sx={{ color: "black", borderColor: "black" }}
-        >
-          Next
+        <Button variant="outlined" sx={buttonStyles}>
+          {Translations.Next}
         </Button>
       </Box>
     </Box>

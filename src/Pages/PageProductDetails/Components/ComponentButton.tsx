@@ -1,32 +1,20 @@
 import React, { useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
+import { typographyStyles, buttonContainerStyles, styledButtonStyles } from '../StyleProductDetails/StyleMyButtons';
+import { StyledButtonProps } from '../Utils/Interfaces/InterfaceButton';
+import { buttons } from '../Utils/Constants/ConstantsMybuttons';
+import { Translations } from '../../../Utils/Translation/Translation';
 
-interface StyledButtonProps {
-  name: string;
-  isClicked: boolean;
-  onClick: (name: string) => void;
-}
+
 
 const StyledButton: React.FC<StyledButtonProps> = ({ name, isClicked, onClick }) => {
   return (
-    <Button
-      sx={{
-        borderRadius: '62px',
-        width: '90px',
-        height: '46px',
-        backgroundColor: isClicked ? 'black' : '#F0F0F0',
-        color: isClicked ? 'white' : 'grey',
-        '&:hover': {
-          backgroundColor: isClicked ? 'black' : 'grey',
-          color: isClicked ? 'white' : 'white',
-        },
-      }}
-      onClick={() => onClick(name)}
-    >
+    <Button sx={styledButtonStyles(isClicked)} onClick={() => onClick(name)}>
       {name}
     </Button>
   );
 };
+
 const MyButtons: React.FC<{ onSelectSize: (size: string) => void }> = ({ onSelectSize }) => {
   const [clickedButton, setClickedButton] = useState<string | null>(null);
 
@@ -35,27 +23,20 @@ const MyButtons: React.FC<{ onSelectSize: (size: string) => void }> = ({ onSelec
     onSelectSize(buttonName); 
   };
 
-  const buttons = ['Small', 'Medium', 'Large', 'X-Large'];
 
   return (
     <Box>
-      <Typography sx = {{
-        marginBottom:'10px',
-        fontWeight:'400',
-        fontSize:'16px',
-        lineHeight:'21.6px',
-        color:'GrayText'
-      }}>Choose Size</Typography>
-    <Box sx={{ display: 'flex', gap: '12px', mt: 1 }}>
-      {buttons.map((button) => (
-        <StyledButton
-          key={button}
-          name={button}
-          isClicked={clickedButton === button}
-          onClick={handleClick}
-        />
-      ))}
-    </Box>
+      <Typography sx={typographyStyles}>{Translations.ChooseSize}</Typography>
+      <Box sx={buttonContainerStyles}>
+        {buttons.map((button) => (
+          <StyledButton
+            key={button}
+            name={button}
+            isClicked={clickedButton === button}
+            onClick={handleClick}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

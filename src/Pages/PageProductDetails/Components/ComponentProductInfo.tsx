@@ -1,16 +1,18 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
+import StarHalfIcon from '@mui/icons-material/StarOutline';
+import { ProductInfoProps } from '../Utils/Interfaces/InterfacesProductInfo';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-
-interface ProductInfoProps {
-  name: string;
-  rating: number;
-  price: number;
-  originalPrice?: number;
-  discount?: string;
-}
+import {
+  productInfoContainer,
+  productNameStyles,
+  starRatingContainer,
+  starRatingText,
+  priceStyles,
+  originalPriceStyles,
+  discountStyles
+} from '../StyleProductDetails/StyleProductInfo';
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ name, rating, price, originalPrice, discount }) => {
   const renderStars = (rating: number) => (
@@ -25,70 +27,25 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ name, rating, price, original
   );
 
   return (
-    <Box sx={{ width: { xs: '100%', sm: '80%', md: '70%', lg: 'auto' }, mx: 'auto' }}>
-      <Typography
-        variant="h4"
-        fontWeight="700"
-        lineHeight="48px"
-        fontSize="40px"
-        fontFamily="Poppins"
-        textAlign="left"
-        sx={{ mb: 1 }}
-      >
+    <Box sx={productInfoContainer}>
+      <Typography variant="h4" sx={productNameStyles}>
         {name}
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'left', mt: 1 }}>
+      <Box sx={starRatingContainer}>
         {renderStars(rating)}
-        <Typography
-          variant="body2"
-          sx={{ ml: 1, color: '#000000', fontSize: '16px', fontWeight: '400' }}
-        >
+        <Typography variant="body2" sx={starRatingText}>
           {rating}/5
         </Typography>
       </Box>
-      <Typography
-        variant="h5"
-        sx={{
-          mt: 2,
-          fontWeight: '700',
-          fontSize: '32px',
-          lineHeight: '43.2px',
-          color: '#000000',
-          fontFamily: 'Poppins',
-          textAlign: 'left'
-        }}
-      >
+      <Typography variant="h5" sx={priceStyles}>
         ${price}
         {originalPrice && (
-          <Typography
-            component="span"
-            variant="body2"
-            sx={{
-              textDecoration: 'line-through',
-              ml: '10px',
-              color: '#D3D3D3',
-              fontWeight: '700',
-              fontSize: '32px',
-              lineHeight: '43.2px',
-              fontFamily: 'Poppins',
-            }}
-          >
+          <Typography component="span" sx={originalPriceStyles}>
             ${originalPrice}
           </Typography>
         )}
         {discount && (
-          <Box
-            component="span"
-            sx={{
-              ml: '12px',
-              p: '7px 15px',
-              backgroundColor: '#FFE9F0',
-              borderRadius: '60px',
-              fontSize: '16px',
-              fontWeight: '500',
-              color: '#FF3333',
-            }}
-          >
+          <Box component="span" sx={discountStyles}>
             {discount}
           </Box>
         )}

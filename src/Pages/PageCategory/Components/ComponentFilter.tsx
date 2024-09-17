@@ -18,6 +18,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FilterIcon from "../../../Assests/ImagesData/FilterIcon";
 import { useFilter } from "./FilterContext";
 import sizes from "../Utils/ConstantsFilter";
+import styles from "../StyleCategory/StyleFilter";
+import { Translations } from "../../../Utils/Translation/Translation";
 
 const FilterComponent: React.FC = () => {
   const { priceRange, setPriceRange } = useFilter();
@@ -66,26 +68,13 @@ const FilterComponent: React.FC = () => {
       <Box
         key={color}
         sx={{
-          width: 24,
-          height: 24,
-          borderRadius: "50%",
+          ...styles.colorOption,
           backgroundColor: color.toLowerCase(),
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "2px",
-          cursor: "pointer",
         }}
         onClick={() => handleColorChange(color)}
       >
         {selectedColors.includes(color) && (
-          <Typography
-            sx={{
-              fontSize: "10px",
-              color: "white",
-              fontWeight: "bold",
-            }}
-          >
+          <Typography sx={styles.selectedColorText}>
             ✓
           </Typography>
         )}
@@ -100,30 +89,17 @@ const FilterComponent: React.FC = () => {
         label={size}
         onClick={() => handleSizeChange(size)}
         variant={selectedSize === size ? "filled" : "outlined"}
-        sx={{
-          margin: "3px",
-          borderRadius: "20px",
-          borderColor: selectedSize === size ? "black" : undefined,
-          backgroundColor: selectedSize === size ? "black" : undefined,
-          color: selectedSize === size ? "white" : "black",
-          fontWeight: selectedSize === size ? "bold" : "normal",
-          padding: "4px 8px",
-        }}
+        sx={styles.sizeChip}
       />
     ));
   };
 
   const renderDressStyleOptions = () => {
-    const styles = ["Casual", "Formal", "Party", "Gym"];
-    return styles.map((style) => (
+    const stylesList = ["Casual", "Formal", "Party", "Gym"];
+    return stylesList.map((style) => (
       <Box
         key={style}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "4px 0",
-        }}
+        sx={styles.dressStyleOption}
         onClick={() => handleDressStyleChange(style)}
       >
         <Typography
@@ -141,24 +117,10 @@ const FilterComponent: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        width: { xs: "100%", sm: "80%", md: "70%", lg: "80%" }, 
-        padding: "8px",
-        border: "1px solid #ddd",
-        borderRadius: 4,
-        bgcolor: "white",
-        position: "relative",
-        overflow: "auto",
-        maxWidth: "120%",
-        boxSizing: "border-box",
-        fontFamily: "Arial, sans-serif",
-        marginLeft: { xs: 0, sm: "20px", md: "40px" }, 
-      }}
-    >
+    <Box sx={styles.container}>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Typography variant="h6" sx={{ marginBottom: 1, fontWeight: "bold" }}>
-          Filters
+          {Translations.Filters}
         </Typography>
         <FilterIcon />
       </Box>
@@ -169,20 +131,14 @@ const FilterComponent: React.FC = () => {
             <Accordion elevation={0} sx={{ width: "100%" }}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
-                sx={{ padding: 0 }}
+                sx={styles.accordionSummary}
               >
-                <Typography
-                  sx={{
-                    fontWeight: "400px",
-                    fontSize: "14px",
-                    color: "#909090",
-                  }}
-                >
+                <Typography sx={{ fontWeight: "400", fontSize: "14px", color: "#909090" }}>
                   {category}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>Filter options for {category}...</Typography>
+                <Typography>{Translations.Filteroptionsfor} {category}...</Typography>
               </AccordionDetails>
             </Accordion>
           </ListItem>
@@ -193,16 +149,10 @@ const FilterComponent: React.FC = () => {
           <Accordion elevation={0} sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              sx={{ padding: 0 }}
+              sx={styles.accordionSummary}
             >
-              <Typography
-                sx={{
-                  fontWeight: "700px",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Price
+              <Typography sx={styles.accordionHeading}>
+               {Translations.Price}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -212,7 +162,7 @@ const FilterComponent: React.FC = () => {
                 valueLabelDisplay="auto"
                 min={50}
                 max={200}
-                sx={{ color: "black" }}
+                sx={styles.slider}
               />
               <Typography variant="body2">
                 ${priceRange[0]} - ${priceRange[1]}
@@ -226,16 +176,10 @@ const FilterComponent: React.FC = () => {
           <Accordion elevation={0} sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              sx={{ padding: 0 }}
+              sx={styles.accordionSummary}
             >
-              <Typography
-                sx={{
-                  fontWeight: "700px",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Colors
+              <Typography sx={styles.accordionHeading}>
+                {Translations.Colors}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -251,16 +195,10 @@ const FilterComponent: React.FC = () => {
           <Accordion elevation={0} sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              sx={{ padding: 0 }}
+              sx={styles.accordionSummary}
             >
-              <Typography
-                sx={{
-                  fontWeight: "700px",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Size
+              <Typography sx={styles.accordionHeading}>
+                {Translations.Size}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -276,16 +214,10 @@ const FilterComponent: React.FC = () => {
           <Accordion elevation={0} sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              sx={{ padding: 0 }}
+              sx={styles.accordionSummary}
             >
-              <Typography
-                sx={{
-                  fontWeight: "700px",
-                  fontSize: "16px",
-                  color: "#000000",
-                }}
-              >
-                Dress Style
+              <Typography sx={styles.accordionHeading}>
+                {Translations.DressStyle}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -302,16 +234,9 @@ const FilterComponent: React.FC = () => {
         spacing={2}
         sx={{ mt: 2, flexDirection: { xs: "column", sm: "row" } }}
       >
-        <Button variant="contained"   sx = {{
-          backgroundColor:'#000000',
-          borderRadius:'62px',
-          width:'300px',
-          height:'50px',
-         
-        }}>
-          Apply
+        <Button variant="contained" sx={styles.button}>
+       {Translations.apply}
         </Button>
-       
       </Stack>
     </Box>
   );

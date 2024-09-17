@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container, Grid, Divider, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import TopHeader from "../../CommonComponents/TopHeader";
@@ -14,12 +14,22 @@ import ProductThumbnails from "./Components/ComponentThumbnail";
 import ProductInfo from "./Components/ComponentProductInfo";
 import ProductDetailsActions from "./Components/ComponentDetailedAction";
 import MyButtons from "./Components/ComponentButton";
+import Grid from "@mui/material/Grid2";
+
+import {
+  containerStyles,
+  dividerStyles,
+  thumbnailsContainerStyles,
+  imageBoxStyles,
+  productImageStyles,
+  descriptionTranslationstyles,
+  actionsBoxStyles,
+  footerBoxStyles,
+} from '../PageProductDetails/StyleProductDetails/StyleProductDetails';
 
 const ProductDetail: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedThumbnail, setSelectedThumbnail] = useState<number | null>(
-    null
-  );
+  const [selectedThumbnail, setSelectedThumbnail] = useState<number | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
 
   const location = useLocation();
@@ -49,8 +59,7 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleIncrement = () => setQuantity((prevQuantity) => prevQuantity + 1);
-  const handleDecrement = () =>
-    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  const handleDecrement = () => setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -92,51 +101,30 @@ const ProductDetail: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        overflowX: "hidden",
-      }}
-    >
+    <Box sx={containerStyles}>
       <TopHeader />
       <Header />
-      <Divider
-        sx={{
-          mt: 2,
-          width: { xs: "100%", md: "81%" },
-          marginLeft: { xs: 0, md: "170px" },
-        }}
-      />
+      <Divider sx={dividerStyles} />
       <Container maxWidth="xl" sx={{ marginTop: "50px" }}>
         <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                display: "flex",
-                gap: 3,
-                flexDirection: { xs: "column", md: "row" },
-              }}
-            >
+          <Grid size = {{ xs:12, md:6}}>
+            <Box sx={thumbnailsContainerStyles}>
               <ProductThumbnails
                 thumbnails={[product.image, product.image, product.image]}
                 selectedThumbnail={selectedThumbnail}
                 handleThumbnailClick={handleThumbnailClick}
               />
-              <Box sx={{ flex: 1 }}>
+              <Box sx={imageBoxStyles}>
                 <img
                   src={product.image}
                   alt="Product"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "8px",
-                    objectFit: "contain", 
-                  }}
+                  style={productImageStyles}
                 />
               </Box>
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size = {{ xs:12, md:6}}>
             <ProductInfo
               name={product.name}
               rating={product.rating}
@@ -144,22 +132,13 @@ const ProductDetail: React.FC = () => {
               originalPrice={product.originalPrice}
               discount={product.discount}
             />
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 2,
-                fontSize: { xs: "14px", sm: "16px" },
-                lineHeight: "22px",
-                fontWeight: "400",
-                color: "grey",
-              }}
-            >
+            <Typography variant="body1" sx={descriptionTranslationstyles}>
               This graphic t-shirt is perfect for any occasion. Crafted from a
               soft and breathable fabric, it offers superior comfort and style.
             </Typography>
 
             <Divider sx={{ mt: 3 }} />
-            <Box sx={{ mt: "40px" }}>
+            <Box sx={actionsBoxStyles}>
               <MyButtons onSelectSize={setSelectedSize} />
             </Box>
             <Divider sx={{ mt: 3 }} />
@@ -177,11 +156,7 @@ const ProductDetail: React.FC = () => {
         <ProductTabs />
       </Container>
       <SuggestedProducts />
-      <Box
-        sx={{
-          marginTop: "120px",
-        }}
-      >
+      <Box sx={footerBoxStyles}>
         <Footer />
       </Box>
     </Box>

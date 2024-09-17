@@ -1,14 +1,18 @@
 import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Casual from "../../../Assests/Images/Casual.png";
 import Formal from "../../../Assests/Images/Formal.png";
 import Party from "../../../Assests/Images/Party.png";
 import Gym from "../../../Assests/Images/Gym.png";
 import { useNavigate } from "react-router-dom";
-import { styles } from "../StyleHome/HomeStyle";
+import { styles, text } from "../StyleHome/HomeStyle";
+import { useCategoryNavigate } from "../../../Routes/Navigation";
+import { Translations } from "../../../Utils/Translation/Translation";
+import Grid from "@mui/material/Grid2"; 
+
 
 const DressStyleComponent = () => {
-  const navigate = useNavigate();
+  const { navigateToCategoryNavigate } = useCategoryNavigate();
 
   return (
     <Box sx={styles.container}>
@@ -16,19 +20,13 @@ const DressStyleComponent = () => {
         variant="h4"
         fontWeight="700"
         align="center"
-        sx={{
-          fontFamily: "Poppins",
-          fontSize: { xs: "22px", md: "48px" },
-          lineHeight: { xs: "38.4px", md: "57.6px" },
-          marginTop: { xs: "20px", md: "40px" },
-          marginBottom: { xs: "30px", md: "50px" },
-        }}
+        sx={text}
       >
-        BROWSE BY DRESS STYLE
+        {Translations.BROWSEBYDRESSSTYLE}
       </Typography>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid size = {{ xs:12, sm:6 }}>
           <Box
             sx={{
               ...styles.gridItem,
@@ -40,16 +38,13 @@ const DressStyleComponent = () => {
               src={Casual}
               alt="Casual"
               style={{ ...styles.image ,marginBottom:'-130px'}}
-              onClick={() => {
-                navigate("/Category");
-                window.scrollTo(0, 0);
-              }}
+              onClick={navigateToCategoryNavigate}
               
             />
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid size = {{ xs:12, sm:6}}>
           <Box
             sx={{
               ...styles.gridItem,
@@ -61,15 +56,12 @@ const DressStyleComponent = () => {
               src={Formal}
               alt="Formal"
               style={{ ...styles.image }}
-              onClick={() => {
-                navigate("/Category");
-                window.scrollTo(0, 0);
-              }}
+              onClick={navigateToCategoryNavigate}
             />
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid size = {{ xs:12, sm:6}}>
           <Box
             sx={{
               ...styles.gridItem,
@@ -81,15 +73,12 @@ const DressStyleComponent = () => {
               src={Party}
               alt="Party"
               style={{ ...styles.image }}
-              onClick={() => {
-                navigate("/Category");
-                window.scrollTo(0, 0);
-              }}
+              onClick={navigateToCategoryNavigate}
             />
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid size = {{ xs:12, sm:6}}>
           <Box
             sx={{
               ...styles.gridItem,
@@ -101,10 +90,7 @@ const DressStyleComponent = () => {
               src={Gym}
               alt="Gym"
               style={{ ...styles.image,marginBottom:'-140px'  }}
-              onClick={() => {
-                navigate("/Category");
-                window.scrollTo(0, 0);
-              }}
+              onClick={navigateToCategoryNavigate}
             />
           </Box>
         </Grid>

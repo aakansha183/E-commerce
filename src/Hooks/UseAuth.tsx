@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { validationSchemaLogin } from "../Pages/PageLogin/Utils/Validation/LoginValidation";
-import { User } from "../Pages/PageLogin/Utils/Interfaces/LoginInterfaces";
+import { User } from "../Pages/PageLogin/Types/LoginInterfaces";
 import { setUser } from "../Redux/UserSlice";
 import { RootState } from "../Redux/Store";
 import localforage from "localforage";
@@ -44,7 +44,7 @@ const useAuth = (): AuthState => {
 
   const logout = async () => {
     await sessionStorage.removeItem("currentUser");
-    await localforage.removeItem("currentUser"); // Optional, if you store it in localForage as well
+    await localforage.removeItem("currentUser"); 
     dispatch(setUser(null));
   };
 

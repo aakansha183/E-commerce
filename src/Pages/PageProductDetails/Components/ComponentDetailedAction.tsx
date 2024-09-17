@@ -3,15 +3,9 @@ import { Box, Button } from '@mui/material';
 import IncrementDecrementBox from './ComponentIncrementDecrementBox';
 import { useDispatch } from 'react-redux';
 import { updateQuantity } from '../../../Redux/cartSlice';
-
-interface ProductDetailsActionsProps {
-  quantity: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-  selectedSize: string | null;
-  handleAddToCart: () => void;
-  productId: string;  
-}
+import { ProductDetailsActionsProps } from '../Utils/Interfaces/InterfaceProductDetailsActions';
+import { productDetailsActionsBoxStyle, addToCartButtonStyle } from '../StyleProductDetails/StyleProductDetailsAction'; 
+import { Translations } from '../../../Utils/Translation/Translation';
 
 const ProductDetailsActions: React.FC<ProductDetailsActionsProps> = ({
   quantity,
@@ -34,14 +28,14 @@ const ProductDetailsActions: React.FC<ProductDetailsActionsProps> = ({
   };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mt: 3, gap: 2 }}>
+    <Box sx={productDetailsActionsBoxStyle}>
       <IncrementDecrementBox count={quantity} onIncrement={handleIncrement} onDecrement={handleDecrement} />
       <Button
         variant="contained"
         onClick={handleAddToCart}
-        sx={{ mt: '30px', height: '52px', width: '400px', borderRadius: '62px', backgroundColor: '#000000' }}
+        sx={addToCartButtonStyle}
       >
-        Add to Cart
+       {Translations.AddtoCart}
       </Button>
     </Box>
   );

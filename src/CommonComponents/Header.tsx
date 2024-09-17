@@ -21,6 +21,9 @@ import { HashLink } from 'react-router-hash-link';
 import useAuth from '../Hooks/UseAuth';
 import { useSelector } from 'react-redux';
 import { RootState } from '../Redux/Store';
+import { headerContainer, appBar, logoText, navLinks, searchContainer, drawerStyles, drawerTitle } from './StyleCommonComponents/StyleHeader';
+import { useCartNavigate } from '../Routes/Navigation';
+import { Translations } from '../Utils/Translation/Translation';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,16 +65,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header: React.FC = () => {
-  const navigate = useNavigate();
+  const { navigateToCart } = useCartNavigate();
   const { logout, isLoggedIn } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false); 
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0); 
+  const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -96,29 +99,29 @@ const Header: React.FC = () => {
   };
 
   const handleSearchIconClick = () => {
-    setMobileSearchOpen((prev) => !prev); 
+    setMobileSearchOpen((prev) => !prev);
   };
 
   const drawerContent = (
-    <Box sx={{ width: 250, padding: 2 }} role="presentation">
-      <Typography variant="h6" sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: 'Poppins', marginBottom: 2 }}>
-        SHOP.CO
+    <Box sx={drawerStyles} role="presentation">
+      <Typography variant="h6" sx={drawerTitle}>
+       {Translations.SHOP_CO}
       </Typography>
       <Link to="/Category" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <Typography variant="body1" sx={{ marginBottom: 2 }}>Shop</Typography>
+        <Typography variant="body1" sx={{ marginBottom: 2 }}>{Translations.Shop}</Typography>
       </Link>
-      <Typography variant="body1" sx={{ marginBottom: 2 }}>On Sale</Typography>
+      <Typography variant="body1" sx={{ marginBottom: 2 }}>{Translations.OnSale}</Typography>
       <HashLink smooth to="/#newarrivals" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <Typography variant="body1" sx={{ marginBottom: 2 }}>New Arrivals</Typography>
+        <Typography variant="body1" sx={{ marginBottom: 2 }}>{Translations.NEW_ARRIVALS}</Typography>
       </HashLink>
-      <Typography variant="body1">Brands</Typography>
+      <Typography variant="body1">{Translations.Brands}</Typography>
     </Box>
   );
 
   return (
-    <Box sx={{ overflow: 'hidden', padding: { xs: '0px 20px', md: '0px 150px' } }}> 
+    <Box sx={headerContainer}>
       <ToastContainer />
-      <AppBar position="static" color="transparent" elevation={0} sx={{ marginTop: 2 }}>
+      <AppBar position="static" color="transparent" elevation={0} sx={appBar}>
         <Toolbar>
           {isMobile ? (
             <>
@@ -132,9 +135,9 @@ const Header: React.FC = () => {
                 <Typography
                   variant="h6"
                   noWrap
-                  sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: 'Poppins', marginLeft: '10px' }}
+                  sx={logoText}
                 >
-                  SHOP.CO
+                  {Translations.SHOP_CO}
                 </Typography>
               </Link>
             </>
@@ -144,20 +147,20 @@ const Header: React.FC = () => {
                 <Typography
                   variant="h6"
                   noWrap
-                  sx={{ flexGrow: 1, color: '#000000', fontSize: '32px', fontWeight: 'bold', fontFamily: 'Poppins', marginRight: '20px' }}
+                  sx={logoText}
                 >
-                  SHOP.CO
+                 {Translations.SHOP_CO}
                 </Typography>
               </Link>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px', fontSize: '16px', color: '#000000', marginLeft: '80px' }}>
+              <Box sx={navLinks}>
                 <Link to="/Category" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Typography variant="body1">Shop</Typography>
+                  <Typography variant="body1">{Translations.Shop}</Typography>
                 </Link>
-                <Typography variant="body1">On Sale</Typography>
+                <Typography variant="body1">{Translations.OnSale}</Typography>
                 <HashLink smooth to="/#newarrivals" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Typography variant="body1">New Arrivals</Typography>
+                  <Typography variant="body1">{Translations.NEW_ARRIVALS}</Typography>
                 </HashLink>
-                <Typography variant="body1">Brands</Typography>
+                <Typography variant="body1">{Translations.Brands}</Typography>
               </Box>
             </>
           )}
@@ -180,7 +183,7 @@ const Header: React.FC = () => {
                 <SearchIcon />
               </IconButton>
               {mobileSearchOpen && (
-                <Search sx={{ position: 'absolute', top: 64, left: 0, right: 0 }}>
+                <Search sx={searchContainer}>
                   <SearchIconWrapper>
                     <SearchIcon />
                   </SearchIconWrapper>
@@ -193,8 +196,8 @@ const Header: React.FC = () => {
             </>
           )}
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px', marginLeft: isMobile ? '10px' : '20px' }}>
-            <IconButton color="inherit" onClick={() => { navigate('/Cart') }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px', marginLeft: '20px' }}>
+            <IconButton color="inherit"  onClick={navigateToCart}>
               <Badge badgeContent={cartQuantity} color="error">
                 <CartIcon />
               </Badge>
@@ -209,11 +212,11 @@ const Header: React.FC = () => {
             >
               {isLoggedIn ? (
                 <MenuItem onClick={handleLogout}>
-                  Logout
+                  {Translations.Logout}
                 </MenuItem>
               ) : (
                 <MenuItem onClick={() => toast.error("Please log in or sign up", { theme: 'dark' })}>
-                  Login / Sign Up
+                 {Translations.LoginORSignUp}
                 </MenuItem>
               )}
             </Menu>

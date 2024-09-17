@@ -1,195 +1,78 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import * as yup from "yup";
-import { useFormik, FormikErrors } from "formik";
-import { LoginFormValues } from "./Utils/Interfaces/LoginInterfaces";
+import {
+  Container,
+  Link,
+} from "@mui/material";
+import Grid from '@mui/material/Grid2';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginFormValues } from "./Types/LoginInterfaces";
 import { validationSchemaLogin } from "./Utils/Validation/LoginValidation";
-import useAuth from "../../Hooks/UseAuth";
+import { Translations } from "../../Utils/Translation/Translation";
+import { useRegisterNavigate } from "../../Routes/Navigation";
+import LoginTextField from "./Components/CommonTextInputField";
+import { useLoginHandler } from "./Utils/LoginHandlers";
+import { ErrorMessage, MainContainer, SubmitButton, Title } from "../../CommonComponents/LoginCommonComponent";
 
 const Login: React.FC = () => {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+  const { navigateToRegister } = useRegisterNavigate();
   const [error, setError] = useState<string>("");
+  const { onSubmit } = useLoginHandler();
 
-  const formik = useFormik<LoginFormValues>({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-    validationSchema: validationSchemaLogin,
-    onSubmit: async (values, { setSubmitting }) => {
-      try {
-        const success = await login(values.username, values.password);
-        if (success) {
-          navigate("/Home");
-          toast.success("Successfully Logged In", { theme: "dark" });
-        } else {
-          setError("Invalid username or password");
-        }
-      } catch (err) {
-        setError("Invalid username or password.");
-      } finally {
-        setSubmitting(false);
-      }
-    },
-    validate: async (values) => {
-      try {
-        await validationSchemaLogin.validate(values, { abortEarly: false });
-        return {};
-      } catch (validationErrors) {
-        const errors: FormikErrors<LoginFormValues> = {};
-        if (validationErrors instanceof yup.ValidationError) {
-          validationErrors.inner.forEach((error) => {
-            if (error.path) {
-              (errors as FormikErrors<LoginFormValues>)[
-                error.path as keyof LoginFormValues
-              ] = error.message;
-            }
-          });
-        }
-        return errors;
-      }
-    },
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormValues>({
+    resolver: yupResolver(validationSchemaLogin),
   });
 
   return (
     <Container maxWidth="sm">
-      <Box
-        sx={{
-          marginTop: { xs: "40px", sm: "80px" },
-        }}
-      >
-        <Paper
-          sx={{
-            boxShadow: 0,
-            padding: { xs: "32px", sm: "64px" },
-            border: "2px solid #f0f0f0",
-            borderRadius: "22px",
-            backgroundColor: "#ffffff",
-            marginBottom: { xs: "20px", sm: "50px" },
-          }}
-        >
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{
-              marginBottom: "20px",
-              textAlign: "center",
-              color: "#000000",
-              fontSize: { xs: "32px", sm: "40px" },
-              fontWeight: "bold",
-              fontFamily: "Poppins",
-            }}
-          >
-            SHOP.CO
-          </Typography>
+      <MainContainer>
+      
+        <Title />
 
-          <form onSubmit={formik.handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  id="username"
-                  name="username"
-                  label="Username"
-                  variant="outlined"
-                  fullWidth
-                  value={formik.values.username}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.username && Boolean(formik.errors.username)
-                  }
-                  helperText={formik.touched.username && formik.errors.username}
-                  InputProps={{
-                    style: {
-                      borderRadius: "28px",
-                    },
-                  }}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  id="password"
-                  name="password"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
-                  helperText={formik.touched.password && formik.errors.password}
-                  InputProps={{
-                    style: {
-                      borderRadius: "28px",
-                    },
-                  }}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  style={{ marginTop: "1rem" }}
-                  disabled={formik.isSubmitting}
-                  
-                  sx={{
-                    backgroundColor: "#000000",
-                    borderRadius: "40px",
-                    height: "50px",
-                    width: { xs: "100%", sm: "350px" },
-                    marginLeft: { xs: "0", sm: "auto",md:'30px' },
-                    marginRight: { xs: "0", sm: "auto" },
-                    
-                  }}
-                >
-                  Login
-                </Button>
-              </Grid>
+        <form onSubmit={handleSubmit((values) => onSubmit(values, setError))}>
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12 }}>
+              <LoginTextField
+                id="username"
+                label="Username"
+                control={control}
+                error={!!errors.username}
+                helperText={errors.username?.message}
+              />
             </Grid>
-          </form>
 
-          {error && (
-            <Typography
-              variant="body1"
-              color="error"
-              sx={{ marginTop: "1rem", textAlign: "center" }}
-            >
-              {error}
-            </Typography>
-          )}
+            <Grid size={{ xs: 12 }}>
+              <LoginTextField
+                id="password"
+                label="Password"
+                type="password"
+                control={control}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+              />
+            </Grid>
 
-          <Grid container justifyContent="center" sx={{ marginTop: "1rem" }}>
-            <Grid item>
-              Don’t have an account?{" "}
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => navigate("/register")}
-              >
-                Register
-              </Link>
+            <Grid size={{ xs: 12 }}>
+              <SubmitButton isSubmitting={isSubmitting} />
             </Grid>
           </Grid>
-        </Paper>
-      </Box>
+        </form>
+
+        {error && <ErrorMessage error={error} />}
+
+        <Grid container justifyContent="center">
+          <Grid size={{ xs: 'auto' }}>
+            {Translations.LoginSubHead}{" "}
+            <Link component="button" variant="body2" onClick={navigateToRegister}>
+              {Translations.Register}
+            </Link>
+          </Grid>
+        </Grid>
+      </MainContainer>
     </Container>
   );
 };

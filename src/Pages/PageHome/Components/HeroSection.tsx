@@ -1,184 +1,82 @@
 import React from "react";
-import { Box, Button, Typography, Grid, Container } from "@mui/material";
+import { Box, Button, Typography, Container } from "@mui/material";
 import HeroImage from "../../../Assests/Images/HeroImage.png";
 import { useNavigate } from "react-router-dom";
 import StarIcon from "../../../Assests/ImagesData/StarIcon";
+import {
+  heroSectionStyles,
+  gridContainerStyles,
+  titleStyles,
+  subtitleStyles,
+  buttonStyles,
+  statsContainerStyles,
+  statTitleStyles,
+  statSubtitleStyles,
+  starIconFirstStyles,
+  starIconSecondStyles,
+} from "../StyleHome/StyleHeroSection";
+import { useCategoryNavigate } from "../../../Routes/Navigation";
+import { Translations } from "../../../Utils/Translation/Translation";
+import Grid from "@mui/material/Grid2"; 
+
 
 const HeroSection: React.FC = () => {
-  const navigate = useNavigate();
+  const { navigateToCategoryNavigate } = useCategoryNavigate();
 
   return (
-    <Box
-      sx={{
-        marginTop: "10px",
-        backgroundImage: `url(${HeroImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        color: "#000",
-        padding: "60px 0",
-        width: "100%",
-        height: { xs: "auto", md: "660px" },
-      }}
-    >
+    <Box sx={{ ...heroSectionStyles, backgroundImage: `url(${HeroImage})` }}>
       <Container>
-        <Grid
-          container
-          justifyContent="flex-start"
-          sx={{
-            marginLeft: { xs: "0", md: "-200px" }, 
-            marginTop: { xs: "20px", md: "70px" }, 
-          }}
-        >
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h2"
-              component="h1"
-              sx={{
-                fontWeight: "700",
-                fontFamily: "Poppins",
-                fontSize: { xs: "32px", md: "64px" }, 
-                lineHeight: { xs: "40px", md: "64px" },
-              }}
-            >
-              FIND CLOTHES THAT MATCHES YOUR STYLE
+        <Grid container justifyContent="flex-start" sx={gridContainerStyles}>
+          <Grid size ={{ xs:12, md:6}}>
+            <Typography variant="h2" component="h1" sx={titleStyles}>
+                {Translations.HeroSectionHeading}
             </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                marginTop: 2,
-                marginBottom: 4,
-                fontWeight: "400",
-                fontSize: { xs: "14px", md: "16px" }, 
-                lineHeight: { xs: "20px", md: "22px" }, 
-                color: "grey",
-              }}
-            >
-              Browse through our diverse range of meticulously crafted garments,
-              designed to bring out your individuality and cater to your sense
-              of style.
+            <Typography variant="subtitle1" sx={subtitleStyles}>
+              {Translations.HeroSectionSubHeading}
             </Typography>
 
             <Button
               variant="contained"
               color="primary"
-              sx={{
-                backgroundColor: "black",
-                color: "white",
-                padding: { xs: "12px 40px", md: "16px 54px" }, 
-                width: { xs: "160px", md: "210px" },
-                height: { xs: "40px", md: "52px" },
-                borderRadius: "62px",
-              }}
-              onClick={() => {
-                window.scrollTo(0, 0);
-                navigate("/Category");
-              }}
+              sx={buttonStyles}
+              onClick={navigateToCategoryNavigate}
             >
-              Shop Now
+              {Translations.ShopNow}
             </Button>
           </Grid>
         </Grid>
 
-        <Grid
-          container
-          justifyContent="flex-start"
-          spacing={5}
-          sx={{
-            marginTop: 1,
-            marginLeft: { xs: 0, md: -28 },
-            fontWeight: "700",
-            fontSize: { xs: "24px", md: "40px" }, 
-            lineHeight: { xs: "32px", md: "54px" }, 
-          }}
-        >
-          <Grid item>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "700",
-                fontSize: { xs: "24px", md: "40px" }, 
-                lineHeight: { xs: "32px", md: "54px" },
-              }}
-            >
-              200+
+        <Grid container justifyContent="flex-start" spacing={5} sx={statsContainerStyles}>
+          <Grid >
+            <Typography variant="h6" sx={statTitleStyles}>
+            {Translations.Count_InternationalBrands}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "400",
-                fontSize: { xs: "12px", md: "15px" }, 
-                lineHeight: { xs: "18px", md: "22px" }, 
-                color: "grey",
-                width: { xs: "auto", md: "141px" }, 
-              }}
-            >
-              International Brands
+            <Typography variant="body2" sx={statSubtitleStyles}>
+              {Translations.INTERNATIONAL_BRANDS}
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "700",
-                fontSize: { xs: "24px", md: "40px" },
-                lineHeight: { xs: "32px", md: "54px" },
-              }}
-            >
-              2,000+
+          <Grid >
+            <Typography variant="h6" sx={statTitleStyles}>
+              {Translations.Count_InternationalBrands}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "400",
-                fontSize: { xs: "12px", md: "15px" },
-                lineHeight: { xs: "18px", md: "22px" },
-                color: "grey",
-                width: { xs: "auto", md: "150px" },
-              }}
-            >
-              High-Quality Products
+            <Typography variant="body2" sx={statSubtitleStyles}>
+            {Translations.HIGH_QUALITY_PRODUCTS}
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "700",
-                fontSize: { xs: "24px", md: "40px" },
-                lineHeight: { xs: "32px", md: "54px" },
-              }}
-            >
-              30,000+
+          <Grid >
+            <Typography variant="h6" sx={statTitleStyles}>
+            {Translations.Count_HAPPY_CUSTOMERS}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "400",
-                fontSize: { xs: "12px", md: "15px" },
-                lineHeight: { xs: "18px", md: "22px" },
-                color: "grey",
-                width: { xs: "auto", md: "141px" },
-              }}
-            >
-              Happy Customers
+            <Typography variant="body2" sx={statSubtitleStyles}>
+             {Translations.HAPPY_CUSTOMERS}
             </Typography>
           </Grid>
         </Grid>
 
-        <Box
-          sx={{
-            marginLeft: { xs: "auto", md: "1200px" }, 
-            marginTop: { xs: "50px", md: "-500px" }, 
-          }}
-        >
+        <Box sx={starIconFirstStyles}>
           <StarIcon />
         </Box>
-        <Box
-          sx={{
-            marginLeft: { xs: "300px", md: "650px" }, 
-            marginTop: { xs: "30px", md: "80px" }, 
-          }}
-        >
+        <Box sx={starIconSecondStyles}>
           <StarIcon />
         </Box>
       </Container>

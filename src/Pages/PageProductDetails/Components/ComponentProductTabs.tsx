@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Tabs,
@@ -15,9 +14,11 @@ import {
 } from '@mui/material';
 import FilterIcon from '../../../Assests/ImagesData/FilterIcon';
 import ReviewsList from './ComponentReviews';
-import { Review, TabPanelProps } from '../../../Utils/Interfaces/InterfaceReview';
+import { Review } from '../../../Utils/Interfaces/InterfaceReview';
+import { defaultNewReview, initialReviews } from '../Utils/Constants/ConstantsReview';
+import { Translations } from '../../../Utils/Translation/Translation';
 
-function TabPanel(props: TabPanelProps) {
+function TabPanel(props: { children?: React.ReactNode; index: number; value: number }) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -41,58 +42,8 @@ const ProductTabs: React.FC = () => {
   const [value, setValue] = useState(1);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [reviewOpen, setReviewOpen] = useState(false);
-  const [reviews, setReviews] = useState<Review[]>([
-    {
-      id: 1,
-      name: 'Samantha D.',
-      rating: 4.5,
-      date: 'August 14, 2023',
-      review: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
-    },
-    {
-      id: 2,
-      name: 'Alex M.',
-      rating: 4,
-      date: 'August 15, 2023',
-      review: "The t-shirt exceeded my expectations! The colors are vibrant and the print quality is top-notch. Being a UI/UX designer myself, I'm quite picky about aesthetics, and this t-shirt definitely gets a thumbs up from me.",
-    },
-    {
-      id: 3,
-      name: 'Ethan R.',
-      rating: 4.5,
-      date: 'August 16, 2023',
-      review: "This t-shirt is a must-have for anyone who appreciates good design. The minimalistic yet stylish pattern caught my eye, and the fit is perfect. I can see the designer's touch in every aspect of this shirt.",
-    },
-    {
-      id: 4,
-      name: 'Olivia P.',
-      rating: 5,
-      date: 'August 17, 2023',
-      review: "As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It's evident that the designer poured their creativity into making this t-shirt stand out.",
-    },
-    {
-      id: 5,
-      name: 'Liam K.',
-      rating: 5,
-      date: 'August 18, 2023',
-      review: "This t-shirt is a fusion of comfort and creativity. The fabric is soft, and the design speaks volumes about the designer's skill. It's like wearing a piece of art that reflects my passion for both design and fashion.",
-    },
-    {
-      id: 6,
-      name: 'Ava H.',
-      rating: 4.5,
-      date: 'August 19, 2023',
-      review: "I'm not just wearing a t-shirt; I'm wearing a piece of design philosophy. The intricate details and thoughtful layout of the design make this shirt a conversation starter.",
-    },
-  ]);
-
-  const [newReview, setNewReview] = useState<Review>({
-    id: reviews.length + 1,
-    name: '',
-    rating: 0,
-    date: '',
-    review: '',
-  });
+  const [reviews, setReviews] = useState<Review[]>(initialReviews);
+  const [newReview, setNewReview] = useState<Review>(defaultNewReview);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -120,14 +71,14 @@ const ProductTabs: React.FC = () => {
       month: 'long',
       day: 'numeric',
     });
-    
+
     const updatedReviews = [
       ...reviews,
       { ...newReview, date: currentDate, id: reviews.length + 1 },
     ];
 
     setReviews(updatedReviews);
-    setNewReview({ id: 0, name: '', rating: 0, date: '', review: '' });
+    setNewReview(defaultNewReview);
     setReviewOpen(false);
   };
 
@@ -144,10 +95,10 @@ const ProductTabs: React.FC = () => {
           borderBottom: '1px solid #E0E0E0',
           '& .MuiTab-root': {
             textTransform: 'inherit',
-            fontSize: isMobile ? '13px' : '20px', 
+            fontSize: isMobile ? '13px' : '20px',
             fontWeight: '400',
             color: '#757575',
-            padding: isMobile ? '0px 24px' : '0px 90px', 
+            padding: isMobile ? '0px 24px' : '0px 90px',
             marginTop: '40px',
           },
           '& .Mui-selected': {
@@ -163,12 +114,11 @@ const ProductTabs: React.FC = () => {
         <Tab label="Rating & Reviews" />
         <Tab label="FAQs" />
       </Tabs>
-      <TabPanel value={value} index={0}>
-      </TabPanel>
+      <TabPanel value={value} index={0}></TabPanel>
       <TabPanel value={value} index={1}>
         <Box
           display="flex"
-          flexDirection={isMobile ? 'column' : 'row'} 
+          flexDirection={isMobile ? 'column' : 'row'}
           alignItems="center"
           justifyContent="space-between"
           mb={2}
@@ -180,10 +130,10 @@ const ProductTabs: React.FC = () => {
               fontSize: isMobile ? '20px' : '24px',
               color: '#000000',
               marginLeft: isMobile ? '0' : '-20px',
-              textAlign: isMobile ? 'center' : 'left', 
+              textAlign: isMobile ? 'center' : 'left',
             }}
           >
-            All Reviews ({reviews.length})
+           {Translations.AllReviews}({reviews.length})
           </Typography>
           <Box display="flex" alignItems="center" flexDirection={isMobile ? 'column' : 'row'}>
             <Box sx={{ marginRight: isMobile ? '0' : '10px' }}>
@@ -204,14 +154,14 @@ const ProductTabs: React.FC = () => {
                   backgroundColor: '#F5F5F5',
                   color: '#757575',
                   borderRadius: '62px',
-                  width: isMobile ? '100%' : '120px', 
+                  width: isMobile ? '100%' : '120px',
                   height: '48px',
                   padding: '16px',
                   marginRight: isMobile ? '0' : '8px',
                   mb: isMobile ? 1 : 0,
                 }}
               >
-                Latest
+                {Translations.Latest}
               </Button>
               <Menu
                 id="simple-menu"
@@ -233,10 +183,9 @@ const ProductTabs: React.FC = () => {
                   padding: '16px 20px',
                   width: isMobile ? '100%' : '166px',
                   height: '48px',
-                  
                 }}
               >
-                Write a Review
+                {Translations.WriteaReview}
               </Button>
             </Box>
           </Box>
@@ -252,7 +201,9 @@ const ProductTabs: React.FC = () => {
               backgroundColor: '#FFFFFF',
             }}
           >
-            <Typography variant="h6" sx={{ mb: 2 }}>Write a Review</Typography>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              {Translations.WriteaReview}
+            </Typography>
             <TextField
               label="Name"
               variant="outlined"
@@ -261,17 +212,17 @@ const ProductTabs: React.FC = () => {
               value={newReview.name}
               onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
             />
-          <Rating
-  value={newReview.rating}
-  onChange={(event, newValue: number | null) => setNewReview({ ...newReview, rating: newValue ?? 0 })}
-  sx={{ mb: 2 }}
-/>
+            <Rating
+              value={newReview.rating}
+              onChange={(event, newValue) => setNewReview({ ...newReview, rating: newValue || 0 })}
+              sx={{ mb: 2 }}
+            />
             <TextField
               label="Review"
               variant="outlined"
-              fullWidth
               multiline
               rows={4}
+              fullWidth
               sx={{ mb: 2 }}
               value={newReview.review}
               onChange={(e) => setNewReview({ ...newReview, review: e.target.value })}
@@ -279,22 +230,19 @@ const ProductTabs: React.FC = () => {
             <Button
               variant="contained"
               onClick={handleReviewSubmit}
-              sx={{ width: '100%' ,
-                backgroundColor:'#000000',
-                borderRadius:'20px',
-                height:'40px'
-                
-              }}
+              sx={{ mr: 2 }}
             >
-              Submit Review
+              {Translations.Submit}
+            </Button>
+            <Button variant="outlined" onClick={handleReviewClose}>
+              {Translations.Cancel}
             </Button>
           </Box>
         )}
 
         <ReviewsList reviews={reviews} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
-      </TabPanel>
+      <TabPanel value={value} index={2}></TabPanel>
     </Box>
   );
 };

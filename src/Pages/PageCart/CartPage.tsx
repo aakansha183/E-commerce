@@ -4,34 +4,29 @@ import TopHeader from "../../CommonComponents/TopHeader";
 import Header from "../../CommonComponents/Header";
 import CartComponent from "./Components/CartComponent";
 import Footer from "../../CommonComponents/Footer";
+import {
+  containerStyles,
+  headerBoxStyles,
+  dividerStyles,
+  cartBoxStyles,
+  footerBoxStyles,
+} from "../PageCart/StyleCart/StyleCartPage";
 
 const CartPage: React.FC = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); 
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Box sx={{ width: "100%", overflowX: "hidden" }}>
+    <Box sx={containerStyles}>
       <TopHeader />
-      <Box sx={{ mt: isMobile ? 2 : 0 }}> 
+      <Box sx={headerBoxStyles}>
         <Header />
       </Box>
-      <Divider
-        sx={{
-          mt: 2,
-          width: isMobile ? '90%' : '81%', 
-          marginLeft: isMobile ? 'auto' : '168px', 
-          marginRight: isMobile ? 'auto' : 'unset', 
-        }}
-      />
-      <Box
-        sx={{
-          marginBottom: '250px',
-          mt: isMobile ? 3 : 0, 
-          px: isMobile ? 2 : 0, 
-        }}
-      >
+      <Divider sx={dividerStyles} />
+      <Box sx={cartBoxStyles}>
         <CartComponent />
       </Box>
-      <Box sx={{ mt: isMobile ? 4 : 0 }}> 
+      <Box sx={footerBoxStyles}>
         <Footer />
       </Box>
     </Box>
@@ -39,4 +34,3 @@ const CartPage: React.FC = () => {
 };
 
 export default CartPage;
-

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Grid,
   Typography,
   Button,
   Divider,
@@ -9,6 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import Grid from "@mui/material/Grid2";  
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Redux/Store";
 import IncrementDecrementBox from "../../PageProductDetails/Components/ComponentIncrementDecrementBox";
@@ -17,14 +17,29 @@ import { removeItem, updateQuantity } from "../../../Redux/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TagIcon from "../../../Assests/ImagesData/TagIcon";
-import { useNavigate } from "react-router-dom";
+import { useCheckoutNavigate } from "../../../Routes/Navigation";
+import { Translations } from "../../../Utils/Translation/Translation";
+import {
+  containerStyles,
+  mobileContainerStyles,
+  headingStyles,
+  mobileHeadingStyles,
+  cartBoxStyles,
+  mobileCartBoxStyles,
+  itemBoxStyles,
+  mobileItemBoxStyles,
+  imgStyles,
+  orderSummaryStyles,
+  mobileOrderSummaryStyles,
+  buttonStyles,
+} from "../StyleCart/StyleCartComponent";
 
 type ItemId = string;
 
 const CartComponent: React.FC = () => {
+  const { navigateToCheckout } = useCheckoutNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -66,23 +81,12 @@ const CartComponent: React.FC = () => {
 
   return (
     <Box
-      sx={{
-        marginLeft: isMobile ? "5px" : "20px",
-        padding: isMobile ? "0 10px" : "0",
-      }}
+      sx={isMobile ? mobileContainerStyles : containerStyles}
     >
       <Typography
-        sx={{
-          fontFamily: "Poppins",
-          fontWeight: "700",
-          fontSize: isMobile ? "24px" : "40px",
-          lineHeight: isMobile ? "32px" : "48px",
-          marginLeft: isMobile ? "0" : "170px",
-          marginTop: isMobile ? "40px" : "80px",
-          textAlign: isMobile ? "center" : "left",
-        }}
+        sx={isMobile ? mobileHeadingStyles : headingStyles}
       >
-        YOUR CART
+       {Translations.YOURCART}
       </Typography>
 
       {cartItems.length === 0 ? (
@@ -96,7 +100,7 @@ const CartComponent: React.FC = () => {
             variant="h6"
             sx={{ fontWeight: "700", fontSize: "24px", color: "grey" }}
           >
-            Nothing to show!! Start Adding item to cart...
+            {Translations.CartSubHead}
           </Typography>
         </Box>
       ) : (
@@ -104,16 +108,11 @@ const CartComponent: React.FC = () => {
           display="flex"
           flexDirection={isMobile ? "column" : "row"}
           padding={isMobile ? "15px" : "15px 170px"}
-          sx={{ backgroundColor: "#ffffff", marginBottom: -15 }}
+          sx={isMobile ? mobileCartBoxStyles : cartBoxStyles}
         >
           <Box
             flex={isMobile ? "none" : 1.3}
-            sx={{
-              border: "1px solid #e0e0e0",
-              marginRight: isMobile ? "20px" : "20px",
-              borderRadius: "20px",
-              width: isMobile ? "100%" : "auto",
-            }}
+            sx={isMobile ? mobileItemBoxStyles : itemBoxStyles}
           >
             {cartItems.map((item, index) => (
               <Box key={item.id}>
@@ -130,7 +129,7 @@ const CartComponent: React.FC = () => {
                     alt={item.name}
                     width={100}
                     height={100}
-                    sx={{ borderRadius: "10px" }}
+                    sx={imgStyles}
                   />
                   <Box
                     flex={1}
@@ -148,7 +147,7 @@ const CartComponent: React.FC = () => {
                       {item.name}
                     </Typography>
                     <Typography variant="body2">
-                      <span style={{ color: "black" }}>Color:</span>
+                      <span style={{ color: "black" }}>{Translations.Colors}:</span>
                       <Typography
                         variant="body2"
                         component="span"
@@ -158,7 +157,7 @@ const CartComponent: React.FC = () => {
                       </Typography>
                     </Typography>
                     <Typography variant="body2" sx={{ marginTop: "5px" }}>
-                      <span style={{ color: "black" }}>Size:</span>
+                      <span style={{ color: "black" }}>{Translations.Size}:</span>
                       <Typography
                         variant="body2"
                         component="span"
@@ -191,7 +190,7 @@ const CartComponent: React.FC = () => {
                       </IconButton>
                     </Box>
                     <IncrementDecrementBox
-                      count={item.quantity} // Use item's actual quantity
+                      count={item.quantity}
                       onIncrement={() => handleIncrement(item.id)}
                       onDecrement={() => handleDecrement(item.id)}
                     />
@@ -206,17 +205,7 @@ const CartComponent: React.FC = () => {
 
           <Box
             flex={isMobile ? "none" : 1}
-            sx={{
-              border: "1px solid #e0e0e0",
-              borderRadius: "20px",
-              padding: isMobile ? "5px" : "20px",
-              height: "auto", // Ensure dynamic height
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: isMobile ? "100%" : "auto",
-              backgroundColor: "#ffffff",
-            }}
+            sx={isMobile ? mobileOrderSummaryStyles : orderSummaryStyles}
           >
             <Typography
               variant="h5"
@@ -226,123 +215,124 @@ const CartComponent: React.FC = () => {
                 lineHeight: isMobile ? "28px" : "32.4px",
               }}
             >
-              Order Summary
+             {Translations.OrderSummary}
             </Typography>
             <Box mb={2}>
-              <Grid container justifyContent="space-between">
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "400",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                    color: "grey",
-                  }}
-                >
-                  Subtotal
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "700",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                  }}
-                >
-                  ${subtotal}
-                </Typography>
-              </Grid>
-              <Grid container justifyContent="space-between" mt={1}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "400",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                    color: "grey",
-                  }}
-                >
-                  Discount (-20%)
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "#FF3333",
-                    fontWeight: "700",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                  }}
-                >
-                  -${discount.toFixed(2)}
-                </Typography>
-              </Grid>
-              <Grid container justifyContent="space-between" mt={1}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "400",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                    color: "grey",
-                  }}
-                >
-                  Delivery Fee
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "700",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                  }}
-                >
-                  ${deliveryFee}
-                </Typography>
-              </Grid>
-              <Divider sx={{ margin: "20px 0" }} />
-              <Grid container justifyContent="space-between" mt={1}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "400",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                    color: "grey",
-                  }}
-                >
-                  Total
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "700",
-                    fontSize: isMobile ? "16px" : "20px",
-                    lineHeight: isMobile ? "22px" : "27px",
-                  }}
-                >
-                  ${total.toFixed(2)}
-                </Typography>
+              <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid size={12}>
+                  <Grid container justifyContent="space-between">
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: isMobile ? "16px" : "20px",
+                        lineHeight: isMobile ? "22px" : "27px",
+                        color: "grey",
+                      }}
+                    >
+                      {Translations.Subtotal}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: "700",
+                        fontSize: isMobile ? "16px" : "20px",
+                        lineHeight: isMobile ? "22px" : "27px",
+                      }}
+                    >
+                      ${subtotal}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid size={12}>
+                  <Grid container justifyContent="space-between" mt={1}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: isMobile ? "16px" : "20px",
+                        lineHeight: isMobile ? "22px" : "27px",
+                        color: "grey",
+                      }}
+                    >
+                      {Translations.Discount}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "#FF3333",
+                        fontWeight: "700",
+                        fontSize: isMobile ? "16px" : "20px",
+                        lineHeight: isMobile ? "22px" : "27px",
+                      }}
+                    >
+                      -${discount.toFixed(2)}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid size={12}>
+                  <Grid container justifyContent="space-between" mt={1}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: "400",
+                        fontSize: isMobile ? "16px" : "20px",
+                        lineHeight: isMobile ? "22px" : "27px",
+                        color: "grey",
+                      }}
+                    >
+                      {Translations.DeliveryFee}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: "700",
+                        fontSize: isMobile ? "16px" : "20px",
+                        lineHeight: isMobile ? "22px" : "27px",
+                      }}
+                    >
+                      ${deliveryFee}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid size={12}>
+                  <Grid container justifyContent="space-between" mt={1}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: "700",
+                        fontSize: isMobile ? "16px" : "24px",
+                        lineHeight: isMobile ? "22px" : "32.4px",
+                      }}
+                    >
+                      {Translations.Total}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: "700",
+                        fontSize: isMobile ? "16px" : "24px",
+                        lineHeight: isMobile ? "22px" : "32.4px",
+                      }}
+                    >
+                      ${total.toFixed(2)}
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Grid>
             </Box>
             <Button
-              fullWidth
               variant="contained"
               color="primary"
-              onClick={() => navigate("/checkout")}
-              sx={{
-                backgroundColor: "#000",
-                fontSize: "18px",
-                textTransform: "none",
-                height: "50px",
-                borderRadius: "8px",
-              }}
+              fullWidth
+              sx={buttonStyles}
+              onClick={() => navigateToCheckout()}
             >
-              Proceed to Checkout
+             {Translations.ProceedtoCheckout}
             </Button>
           </Box>
         </Box>
       )}
-
       <ToastContainer />
     </Box>
   );

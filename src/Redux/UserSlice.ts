@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User, UserState } from "../Pages/PageLogin/Utils/Interfaces/LoginInterfaces";
+import { User, UserState } from "../Pages/PageLogin/Types/LoginInterfaces";
 
 export const getUserFromSessionStorage = (): User | null => {
   const storedUser = sessionStorage.getItem("currentUser");
