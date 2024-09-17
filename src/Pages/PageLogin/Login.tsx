@@ -31,7 +31,8 @@ const Login: React.FC = () => {
     <Container maxWidth="sm">
       <MainContainer>
       
-        <Title />
+      <Title title={Translations.SHOP_CO} />
+
 
         <form onSubmit={handleSubmit((values) => onSubmit(values, setError))}>
           <Grid container spacing={2}>
@@ -57,7 +58,8 @@ const Login: React.FC = () => {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <SubmitButton isSubmitting={isSubmitting} />
+            <SubmitButton isSubmitting={isSubmitting} label={Translations.Login} />
+
             </Grid>
           </Grid>
         </form>

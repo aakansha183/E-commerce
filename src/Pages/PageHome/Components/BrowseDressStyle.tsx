@@ -1,15 +1,12 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 import Casual from "../../../Assests/Images/Casual.png";
 import Formal from "../../../Assests/Images/Formal.png";
 import Party from "../../../Assests/Images/Party.png";
 import Gym from "../../../Assests/Images/Gym.png";
-import { useNavigate } from "react-router-dom";
 import { styles, text } from "../StyleHome/HomeStyle";
 import { useCategoryNavigate } from "../../../Routes/Navigation";
 import { Translations } from "../../../Utils/Translation/Translation";
 import Grid from "@mui/material/Grid2"; 
-
 
 const DressStyleComponent = () => {
   const { navigateToCategoryNavigate } = useCategoryNavigate();

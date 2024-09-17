@@ -1,4 +1,5 @@
 import { SxProps } from "@mui/material";
+import { theme } from "../Utils/Theme/Theme";
 
 export const productDetailsActionsBoxStyle: SxProps = {
   display: "flex",
@@ -12,5 +13,5 @@ export const addToCartButtonStyle: SxProps = {
   height: "52px",
   width: "400px",
   borderRadius: "62px",
-  backgroundColor: "#000000",
+  backgroundColor: theme.colors.selectedColor,
 };

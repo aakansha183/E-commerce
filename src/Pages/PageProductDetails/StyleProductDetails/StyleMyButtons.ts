@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material/styles';
+import { theme } from '../Utils/Theme/Theme';
 
 export const typographyStyles: SxProps<Theme> = {
   marginBottom: '10px',
@@ -18,10 +19,10 @@ export const styledButtonStyles = (isClicked: boolean): SxProps<Theme> => ({
   borderRadius: '62px',
   width: '90px',
   height: '46px',
-  backgroundColor: isClicked ? 'black' : '#F0F0F0',
-  color: isClicked ? 'white' : 'grey',
+  backgroundColor: isClicked ? theme.colors.selectedColor : theme.colors.grey,
+  color: isClicked ? theme.colors.white : theme.colors.darkgrey,
   '&:hover': {
-    backgroundColor: isClicked ? 'black' : 'grey',
-    color: isClicked ? 'white' : 'white',
+    backgroundColor: isClicked ? theme.colors.selectedColor : theme.colors.darkgrey,
+    color: isClicked ? theme.colors.white : theme.colors.white,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Box,
   Typography,
@@ -14,9 +14,8 @@ import { RootState } from "../../../Redux/Store";
 import IncrementDecrementBox from "../../PageProductDetails/Components/ComponentIncrementDecrementBox";
 import DeleteIcon from "../../../Assests/ImagesData/DeleteIcon";
 import { removeItem, updateQuantity } from "../../../Redux/cartSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TagIcon from "../../../Assests/ImagesData/TagIcon";
 import { useCheckoutNavigate } from "../../../Routes/Navigation";
 import { Translations } from "../../../Utils/Translation/Translation";
 import {
@@ -33,6 +32,7 @@ import {
   mobileOrderSummaryStyles,
   buttonStyles,
 } from "../StyleCart/StyleCartComponent";
+import { showToastInfo } from "../../../CommonComponents/Toast";
 
 type ItemId = string;
 
@@ -63,10 +63,7 @@ const CartComponent: React.FC = () => {
 
   const handleDelete = (itemId: ItemId) => {
     dispatch(removeItem(itemId));
-    toast.info("Item removed from cart", {
-      theme: "dark",
-      autoClose: 2000,
-    });
+    showToastInfo("Item is removed from cart")
   };
 
   const subtotal = cartItems.reduce(
@@ -77,7 +74,7 @@ const CartComponent: React.FC = () => {
   const deliveryFee = 15;
   const total = subtotal - discount + deliveryFee;
 
-  useEffect(() => {}, [cartItems]);
+ 
 
   return (
     <Box

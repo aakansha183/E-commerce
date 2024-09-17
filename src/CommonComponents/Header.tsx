@@ -158,7 +158,7 @@ const Header: React.FC = () => {
                 </Link>
                 <Typography variant="body1">{Translations.OnSale}</Typography>
                 <HashLink smooth to="/#newarrivals" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Typography variant="body1">{Translations.NEW_ARRIVALS}</Typography>
+                  <Typography variant="body1">{Translations.New_Arrivals}</Typography>
                 </HashLink>
                 <Typography variant="body1">{Translations.Brands}</Typography>
               </Box>

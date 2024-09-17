@@ -1,7 +1,4 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { Rating } from '@mui/material';
 import { products } from '../Utils/Constants/ConstantsProductCard';
 import Grid from "@mui/material/Grid2";
 
@@ -20,12 +17,16 @@ import {
 } from '../StyleProductDetails/StyleSuggestedProducts';
 import { useCategoryNavigate, useProductNavigate } from '../../../Routes/Navigation';
 import { Translations } from '../../../Utils/Translation/Translation';
+import { theme } from '../Utils/Theme/Theme';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const SuggestedProducts: React.FC = () => {
-  const navigate = useNavigate();
 
   const renderStars = (rating: number) => (
-    <Rating value={rating} precision={0.5} readOnly sx={{ color: '#FFC633' }} />
+    <Rating value={rating} precision={0.5} readOnly sx={{ color: theme.colors.yellow }} />
   );
   const { navigateToCategoryNavigate } = useCategoryNavigate();
   const { navigateToProductDetails } = useProductNavigate();
@@ -33,7 +34,7 @@ const SuggestedProducts: React.FC = () => {
   return (
     <Box sx={suggestedProductsContainer}>
       <Typography variant="h4" sx={titleStyles}>
-        YOU MIGHT ALSO LIKE
+        {Translations.suggestedProductsSubhead}
       </Typography>
       <Grid container spacing={7} justifyContent="center">
         {products.map((product) => (

@@ -1,18 +1,18 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
 import IncrementDecrementBox from './ComponentIncrementDecrementBox';
 import { useDispatch } from 'react-redux';
 import { updateQuantity } from '../../../Redux/cartSlice';
 import { ProductDetailsActionsProps } from '../Utils/Interfaces/InterfaceProductDetailsActions';
 import { productDetailsActionsBoxStyle, addToCartButtonStyle } from '../StyleProductDetails/StyleProductDetailsAction'; 
 import { Translations } from '../../../Utils/Translation/Translation';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 const ProductDetailsActions: React.FC<ProductDetailsActionsProps> = ({
   quantity,
   onIncrement,
   onDecrement,
-  selectedSize,
-  handleAddToCart,
+  handleaddToCart,
   productId,
 }) => {
   const dispatch = useDispatch();
@@ -32,10 +32,10 @@ const ProductDetailsActions: React.FC<ProductDetailsActionsProps> = ({
       <IncrementDecrementBox count={quantity} onIncrement={handleIncrement} onDecrement={handleDecrement} />
       <Button
         variant="contained"
-        onClick={handleAddToCart}
+        onClick={handleaddToCart}
         sx={addToCartButtonStyle}
       >
-       {Translations.AddtoCart}
+       {Translations.addToCart}
       </Button>
     </Box>
   );

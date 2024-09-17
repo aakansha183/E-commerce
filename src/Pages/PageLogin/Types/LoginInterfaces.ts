@@ -26,8 +26,7 @@ export interface LoginFormValues {
     fullWidth?: boolean;
     variant?: "filled" | "outlined" | "standard";
   }
-  export interface LoginProps {
-    titleText?: string; 
+  export interface TitleProps {
+    title: string;
   }
- 
- 
+  

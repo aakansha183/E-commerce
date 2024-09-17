@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material/styles';
+import { theme } from '../Utils/Theme/Theme';
 
 export const reviewCardStyles: SxProps<Theme> = {
   marginBottom: 2,
@@ -14,7 +15,7 @@ export const reviewCardContentStyles: SxProps<Theme> = {
 };
 
 export const ratingStyles: SxProps<Theme> = {
-  color: '#FFC633',
+  color: theme.colors.yellow,
 };
 
 export const nameBoxStyles: SxProps<Theme> = {
@@ -52,13 +53,13 @@ export const loadMoreButtonStyles: SxProps<Theme> = {
   width: '250px',
   height: '52px',
   borderRadius: '62px',
-  borderColor: '#D3D3D3',
+  borderColor: theme.colors.grey,
 };
 
 export const loadMoreButtonTranslationstyles: SxProps<Theme> = {
   fontWeight: '500',
   fontSize: '16px',
   lineHeight: '21.6px',
-  color: '#000000',
+  color: theme.colors.selectedColor,
   fontFamily: 'Poppins',
 };

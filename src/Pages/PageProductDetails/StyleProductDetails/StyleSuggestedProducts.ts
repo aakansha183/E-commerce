@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material/styles';
+import { theme } from '../Utils/Theme/Theme';
 
 export const suggestedProductsContainer: SxProps<Theme> = {
   textAlign: 'center',
@@ -47,16 +48,16 @@ export const priceStyles: SxProps<Theme> = {
 export const originalPriceStyles: SxProps<Theme> = {
   textDecoration: 'line-through',
   ml: 1,
-  color: '#D3D3D3',
+  color: theme.colors.lightgrey,
   fontWeight: '700',
   fontSize: { xs: '18px', sm: '20px', md: '24px' },
   lineHeight: { xs: '24px', sm: '30px', md: '32.4px' },
 };
 
 export const discountStyles: SxProps<Theme> = {
-  color: '#FF3333',
+  color: theme.colors.red,
   fontWeight: 'bold',
-  backgroundColor: '#FFE9F0',
+  backgroundColor: theme.colors.lightred,
   padding: '6px 14px',
   marginLeft: 17,
   marginTop: -4,
@@ -80,8 +81,8 @@ export const viewAllButtonStyles: SxProps<Theme> = {
   textTransform: 'none',
   padding: '16px 54px',
   fontWeight: 'bold',
-  borderColor: '#D3D3D3',
-  color: 'black',
+  borderColor: theme.colors.grey,
+  color: theme.colors.selectedColor,
   marginBottom: '100px',
 };
 

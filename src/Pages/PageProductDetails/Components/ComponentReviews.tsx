@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Rating, Box, Button, useMediaQuery } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
 import { Review } from '../../../Utils/Interfaces/InterfaceReview';
 import { useTheme } from '@mui/material/styles';
@@ -7,6 +6,13 @@ import { ReviewsListProps } from '../Utils/Interfaces/InterfaceReview';
 import { dateTranslationstyles, loadMoreButtonStyles, loadMoreButtonTranslationstyles, nameBoxStyles, nameTranslationstyles, ratingStyles, reviewCardContentStyles, reviewCardStyles, reviewsListContainerStyles, reviewTranslationstyles } from '../StyleProductDetails/StyleReviewList';
 import { Translations } from '../../../Utils/Translation/Translation';
 import Grid from "@mui/material/Grid2";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Button from '@mui/material/Button';
 
 
 const ReviewCard: React.FC<Review> = ({ name, rating, date, review }) => {

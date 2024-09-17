@@ -13,8 +13,6 @@ import {
 } from "../PageCart/StyleCart/StyleCartPage";
 
 const CartPage: React.FC = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box sx={containerStyles}>

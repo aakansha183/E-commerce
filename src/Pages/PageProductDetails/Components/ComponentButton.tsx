@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
 import { typographyStyles, buttonContainerStyles, styledButtonStyles } from '../StyleProductDetails/StyleMyButtons';
 import { StyledButtonProps } from '../Utils/Interfaces/InterfaceButton';
 import { buttons } from '../Utils/Constants/ConstantsMybuttons';
 import { Translations } from '../../../Utils/Translation/Translation';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 
 

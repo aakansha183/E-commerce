@@ -1,11 +1,9 @@
 import { SxProps, Theme } from '@mui/material';
-
-// Styles for TabPanel
+import {theme} from "../Utils/Theme/Theme"
 export const tabPanelStyles: SxProps<Theme> = {
   p: 3,
 };
 
-// Styles for Tabs
 export const tabsStyles = (theme: Theme): SxProps<Theme> => ({
   borderBottom: '1px solid #E0E0E0',
   '& .MuiTab-root': {
@@ -25,7 +23,6 @@ export const tabsStyles = (theme: Theme): SxProps<Theme> => ({
   },
 });
 
-// Styles for Review Section
 export const reviewSectionStyles = (theme: Theme): SxProps<Theme> => ({
   display: 'flex',
   flexDirection: theme.breakpoints.down('sm') ? 'column' : 'row',
@@ -56,8 +53,8 @@ export const buttonStyles = (theme: Theme): SxProps<Theme> => ({
 
 export const submitButtonStyles: SxProps<Theme> = {
   textTransform: 'none',
-  backgroundColor: '#000000',
-  color: '#FFFFFF',
+  backgroundColor: theme.colors.selectedColor,
+  color: theme.colors.white,
   borderRadius: '62px',
   padding: '16px 20px',
   width: '166px',
@@ -69,5 +66,5 @@ export const reviewFormStyles: SxProps<Theme> = {
   border: '1px solid #E0E0E0',
   borderRadius: '8px',
   mt: 2,
-  backgroundColor: '#FFFFFF',
+  backgroundColor: theme.colors,
 };

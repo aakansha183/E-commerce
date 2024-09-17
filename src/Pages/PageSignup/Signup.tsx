@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Container, Link, Typography } from "@mui/material";
 import { validationSchemaRegister } from "./ValidationSchemaSignup/SignupValidation";
 import { Translations } from "../../Utils/Translation/Translation";
 import LoginTextField from "../PageLogin/Components/CommonTextInputField";
-import { ErrorMessage, MainContainer, Title } from "../../CommonComponents/LoginCommonComponent";
+import { ErrorMessage, MainContainer, SubmitButton, Title } from "../../CommonComponents/LoginCommonComponent";
 import { FormData } from "../PageSignup/Interfaces/SignupInterfaces";
 import { useHandleRegister } from "./SignupHandlers";
 import { useLoginNavigate } from "../../Routes/Navigation";
 import Grid from '@mui/material/Grid2';
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 
 const Register: React.FC = () => {
   const [registrationError, setRegistrationError] = useState<string>(""); 
@@ -28,15 +30,15 @@ const Register: React.FC = () => {
     const error = await onSubmit(values); 
     if (error && typeof error === 'string') {
       setRegistrationError(error);
-    } else {
       setRegistrationError("An unknown error occurred.");
+    } else {
     }
   };
 
   return (
     <Container maxWidth="sm">
        <MainContainer>
-        <Title /> 
+       <Title title={Translations.SHOP_CO} />
         <form onSubmit={handleSubmit(handleFormSubmit)} style={{ width: "100%" }}>
           <Grid container spacing={2}>
             <Grid size ={{ xs:12}}>
@@ -96,21 +98,10 @@ const Register: React.FC = () => {
             </Grid>
 
             <Grid size ={{ xs:12}}>
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                size="large"
-                disabled={isSubmitting}
-                sx={{
-                  mt: 2,
-                  backgroundColor: "#000000",
-                  borderRadius: "40px",
-                  height: "50px",
-                }}
-              >
-                {Translations.Register}
-              </Button>
+            <SubmitButton isSubmitting={isSubmitting} label={Translations.Register} />
+
+            
+            
             </Grid>
           </Grid>
         </form>

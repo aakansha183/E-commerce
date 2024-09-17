@@ -40,6 +40,7 @@ export const newArrivalBox = {
     alignItems: "center",
     mt: 1,
     marginLeft: "10px",
+    
   };
   
   export const productRatingText = {

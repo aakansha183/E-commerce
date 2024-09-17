@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarOutline';
 import { ProductInfoProps } from '../Utils/Interfaces/InterfacesProductInfo';
@@ -13,6 +12,8 @@ import {
   originalPriceStyles,
   discountStyles
 } from '../StyleProductDetails/StyleProductInfo';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ name, rating, price, originalPrice, discount }) => {
   const renderStars = (rating: number) => (

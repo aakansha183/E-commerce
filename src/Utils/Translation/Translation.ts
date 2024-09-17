@@ -1,3 +1,4 @@
+
 export const Translations = {
     NEW_ARRIVALS: "NEW ARRIVALS",
     ViewAll:'View All',
@@ -18,7 +19,7 @@ export const Translations = {
     LoginSubHead:'Don’t have an account?',
     Register:'Register',
     ChooseSize:'Choose Size',
-    AddtoCart:' Add to Cart',
+    addToCart:' Add to Cart',
     AllReviews:" All Reviews " ,
     Latest:' Latest',
     WriteaReview:'Write a Review', 
@@ -40,6 +41,7 @@ export const Translations = {
     Price:'Price',
     Colors:'Colors',
     Size:'Size',
+    New_Arrivals:'New Arrivals',
     DressStyle:'Dress Style',
     apply:'apply', 
     YOURCART:' YOUR CART',
@@ -61,6 +63,7 @@ export const Translations = {
     SubscribetoNewsletter:'Subscribe to Newsletter',
     FooterDescription:'We have clothes that suit your style and which youre proud to wear. From women to men.',
     RightsReserved:'  Shop.co © 2000-2023, All Rights Reserved',
-
+    ProductDes:'This graphic t-shirt is perfect for any occasion. Crafted from asoft and breathable fabric, it offers superior comfort and style.',
+    suggestedProductsSubhead:' YOU MIGHT ALSO LIKE'
   };
   

@@ -1,4 +1,5 @@
 import { SxProps } from "@mui/material";
+import { theme } from "../../PageProductDetails/Utils/Theme/Theme";
 
 export const loginStyles: Record<string, SxProps> = {
   container: {
@@ -9,13 +10,13 @@ export const loginStyles: Record<string, SxProps> = {
     padding: { xs: "32px", sm: "64px" },
     border: "2px solid #f0f0f0",
     borderRadius: "22px",
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.colors.white,
     marginBottom: { xs: "20px", sm: "50px" },
   },
   title: {
     marginBottom: "20px",
     textAlign: "center",
-    color: "#000000",
+    color: theme.colors.selectedColor,
     fontSize: { xs: "32px", sm: "40px" },
     fontWeight: "bold",
     fontFamily: "Poppins",
@@ -35,4 +36,7 @@ export const loginStyles: Record<string, SxProps> = {
   gridContainer: {
     marginTop: "1rem",
   },
+  custominputprops:{
+    borderRadius:'28px'
+  }
 };

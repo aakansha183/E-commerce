@@ -1,5 +1,6 @@
 import { SxProps, Theme } from '@mui/material/styles';
 import { CSSProperties } from 'react';
+import { theme } from '../../PageProductDetails/Utils/Theme/Theme';
 
 export const containerStyles: SxProps<Theme> = {
   padding: 2,
@@ -34,12 +35,12 @@ export const sortByTextBoxStyles: SxProps<Theme> = {
 };
 
 export const sortByLabelStyles: SxProps<Theme> = {
-  color: '#808080',
+  color: theme.colors.darkestgrey,
   display: 'inline',
 };
 
 export const sortByValueStyles: SxProps<Theme> = {
-  color: '#000000',
+  color: theme.colors.selectedColor,
   display: 'inline',
   ml: 1,
 };
@@ -69,7 +70,7 @@ export const productNameStyles: SxProps<Theme> = {
 export const ratingStyles: SxProps<Theme> = {
   fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' },
   marginBottom: 1,
-  color: '#FFC633',
+  color:theme.colors.yellow,
   marginTop: 1,
 };
 
@@ -95,8 +96,8 @@ export const originalPriceStyles: SxProps<Theme> = {
 };
 
 export const discountTagStyles: SxProps<Theme> = {
-  backgroundColor: '#FFE9F0',
-  color: '#FF3333',
+  backgroundColor: theme.colors.lightred,
+  color: theme.colors.red,
   borderRadius: '62px',
   padding: '6px 14px',
   marginLeft: 0.5,
@@ -110,8 +111,8 @@ export const paginationBoxStyles: SxProps<Theme> = {
 };
 
 export const buttonStyles: SxProps<Theme> = {
-  color: 'black',
-  borderColor: 'black',
+  color: theme.colors.selectedColor,
+  borderColor: theme.colors.selectedColor,
   fontSize: 'bold',
 };
 

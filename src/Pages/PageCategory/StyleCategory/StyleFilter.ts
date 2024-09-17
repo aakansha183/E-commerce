@@ -1,4 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
+import { theme } from "../../PageProductDetails/Utils/Theme/Theme";
 
 const styles: {
   container: SxProps<Theme>,
@@ -16,7 +17,7 @@ const styles: {
     padding: "8px",
     border: "1px solid #ddd",
     borderRadius: 4,
-    bgcolor: "white",
+    bgcolor: theme.colors.white,
     position: "relative",
     overflow: "auto",
     maxWidth: "120%",
@@ -36,7 +37,7 @@ const styles: {
   },
   selectedColorText: {
     fontSize: "10px",
-    color: "white",
+    color: theme.colors.white,
     fontWeight: "bold",
   },
   sizeChip: {
@@ -60,13 +61,13 @@ const styles: {
   accordionHeading: {
     fontWeight: "700",
     fontSize: "16px",
-    color: "#000000",
+    color: theme.colors.selectedColor,
   },
   slider: {
-    color: "black",
+    color: theme.colors.selectedColor,
   },
   button: {
-    backgroundColor: '#000000',
+    backgroundColor: theme.colors.selectedColor,
     borderRadius: '62px',
     width: '300px',
     height: '50px',

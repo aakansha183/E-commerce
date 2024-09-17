@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import {
-  Tabs,
-  Tab,
-  Button,
-  Typography,
-  Box,
-  Menu,
-  MenuItem,
-  TextField,
-  Rating,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+
 import FilterIcon from '../../../Assests/ImagesData/FilterIcon';
 import ReviewsList from './ComponentReviews';
 import { Review } from '../../../Utils/Interfaces/InterfaceReview';
 import { defaultNewReview, initialReviews } from '../Utils/Constants/ConstantsReview';
 import { Translations } from '../../../Utils/Translation/Translation';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import Rating from '@mui/material/Rating';
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function TabPanel(props: { children?: React.ReactNode; index: number; value: number }) {
   const { children, value, index, ...other } = props;

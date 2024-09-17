@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material/styles';
+import { theme } from '../Utils/Theme/Theme';
 
 export const incrementDecrementContainerStyles: SxProps<Theme> = {
   display: 'flex',
@@ -12,7 +13,7 @@ export const incrementDecrementBoxStyles: SxProps<Theme> = {
   alignItems: 'center',
   gap: 3,
   borderRadius: '62px',
-  backgroundColor: '#F0F0F0',
+  backgroundColor: theme.colors.grey,
   height: '52px',
   padding: '0px 20px',
 };

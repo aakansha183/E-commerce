@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material/styles';
+import { theme } from '../Utils/Theme/Theme';
 
 export const containerStyles: SxProps<Theme> = {
   overflowX: 'hidden',
@@ -32,7 +33,7 @@ export const descriptionTranslationstyles: SxProps<Theme> = {
   fontSize: { xs: '14px', sm: '16px' },
   lineHeight: '22px',
   fontWeight: '400',
-  color: 'grey',
+  color: theme.colors.darkgrey,
 };
 
 export const actionsBoxStyles: SxProps<Theme> = {

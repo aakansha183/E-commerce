@@ -1,4 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
+import { theme } from "../../PageProductDetails/Utils/Theme/Theme";
 
 const styles: {
   divider: SxProps<Theme>,
@@ -34,14 +35,14 @@ const styles: {
     zIndex: 1,
   },
   messageText: {
-    color: "Translationsecondary",
+    color: theme.colors.grey,
     fontFamily: "Poppins",
     fontSize: { xs: "20px", md: "30px" },
     fontWeight: "500",
   },
   button: {
-    backgroundColor: "black",
-    color: "white",
+    backgroundColor: theme.colors.selectedColor,
+    color: theme.colors.white,
     padding: "16px 54px",
     width: { xs: "80%", md: "310px" },
     height: "52px",
